@@ -1,0 +1,23 @@
+{
+  "name": "cerberus",
+  "version": "0.0.0",
+  "homepage": "https://github.com/jseiden/cerberus",
+  "authors": [
+    "jseiden <jseiden@gmail.com>"
+  ],
+  "main": "./client/index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.2",
+    "d3": "~3.5.6",
+    "underscore": "~1.8.3",
+    "angular-ui-router": "~0.2.15"
+  }
+}
