@@ -1,5 +1,7 @@
 # Project Name
 
+[![Coverage Status](https://coveralls.io/repos/Insuperable-Arete/cerberus/badge.svg?branch=master&service=github)](https://coveralls.io/github/Insuperable-Arete/cerberus?branch=master)
+
 > Pithy project description
 
 ## Team
