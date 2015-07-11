@@ -1,4 +1,5 @@
 var app = angularModule('app', [
+  'app.homeController',
   'app.mapController',
   'app.mapService'
 ])
