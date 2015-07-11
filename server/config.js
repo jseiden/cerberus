@@ -1,8 +1,7 @@
 // node modules
 var express = require('express');
 var bodyParser = require('body-parser');
-// local modules
-var util = require('./utils.js');
+var spots = require('spotIdToName.json');
 
 var app = express();
 
