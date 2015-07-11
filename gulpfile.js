@@ -1,6 +1,8 @@
 var gulp = require("gulp");
 var jade = require("gulp-jade");
+var sass = require("gulp-sass");
 var jshint = require("gulp-jshint");
+var jasmine = require("gulp-jasmine");
 
 gulp.task("lint", function(){
   return gulp.src("./client/**/*.js")
@@ -18,10 +20,23 @@ gulp.task("jade", function(){
   }));
 });
 
+gulp.task("test", function(){
+  return gulp.src("./spec/test.js")
+    .pipe(jasmine())
+});
+
+gulp.task("sass", function(){
+  return gulp.src("./client/styles/style.scss")
+    .pipe(sass({
+      errLogToConsole: true
+    }))
+    .pipe(gulp.dest("./client/styles"));
+  });
+
 gulp.task("watch", function(){
   gulp.watch(["./client/**/*/js", "./client/*.js"], ["lint"])
 })
 
 gulp.task("default", ["lint", "jade", "watch"], function(){
   "gulp says hi"
-})
+});
