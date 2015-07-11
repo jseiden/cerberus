@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/jseiden/cerberus#readme",
   "dependencies": {
+    "body-parser": "^1.13.2",
     "coveralls": "^2.11.2",
     "docco": "^0.7.0",
     "express": "^4.13.1",
