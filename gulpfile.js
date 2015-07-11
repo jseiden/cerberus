@@ -22,7 +22,9 @@ gulp.task("jade", function(){
 
 gulp.task("test", function(){
   return gulp.src("./spec/test.js")
-    .pipe(jasmine())
+    .pipe(jasmine({
+      verbose: true
+    }))
 });
 
 gulp.task("sass", function(){
