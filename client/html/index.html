@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="app">
   <head>
-    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <link rel="stylesheet" type="text/css" href="../styles/style.css">
   </head>
   <body ui-view>
-    <section ng-controller="mapController"></section>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-ui-router/angular-ui-router.js"></script>
-    <script src="bower_components/d3/d3.js"></script>
-    <script scr="bower_componenets/underscore/underscore.js"></script>
+    <section ng-controller="MapController"></section>
+    <script src="../../bower_components/angular/angular.js"></script>
+    <script src="../../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script scr="../../bower_componenets/underscore/underscore.js"></script>
+    <script src="../app.js"></script>
+    <script src="../js/controllers/homeController.js"></script>
+    <script src="../js/controllers/mapController.js"></script>
+    <script src="../js/services/mapService.js"></script>
   </body>
 </html>

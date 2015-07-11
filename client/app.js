@@ -1,16 +1,16 @@
-var app = angularModule('app', [
+var app = angular.module('app', [
   'app.homeController',
   'app.mapController',
-  'app.mapService'
+  'app.mapService',
+  'ui.router'
 ])
 .config(function($urlRouterProvider, $stateProvider) {
-  urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/');
 
   $stateProvider
   .state('home', {
     url: '/',
-    templateUrl: '..index.html',
+    templateUrl: '../html/index.html',
     controller: 'HomeController'
   });
-})
-;
+});
