@@ -1,5 +1,12 @@
 var map = angular.module('app.mapService', []);
 
-map.controller('MapService', function($scope) {
-
+map.service('MapService', function($scope, $http) {
+  //TODO: Change to actual URL for actual surf data
+  this.getBeachData = function() {
+    //TODO: Start spinner. Spinner will need to be stopped on MapController
+    return $http({
+      method: 'GET',
+      url: '/dummy'
+    });
+  };
 });
