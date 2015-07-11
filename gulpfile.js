@@ -11,7 +11,7 @@ gulp.task("lint", function(){
 });
 
 gulp.task("jade", function(){
-  return gulp.src(["./client/**/*.jade", "./client/*.jade"])
+  return gulp.src("./client/html/index.jade")
   .pipe(jade({
     pretty: true
   }))
