@@ -1,9 +1,10 @@
 doctype html
 html(lang="en" ng-app="app")
   head
-    link(rel="stylesheet" type="text/css" href="styles/style.css")
+    link(rel="stylesheet" type="text/css" href="../styles/style.css")
   body(ui-view)
-    section(ng-controller="mapController")
+    section(ng-controller="MapController")
     //- Using include instead of extends
     //- block scripts
-    include ./scripts.jade
+    include dependencies
+    include scripts
