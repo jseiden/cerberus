@@ -53,7 +53,7 @@ These commands will help you do this:
 git checkout -b `your-branch-name`
 ```
 
-### Make commits to your feature branch. 
+### Make commits to your feature branch.
 
 Prefix each commit like so
   - (feat) Added a new feature
@@ -78,6 +78,8 @@ changes.
 - If you want to explain the commit in more depth, following the first line should
   be a blank line and then a more detailed description of the commit. This can be
   as detailed as you want, so dig into details here and keep the first line short.
+- Create a new line with and close out any waffle tasks associated with this pull
+  request. Ex: "close #1 #2 #3"  
 
 ### Rebase upstream changes into your branch
 
