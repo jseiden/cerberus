@@ -1,7 +1,8 @@
-var fs = require('fs');
 var cheerio = require('cheerio');
 var _ = require('underscore');
 var rp = require('request-promise');
+var Promise = require('bluebird');
+var fs = Promise.promisifyAll(require('fs'));
 
 // url to scrape
 url = 'http://magicseaweed.com/site-map.php';
@@ -27,12 +28,19 @@ var getSpotsByKeyword = function(keyword, $) {
 };
 
 // initiate the scrape to url
-rp(url).then(function(body) {
-  var $ = cheerio.load(body);
+rp(url)
+  .then(function(body) {
+    var $ = cheerio.load(body);
 
-  return _.extend(
-    getSpotsByKeyword('California', $),
-    getSpotsByKeyword('County', $)
-  );
-}).tap(console.log);
+    return _.extend(
+      getSpotsByKeyword('California', $),
+      getSpotsByKeyword('County', $)
+    );
+  })
+  .then(function(spotMap) {
+    fs.writeFileAsync(__dirname + "/spotIdToName.json", JSON.stringify(spotMap));
+  })
+  .then(function(spotMap) {
+    console.log('Scrape Successfull!: spotIdToName.json created in', __dirname);
+  })
 
