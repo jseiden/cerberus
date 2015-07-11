@@ -2,8 +2,10 @@ language: node_js
 node_js:
   - '0.8'
   - '0.10'
+  - '0.12'
 notifications:
   - slack: insuperable-arete:c5vFufBHIzIlotTw1kFXEB6p
+before_script: npm update -g bower
 install:
   - npm install
   - bower install
