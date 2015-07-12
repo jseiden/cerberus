@@ -1,7 +1,11 @@
+//nodem modules
 var mongoose = require('mongoose');
+
+//mongoose config
 db = mongoose.connection;
 
 db.on('error', console.error);
+
 db.once('open', function() {
   var beachSchema = new mongoose.Schema({
     mswId: Number,
@@ -11,6 +15,7 @@ db.once('open', function() {
     forecastData: {
       // TODO: Fill out with real surf data
     }
+
   });
   // TODO: Assuming we'll be expanding, figure out how to organize models
   var Beach = mongoose.model('Beach', beachSchema);
