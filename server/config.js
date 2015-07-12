@@ -1,24 +1,13 @@
-//node moduels
 var express = require('express');
 var bodyParser = require('body-parser');
-var request = require('request');
+var controller = require('./controller.js');
 
+var app = express();
 
-//local modules
-var util = require('./utils.js');
+app.use(bodyParser.json());
 
-
-app = express();
-
-
-//routes
-app.get('/', function(req, res){
-	console.log('----', req.body);
-	res.send('hello world');
-});
-
-app.get('/dummy', util.sendDummyData);
-
+app.get('/', controller.helloWorld);
+app.get('/dummy', controller.sendDummyData);
 
 
 module.exports = app;
