@@ -3,13 +3,17 @@ var bodyParser = require('body-parser');
 var controller = require('./controller.js');
 
 
+
 var app = express();
 
 app.use(bodyParser.json());
 
+
+//these routes are TBD
 app.get('/', controller.helloWorld);
 app.get('/dummy', controller.sendDummyData);
-//app.get('/db', controller.createDB);
+app.get('/dbInit', controller.createDB);
+app.get('/dbRetrieve', controller.retrieveDB);
 
 module.exports = app;
 

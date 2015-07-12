@@ -15,20 +15,3 @@ db.once('open', function () {
 //exports db for use in other files
 module.exports = db;
 
-
-/*
-
-db.once('open', function() {
-  var beachSchema = new mongoose.Schema({
-    mswId: Number,
-    beachName: String,
-    lat: String,
-    lon: String,
-    forecastData: Array
-  });
-  // TODO: Assuming we'll be expanding, figure out how to organize models
-  var Beach = mongoose.model('Beach', beachSchema);
-});
-
-mongoose.connect('mongodb://localhost/thesis');
-*/
