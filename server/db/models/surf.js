@@ -6,7 +6,8 @@ var surfSchema = mongoose.Schema({
   beachname: String,
   lat: String,
   lon: String,
-  forecastData: Array
+  //will reformat forecastData to correct type later
+  forecastData: String
 });
 
 var Surf = mongoose.model('Surf', surfSchema)
