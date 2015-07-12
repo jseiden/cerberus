@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 
 app.get('/', controller.helloWorld);
 app.get('/dummy', controller.sendDummyData);
-
+//app.get('/db', controller.createDB);
 
 module.exports = app;
 
