@@ -4,14 +4,15 @@ db = mongoose.connection;
 db.on('error', console.error);
 db.once('open', function() {
   var beachSchema = new mongoose.Schema({
-    id: Number,
+    mswId: Number,
+    beachName: String,
     lat: String,
     lon: String,
-    beach: String,
-    data: {
+    forecastData: {
       // TODO: Fill out with real surf data
     }
   });
+  // TODO: Assuming we'll be expanding, figure out how to organize models
   var Beach = mongoose.model('Beach', beachSchema);
 });
 
