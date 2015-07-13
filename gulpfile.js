@@ -2,16 +2,18 @@ var gulp = require("gulp");
 var jade = require("gulp-jade");
 var sass = require("gulp-sass");
 var jshint = require("gulp-jshint");
+var a11y = require("gulp-a11y");
 var jasmine = require("gulp-jasmine");
 
 gulp.task("lint", function(){
   return gulp.src("./client/**/*.js")
-  .pipe(jshint())
-  .pipe(jshint.reporter("default"));
+  .pipe(jshint(".jshintrc"))
+  .pipe(jshint.reporter("jshint-stylish"));
 });
 
 gulp.task("jade", function(){
-  return gulp.src(["./client/**/*.jade", "./client/*.jade"])
+  // return gulp.src("./client/html/index.jade", "./client/html/map.jade", "./client/html/scripts.jade", "./client/html/dependencies.jade")
+  return gulp.src("./client/html/index.jade")
   .pipe(jade({
     pretty: true
   }))
@@ -27,6 +29,14 @@ gulp.task("test", function(){
     }))
 });
 
+// evaluates accessibility features in html
+gulp.task('audit', function () {
+  // return gulp.src('./**/*.html')
+  return gulp.src("./client/html/index.html")
+  .pipe(a11y())
+  .pipe(a11y.reporter());
+});
+
 gulp.task("sass", function(){
   return gulp.src("./client/styles/style.scss")
     .pipe(sass({
@@ -35,10 +45,10 @@ gulp.task("sass", function(){
     .pipe(gulp.dest("./client/styles"));
   });
 
-gulp.task("watch", function(){
-  gulp.watch(["./client/**/*/js", "./client/*.js"], ["lint"])
-})
+// gulp.task("watch", function(){
+//   gulp.watch(["./client/**/*/js", "./client/*.js", "./client/styles/*.scss", ".client/html/*.jade"], ["lint", "jade", "sass"])
+// })
 
-gulp.task("default", ["lint", "jade", "watch"], function(){
+gulp.task("default", ["sass", "jade", "lint", "audit"], function(){
   "gulp says hi"
 });
