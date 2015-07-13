@@ -4,6 +4,13 @@
 logs
 *.log
 
+# Local DB data
+*.lock
+*.0
+*.ns
+*.lock
+*.bson
+
 # Runtime data
 pids
 *.pid
