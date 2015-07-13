@@ -1,3 +1,4 @@
+var request = require('request');
 var testData = require('./utils/testData.js');
 var db = require('./db//mongodb-data/config.js');
 var Beach = require('./db/models/beach.js');
@@ -6,7 +7,9 @@ var spotData = require('./utils/spotIdToName.json');
 module.exports = {
 
   sendDummyData: function (req, res) {
-  	res.json(testData.dummyData);
+  	Beach.find({}, function(err, data){
+  		res.send(data);
+  	})
   },
 
   createEntry: function(req, res, data){
@@ -34,6 +37,8 @@ module.exports = {
   	//for now creating an object for easier look up (mswId or beachname for keys?)
   	//creating array for easier one-time pop of db
 
+  	//the below loop will be modified to deal with additional info (i.e. lat/lon, etc)
+
   	for (var i=0; i<keys.length; i++){
   		beachDataObj[i] =  {mswId: keys[i], beachname: spotData[keys[i]]};
   		beachDataArr[i] = {mswId: keys[i], beachname: spotData[keys[i]]};
@@ -44,16 +49,21 @@ module.exports = {
   	}
 
   },
- 
 
-  //retrieveDB will eventually retrieve dynamically from util and/or arguments
-	//for now hard coded retrieve is used for testing (ideally would be pulling data from testData.js)
-  retrieve: function(req, res){
-  	Beach.find({}, function(err, data){
-  		console.log(data);
-  		res.send(data);
-  	})
+
+
+  mswRequest: function(req, res){
+  	var endpoint = 'http://magicseaweed.com/api/436cadbb6caccea6e366ed1bf364025779b64e18/forecast/?spot_id=10'
+  	request
+  		.get(endpoint)
+  		.on('error', function(err){
+  			console.log(err);
+  		})
+  		.on('response', function(response){
+  			console.log(response.statusCode);
+  		})
   }
-
+// http://magicseaweed.com/api/YOURAPIKEY/forecast/?spot_id=10
+// http://magicseaweed.com/api/436cadbb6caccea6e366ed1bf364025779b64e18/forecast/?spot_id=10
 
 }
