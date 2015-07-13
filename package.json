@@ -31,9 +31,17 @@
     "gulp-jshint": "^1.11.2",
     "gulp-sass": "^2.0.3",
     "mongoose": "^4.0.7",
+<<<<<<< HEAD
     "morgan": "^1.6.1",
     "request": "^2.58.0",
     "request-promise": "^0.4.2",
     "underscore": "^1.8.3"
+=======
+    "morgan": "^1.6.1"
+  },
+  "devDependencies": {
+    "gulp-a11y": "^0.1.1",
+    "jshint-stylish": "^2.0.1"
+>>>>>>> (init) add map.jade and minor CI fixes
   }
 }
