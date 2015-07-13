@@ -15,6 +15,9 @@ module.exports = {
   //this util will write to DB will eventually be moved to worker
 	//could also be used in future if client needs to store persistent data
 	//hard coded data is only for test (ideally would be pulling data from testData.js)
+
+	//NOTE this is currently creating a new entry...however this is fine
+	//when new beaches are inserted into Surf
   createDB: function(req, res){
   	var newSurf = Surf({
 			mswId: 123,
