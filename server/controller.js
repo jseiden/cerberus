@@ -9,65 +9,51 @@ module.exports = {
   	res.json(testData.dummyData);
   },
 
-  helloWorld: function (req, res) {
-    res.send('Hello World');
-  },
-
-  //this util will write to DB will eventually be moved to worker
-	//could also be used in future if client needs to store persistent data
-	//hard coded data is only for test (ideally would be pulling data from testData.js)
-
-
-  createDB: function(req, res){
+  createEntry: function(req, res, data){
   	var newBeach = Beach({
-			mswId: 123,
-			beachname: 'Stinson Beach',
-			lat: '37.91333°N',
-			lon: '122.54833°W',
-			forecastData: 'Test Conditions'
+			mswId: data.mswId,
+			beachname: data.beachname,
+			lat: 'PLACEHOLDER',
+			lon: 'PLACEHOLDER',
+			forecastData: 'PLACEHOLDER'
 		});
 
 		newBeach.save(function(err){
 			if (err) throw err;
-			console.log('beachData Created!')
-			res.send('beachData Created')
+			console.log('Beach Entry Created!')
+			res.send('Beach Entry Created')
 		});
   },
 
-  testJSON: function(req, res){
+  populate: function(req, res){
   	var keys = Object.keys(spotData);
-  	var beachData = {};
+
+  	var beachDataObj = {};
+  	var beachDataArr = [];
+
+  	//for now creating an object for easier look up (mswId or beachname for keys?)
+  	//creating array for easier one-time pop of db
+
   	for (var i=0; i<keys.length; i++){
-  		beachData[i] =  {mswId: keys[i], beachname: spotData[keys[i]]};
+  		beachDataObj[i] =  {mswId: keys[i], beachname: spotData[keys[i]]};
+  		beachDataArr[i] = {mswId: keys[i], beachname: spotData[keys[i]]};
   	}
-  	console.log(beachData);
+
+  	for (var i=0; i<beachDataArr.length; i++){
+  		module.exports.createEntry(req, res, beachDataArr[i]);
+  	}
+
   },
-  /*
-
-  spotIdToName.json
-
-  for (var items in spots){
-		
-  }
-		oneTimePopulate: function(req, res){
-			var newBeach = Beach({
-				mswId: id
-			})
-		}
-  */
-  
+ 
 
   //retrieveDB will eventually retrieve dynamically from util and/or arguments
 	//for now hard coded retrieve is used for testing (ideally would be pulling data from testData.js)
-  retrieveDB: function(req, res){
+  retrieve: function(req, res){
   	Beach.find({}, function(err, data){
   		console.log(data);
   		res.send(data);
   	})
-  },
-
-  updateDB: function(){
-
   }
+
 
 }
