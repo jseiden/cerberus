@@ -1,10 +1,8 @@
 var app = angular.module('app', [
   'app.homeController',
-  'app.mapController',
+  'app.googleMapController',
   'app.mapService',
-  'ui.router',
-  // this module is for angular-google.maps
-  'uiGmapgoogle-maps'
+  'ui.router'
 ])
 .config(function($urlRouterProvider, $stateProvider) {
   $urlRouterProvider.otherwise('/');
