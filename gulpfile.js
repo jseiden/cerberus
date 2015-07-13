@@ -12,6 +12,7 @@ gulp.task("lint", function(){
 });
 
 gulp.task("jade", function(){
+  // return gulp.src("./client/html/index.jade", "./client/html/map.jade", "./client/html/scripts.jade", "./client/html/dependencies.jade")
   return gulp.src("./client/html/index.jade")
   .pipe(jade({
     pretty: true
@@ -44,9 +45,9 @@ gulp.task("sass", function(){
     .pipe(gulp.dest("./client/styles"));
   });
 
-gulp.task("watch", function(){
-  gulp.watch(["./client/**/*/js", "./client/*.js"], ["lint"])
-})
+// gulp.task("watch", function(){
+//   gulp.watch(["./client/**/*/js", "./client/*.js", "./client/styles/*.scss", ".client/html/*.jade"], ["lint", "jade", "sass"])
+// })
 
 gulp.task("default", ["sass", "jade", "lint", "audit"], function(){
   "gulp says hi"
