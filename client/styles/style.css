@@ -366,3 +366,10 @@ table {
 td,
 th {
   padding: 0; }
+
+/* map styles */
+map {
+  margin: 0 auto;
+  margin-top: 30px;
+  height: 700px;
+  width: 75%; }
