@@ -1,5 +1,5 @@
 var testData = require('./utils/testData.js');
-var db = require('./db/config.js');
+var db = require('./db//mongodb-data/config.js');
 var Beach = require('./db/models/beach.js');
 var spotData = require('./utils/spotIdToName.json');
 
@@ -29,13 +29,18 @@ module.exports = {
 
 		newBeach.save(function(err){
 			if (err) throw err;
-			console.log('surfData Created!')
-			res.send('surfData Created')
+			console.log('beachData Created!')
+			res.send('beachData Created')
 		});
   },
 
   testJSON: function(req, res){
-  	console.log(spotData);
+  	var keys = Object.keys(spotData);
+  	var beachData = {};
+  	for (var i=0; i<keys.length; i++){
+  		beachData[i] =  {mswId: keys[i], beachname: spotData[keys[i]]};
+  	}
+  	console.log(beachData);
   },
   /*
 
