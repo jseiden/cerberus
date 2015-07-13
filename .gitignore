@@ -5,6 +5,7 @@ logs
 *.log
 
 # Local DB data
+journal/
 *.lock
 *.0
 *.ns
