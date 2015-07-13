@@ -1,6 +1,7 @@
 var testData = require('./utils/testData.js');
 var db = require('./db/config.js');
-var Surf = require('./db/models/surf.js');
+var Beach = require('./db/models/beach.js');
+var spotData = require('./utils/spotIdToName.json');
 
 module.exports = {
 
@@ -16,10 +17,9 @@ module.exports = {
 	//could also be used in future if client needs to store persistent data
 	//hard coded data is only for test (ideally would be pulling data from testData.js)
 
-	//NOTE this is currently creating a new entry...however this is fine
-	//when new beaches are inserted into Surf
+
   createDB: function(req, res){
-  	var newSurf = Surf({
+  	var newBeach = Beach({
 			mswId: 123,
 			beachname: 'Stinson Beach',
 			lat: '37.91333°N',
@@ -27,17 +27,35 @@ module.exports = {
 			forecastData: 'Test Conditions'
 		});
 
-		newSurf.save(function(err){
+		newBeach.save(function(err){
 			if (err) throw err;
 			console.log('surfData Created!')
+			res.send('surfData Created')
 		});
   },
+
+  testJSON: function(req, res){
+  	console.log(spotData);
+  },
+  /*
+
+  spotIdToName.json
+
+  for (var items in spots){
+		
+  }
+		oneTimePopulate: function(req, res){
+			var newBeach = Beach({
+				mswId: id
+			})
+		}
+  */
   
 
   //retrieveDB will eventually retrieve dynamically from util and/or arguments
 	//for now hard coded retrieve is used for testing (ideally would be pulling data from testData.js)
   retrieveDB: function(req, res){
-  	Surf.find({}, function(err, data){
+  	Beach.find({}, function(err, data){
   		console.log(data);
   		res.send(data);
   	})

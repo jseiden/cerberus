@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 //define schema
-var surfSchema = mongoose.Schema({
+var beachSchema = mongoose.Schema({
   mswId: Number,
   beachname: String,
   lat: String,
@@ -10,9 +10,11 @@ var surfSchema = mongoose.Schema({
   forecastData: String
 });
 
-var Surf = mongoose.model('Surf', surfSchema)
+var Beach = mongoose.model('Beach', beachSchema);
 
 //any methods to attach to data in Surf will be inserted below
 //e.g. Surf.doSomethingWithData = function(){...}
 
-module.exports = Surf;
+module.exports = Beach;
+
+
