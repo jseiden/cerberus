@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 //define schema
 var beachSchema = mongoose.Schema({
-  mswId: Number,
+  mswId: { type: Number, required: true, index: {unique: true} },
   beachname: String,
   lat: String,
   lon: String,
@@ -18,3 +18,4 @@ var Beach = mongoose.model('Beach', beachSchema);
 module.exports = Beach;
 
 
+// username: { type: String, required: true, index: { unique: true } },
