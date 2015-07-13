@@ -6,6 +6,7 @@ var fs = Promise.promisifyAll(require('fs'));
 
 // url to scrape
 var url = 'http://magicseaweed.com/site-map.php';
+var writePath = __dirname + '/../json/spotIdToName.json';
 
 // a function that takes some cheerio html represented by $ and a keyword to identify a header on the site map
 // and returns an object of all the spots from the table below the header where the key = spotID and val = spotName
@@ -38,9 +39,9 @@ rp(url)
     );
   })
   .then(function (spotMap) {
-    fs.writeFileAsync(__dirname + '/spotIdToName.json', JSON.stringify(spotMap));
+    fs.writeFileAsync(writePath, JSON.stringify(spotMap));
   })
   .then(function (spotMap) {
-    console.log('Scrape Successfull!: spotIdToName.json created in', __dirname);
+    console.log('Scrape Successfull!: spotIdToName.json created in', writePath);
   })
 
