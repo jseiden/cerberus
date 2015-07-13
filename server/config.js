@@ -9,15 +9,12 @@ var app = express();
 app.use(bodyParser.json());
 
 
-//these routes are TBD
-app.get('/', controller.helloWorld);
+//these routes are for TESTING ONLY 
 app.get('/dummy', controller.sendDummyData);
 
 
-app.get('/dbInit', controller.createDB);
-app.get('/dbRetrieve', controller.retrieveDB);
-
-app.get('/testJSON', controller.testJSON);
+app.get('/dbRetrieve', controller.retrieve);
+app.get('/dbTestPopulate', controller.populate);
 
 module.exports = app;
 
