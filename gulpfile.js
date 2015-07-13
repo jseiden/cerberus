@@ -2,12 +2,13 @@ var gulp = require("gulp");
 var jade = require("gulp-jade");
 var sass = require("gulp-sass");
 var jshint = require("gulp-jshint");
+var a11y = require("gulp-a11y");
 var jasmine = require("gulp-jasmine");
 
 gulp.task("lint", function(){
   return gulp.src("./client/**/*.js")
-  .pipe(jshint())
-  .pipe(jshint.reporter("default"));
+  .pipe(jshint(".jshintrc"))
+  .pipe(jshint.reporter("jshint-stylish"));
 });
 
 gulp.task("jade", function(){
@@ -27,6 +28,14 @@ gulp.task("test", function(){
     }))
 });
 
+// evaluates accessibility features in html
+gulp.task('audit', function () {
+  // return gulp.src('./**/*.html')
+  return gulp.src("./client/html/index.html")
+  .pipe(a11y())
+  .pipe(a11y.reporter());
+});
+
 gulp.task("sass", function(){
   return gulp.src("./client/styles/style.scss")
     .pipe(sass({
@@ -39,6 +48,6 @@ gulp.task("watch", function(){
   gulp.watch(["./client/**/*/js", "./client/*.js"], ["lint"])
 })
 
-gulp.task("default", ["lint", "jade", "watch"], function(){
+gulp.task("default", ["sass", "jade", "lint", "audit"], function(){
   "gulp says hi"
 });
