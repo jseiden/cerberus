@@ -28,10 +28,7 @@ module.exports = {
   },
 
   populate: function(req, res){
-
-
   	var keys = Object.keys(spotData);
-
   	var beachDataObj = {};
   	var beachDataArr = [];
   	//the below loop will be modified to deal with additional info (i.e. lat/lon, etc)
@@ -43,23 +40,19 @@ module.exports = {
   	for (var i=0; i<beachDataArr.length; i++){
   		module.exports.createEntry(req, res, beachDataArr[i]);
   	}
-
   },
 
-
-
   mswRequest: function(req, res){
-  	var endpoint = 'http://magicseaweed.com/api/436cadbb6caccea6e366ed1bf364025779b64e18/forecast/?spot_id=10'
+  	var endpoint = 'http://magicseaweed.com/api/436cadbb6caccea6e366ed1bf3640257/forecast/?spot_id=10'
   	request
   		.get(endpoint)
   		.on('error', function(err){
   			console.log(err);
   		})
   		.on('response', function(response){
-  			console.log(response.statusCode);
+  			console.log(response);
   		})
   }
-
 
 }
 
