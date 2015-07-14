@@ -1,5 +1,11 @@
 
 div(map-lazy-load="http://maps.googleapis.com/maps/api/js?v=3&sensor=false")
   map(center="37.783724, -122.408978")
+  
     // dummy static marker 
-    marker(position="[37.783724, -122.408978]")
+    //- marker(position="[37.783724, -122.408978]")
+    marker(ng-repeat="beach in beachData" position="[{{beach.lat}}, {{beach.lon}}]")    
+//this works, proving that I can access and iterate through $scope.beachData
+p(ng-repeat="beach in beachData") {{beach.beachname}}
+
+  
