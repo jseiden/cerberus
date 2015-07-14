@@ -14,6 +14,7 @@ app.use(bodyParser.json());
 
 //these routes are for TESTING ONLY
 app.get('/dbTestPopulate', controller.populate);
-app.get('/testRequest', controller.mswRequest);
+app.get('/testMswRequest', controller.mswRequest);
+app.get('/testDbRequest', controller.sendDbData);
 
 module.exports = app;
