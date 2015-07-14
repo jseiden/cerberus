@@ -4,8 +4,8 @@ var mongoose = require('mongoose');
 var beachSchema = mongoose.Schema({
   mswId: { type: Number, required: true, index: {unique: true} },
   beachname: String,
-  lat: String,
-  lon: String,
+  lat: Number,
+  lon: Number,
   forecastData: Array
 });
 
