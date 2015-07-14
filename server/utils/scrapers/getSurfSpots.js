@@ -34,7 +34,8 @@ rp(url)
     var $ = cheerio.load(body);
 
     return _.extend(
-      getSpotsByKeyword('California', $),
+      getSpotsByKeyword('Northern California', $),
+      getSpotsByKeyword('Central California', $),
       getSpotsByKeyword('County', $)
     );
   })
