@@ -11,7 +11,9 @@
     <section ng-controller="GoogleMapController">
       <div map-lazy-load="http://maps.googleapis.com/maps/api/js?v=3&amp;sensor=false"><map center="37.783724, -122.408978">
           <!-- dummy static marker -->
-          <marker position="[37.783724, -122.408978]"></marker></map></div>
+          <marker ng-repeat="beach in beachData" position="[{{beach.lat}}, {{beach.lon}}]">   </marker></map></div>
+      <!--this works, proving that I can access and iterate through $scope.beachData-->
+      <p ng-repeat="beach in beachData">{{beach.beachname}}</p>
     </section>
     <script src="../../bower_components/angular/angular.js"></script>
     <script src="../../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
