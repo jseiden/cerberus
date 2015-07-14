@@ -2,7 +2,7 @@ var request = require('request');
 var testData = require('./utils/testData.js');
 var db = require('./db//mongodb-data/config.js');
 var Beach = require('./db/models/beach.js');
-var spotData = require('./utils/spotIdToName.json');
+var spotData = require('./utils/json/locationsWithCoords.json');
 
 module.exports = {
 
@@ -15,10 +15,10 @@ module.exports = {
   createEntry: function(req, res, data){
   	var newBeach = Beach({
 			mswId: data.mswId,
-			beachname: data.beachname,
-			lat: 'PLACEHOLDER',
-			lon: 'PLACEHOLDER',
-			forecastData: testData.dummyData
+			beachname: data.beachName,
+			lat: data.lat,
+			lon: data.lon,
+			forecastData: ['justin puts the lotion on its skin']
 		});
 
 		newBeach.save(function(err){
@@ -28,17 +28,8 @@ module.exports = {
   },
 
   populate: function(req, res){
-  	var keys = Object.keys(spotData);
-  	var beachDataObj = {};
-  	var beachDataArr = [];
-  	//the below loop will be modified to deal with additional info (i.e. lat/lon, etc)
-  	for (var i=0; i<keys.length; i++){
-  		beachDataObj[i] =  {mswId: keys[i], beachname: spotData[keys[i]]};
-  		beachDataArr[i] = {mswId: keys[i], beachname: spotData[keys[i]]};
-  	}
-
-  	for (var i=0; i<beachDataArr.length; i++){
-  		module.exports.createEntry(req, res, beachDataArr[i]);
+  	for (var i=0; i<spotData.length; i++){
+  		module.exports.createEntry(req, res, spotData[i]);
   	}
   },
 
