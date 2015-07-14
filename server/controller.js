@@ -50,7 +50,7 @@ module.exports = {
   			console.log(err);
   		})
   		.on('response', function(response){
-  			console.log(response);
+  			console.log(response.statusCode);
   		})
   }
 
