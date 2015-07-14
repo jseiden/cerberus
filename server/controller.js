@@ -12,7 +12,7 @@ module.exports = {
   	})
   },
 
-  createEntry: function(req, res, data){
+  createEntry: function(data){
   	var newBeach = Beach({
 			mswId: data.mswId,
 			beachname: data.beachName,
@@ -27,22 +27,28 @@ module.exports = {
 		});
   },
 
-  populate: function(req, res){
+  populate: function(){
   	for (var i=0; i<spotData.length; i++){
   		module.exports.createEntry(req, res, spotData[i]);
   	}
   },
 
-  mswRequest: function(req, res){
+  updateDb: function(){
+
+  },
+
+  mswRequest: function(){
   	var endpoint = 'http://magicseaweed.com/api/436cadbb6caccea6e366ed1bf3640257/forecast/?spot_id=10'
-  	request
-  		.get(endpoint)
-  		.on('error', function(err){
-  			console.log(err);
-  		})
-  		.on('response', function(response){
-  			console.log(response.statusCode);
-  		})
+  	request({
+      method: 'GET', 
+      uri: endpoint
+    },
+    function (error, response, body){
+      if (error){
+        return console.log('request failed: ', error);
+      }
+      console.log(body)
+    })
   }
 
 }
