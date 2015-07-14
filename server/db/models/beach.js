@@ -15,6 +15,3 @@ var Beach = mongoose.model('Beach', beachSchema);
 //e.g. Surf.doSomethingWithData = function(){...}
 
 module.exports = Beach;
-
-
-// username: { type: String, required: true, index: { unique: true } },

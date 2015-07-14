@@ -7,13 +7,12 @@ var morgan = require("morgan");
 
 var app = express();
 
+//middleware
 app.use(cors());
 app.use(morgan("dev"));
 app.use(bodyParser.json());
 
-
 //these routes are for TESTING ONLY
-
 app.get('/dbTestPopulate', controller.populate);
 app.get('/testRequest', controller.mswRequest);
 
