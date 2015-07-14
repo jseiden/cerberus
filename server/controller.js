@@ -6,7 +6,7 @@ var spotData = require('./utils/spotIdToName.json');
 
 module.exports = {
 
-  sendDummyData: function (req, res) {
+  sendDbData: function (req, res) {
   	Beach.find({}, function(err, data){
   		res.send(data);
   	})
