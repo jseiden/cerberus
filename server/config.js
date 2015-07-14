@@ -13,10 +13,6 @@ app.use(bodyParser.json());
 
 
 //these routes are for TESTING ONLY
-//need to 
-//controller.createEntry();
-
-
 
 app.get('/dbTestPopulate', controller.populate);
 app.get('/testRequest', controller.mswRequest);
