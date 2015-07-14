@@ -6,8 +6,7 @@ var beachSchema = mongoose.Schema({
   beachname: String,
   lat: String,
   lon: String,
-  //will reformat forecastData to correct type later
-  forecastData: String
+  forecastData: Array
 });
 
 var Beach = mongoose.model('Beach', beachSchema);
@@ -16,6 +15,3 @@ var Beach = mongoose.model('Beach', beachSchema);
 //e.g. Surf.doSomethingWithData = function(){...}
 
 module.exports = Beach;
-
-
-// username: { type: String, required: true, index: { unique: true } },
