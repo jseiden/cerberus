@@ -20,6 +20,8 @@
     "underscore": "~1.8.3",
     "angular-ui-router": "~0.2.15",
     "normalize-scss": "~3.0.3",
-    "ngmap": "~1.7.11"
+    "ngmap": "~1.7.11",
+    "angular-bootstrap": "~0.13.0",
+    "bootstrap": "~3.3.5"
   }
 }
