@@ -16,5 +16,7 @@ app.use(bodyParser.json());
 app.get('/dbTestPopulate', controller.populate);
 app.get('/testMswRequest', controller.mswRequest);
 app.get('/dbData', controller.sendDbData);
+app.get('/updateDb', controller.dbUpdate);
+app.get('/test', controller.testSurfData);
 
 module.exports = app;
