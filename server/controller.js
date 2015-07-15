@@ -12,7 +12,7 @@ module.exports = {
   	})
   },
 
-  createEntry: function(data){
+  createEntry: function(req, res, data){
   	var newBeach = Beach({
 			mswId: data.mswId,
 			beachname: data.beachName,
@@ -27,18 +27,45 @@ module.exports = {
 		});
   },
 
-  populate: function(){
+  populate: function(req, res){
   	for (var i=0; i<spotData.length; i++){
   		module.exports.createEntry(req, res, spotData[i]);
   	}
   },
 
-  updateDb: function(){
+  testSurfData: function(){    
 
+    //WEIRDNESS FOLLOWS --> 
+    // for (var i=0; i<spotData.length; i++){
+    //   var id = spotData[i]['mswId'];
+    //   console.log(id);
+    //   module.exports.mswRequest(id, function(surfData){
+    //     //module.exports.dbUpdate(id, surfData)
+    //     console.log('----', thatId)
+    //   });
+    // }
+
+    spotData.forEach(function(ids){
+      var id = ids.mswId;
+      module.exports.mswRequest(id, function(surfData){
+        module.exports.dbUpdate(id, surfData)
+      });
+    })
   },
 
-  mswRequest: function(){
-  	var endpoint = 'http://magicseaweed.com/api/436cadbb6caccea6e366ed1bf3640257/forecast/?spot_id=10'
+  dbUpdate: function(id, data){
+    Beach.findOneAndUpdate({mswId: id}, {forecastData: data}, function(err, beach){
+      if (err) throw err;
+      //console.log('db: ', beach);
+    })
+    // Beach.findOneAndUpdate({mswId: 162}, {forecastData: ['james puts the lotion on its skin']}, function(err, beach){
+    //   if (err) throw err;
+    //   console.log(beach);
+    // })
+  },
+
+  mswRequest: function(id, cb){
+  	var endpoint = 'http://magicseaweed.com/api/436cadbb6caccea6e366ed1bf3640257/forecast/?spot_id=' + id.toString();
   	request({
       method: 'GET', 
       uri: endpoint
@@ -47,7 +74,7 @@ module.exports = {
       if (error){
         return console.log('request failed: ', error);
       }
-      console.log(body)
+      cb(body)
     })
   }
 
