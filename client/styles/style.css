@@ -373,3 +373,6 @@ map {
   margin-top: 20px;
   height: 650px;
   width: 75%; }
+
+.nav, .pagination, .carousel, .panel-title a {
+  cursor: pointer; }
