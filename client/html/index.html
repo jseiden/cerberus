@@ -7,7 +7,7 @@
   <body ui-view><a href="http://magicseaweed.com"><img src="http://im-1-uk.msw.ms/msw_powered_by.png"></a>
     <section ng-controller="GoogleMapController">
       <div map-lazy-load="http://maps.googleapis.com/maps/api/js?v=3&amp;sensor=false"><map center="36.958, -119.2658" zoom="6">
-          <marker ng-repeat="beach in beachData" position="[{{beach.lat}}, {{beach.lon}}]" name="{{beach.beachname}}">   </marker>
+          <marker ng-repeat="beach in beachData" position="[{{beach.lat}}, {{beach.lon}}]" name="{{beach.beachname}}" tilt="45" map-type-id="SATELLITE">   </marker>
           <!-- dummy static marker --></map></div>
     </section>
     <script src="../../bower_components/angular/angular.js"></script>
