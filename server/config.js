@@ -5,7 +5,7 @@ var cors = require("cors");
 var morgan = require("morgan");
 var cron = require('node-schedule');
 
-var ctlr = require('./controller.js');
+var controller = require('./controller.js');
 var apiUtils = require('./utils/apiUtils.js');
 var crudUtils = require('./utils/crudUtils.js');
 
@@ -20,13 +20,14 @@ app.use(bodyParser.json());
 apiUtils.updateBeachData();
 
 //these routes are for TESTING ONLY
+//populates db with one-time beach data (e.g. lat/long, etc)
 app.get('/writeBeachEntries', crudUtils.writeBeachEntries);
-app.get('/retrieveBeachDatas', crudUtils.retrieveBeachDatas);
+//populates db with msw surf data for respective beach
 app.get('/beachDataRequests', apiUtils.beachDataReqs);
 
-
 //these routes are for serving static assets
-//app.get('/', ctrl.serveDummyHome)
+app.get('/', controller.serveDummyRoot)
+//fill in route to serve down beach data (controller.js -->) 
 
 module.exports = app;
 
