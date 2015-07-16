@@ -1,4 +1,4 @@
-//nodem modules
+//node modules
 var mongoose = require('mongoose');
 //mongoose config
 mongoURI = 'mongodb://localhost/thesis'

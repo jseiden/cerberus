@@ -18,14 +18,14 @@ exports.writeBeachEntry = function(beachData){
 	});
 };
 
-exports.writeBeachEntries = function(){
+exports.beachDataUpdate = function(){
 	spotData.forEach(function(spotData){
 		exports.writeBeachEntry(spotData)
 	})
 };
 
 
-exports.beachDataUpdate = function(id, data){
+exports.beachDatumUpdate = function(id, data){
   Beach.findOneAndUpdate({mswId: id}, {forecastData: data}, function(err, beach){
     if (err) throw err;
   })
@@ -35,4 +35,6 @@ exports.retrieveAllBeachData = function (cb) {
 	Beach.find({}, function(err, data){
 		cb(data);
 	})
+
+
 };

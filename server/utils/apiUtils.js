@@ -32,7 +32,7 @@ exports.updateBeachData = function(){
   var rule = new cron.RecurrenceRule();
   rule.minute = 30;
   cron.scheduleJob(rule, function(){
-    console.log('cron job run...');
+    console.log('i like fat CENSORED...');
     //will eventually be...
     // "export.beachDataRequests"
   });                                               
