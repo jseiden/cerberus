@@ -3,11 +3,14 @@ html(lang="en" ng-app="app")
   head
     title Gnar Swells, Brah
     link(rel="stylesheet" type="text/css" href="../styles/style.css")
+    link(rel="stylesheet" type="text/css" href="../../bower_components/bootstrap/dist/css/bootstrap.css")
+      
   body(ui-view)
     a(href="http://magicseaweed.com")
       img(src="http://im-1-uk.msw.ms/msw_powered_by.png")
     section(ng-controller="GoogleMapController")
       include map
+    include details
     //- Using include instead of extends
     //- block scripts
     include dependencies
