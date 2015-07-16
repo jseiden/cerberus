@@ -1,6 +1,6 @@
 var home = angular.module('app.homeController', []);
 
-home.controller('HomeController', function($scope, $modal) {
+home.controller('HomeController', function($scope, $modal, $log) {
   $scope.animationsEnabled = true;
 
   $scope.open = function(size) {
