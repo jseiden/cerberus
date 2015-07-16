@@ -18,6 +18,7 @@ exports.beachDataReq = function(id, cb){
   })
 };
 
+//needs to be MAJORLY refactored...callback hell :(
 exports.beachDataReqs = function(){   
   spotData.forEach(function(ids){
     var id = ids.mswId;

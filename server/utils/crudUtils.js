@@ -3,8 +3,6 @@ var Beach = require('../db/models/beach.js');
 var apiUtils = require('./apiUtils.js');
 var spotData = require('./json/beachData.json');
 
-
-
 exports.writeBeachEntry = function(beachData){
   	var newBeach = Beach({
 			mswId: beachData.mswId,
@@ -26,15 +24,15 @@ exports.writeBeachEntries = function(){
 	})
 };
 
-exports.retrieveBeachDatas = function (req, res, cb) {
-  	Beach.find({}, function(err, data){
-  		cb(data);
-  	})
-};
 
 exports.beachDataUpdate = function(id, data){
   Beach.findOneAndUpdate({mswId: id}, {forecastData: data}, function(err, beach){
     if (err) throw err;
-   // console.log('db: ', beach);
   })
+};
+
+exports.retrieveBeachDatas = function (req, res, cb) {
+  	Beach.find({}, function(err, data){
+  		cb(data);
+  	})
 };
