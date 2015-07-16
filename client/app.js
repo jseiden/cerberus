@@ -1,8 +1,10 @@
 var app = angular.module('app', [
   'app.homeController',
+  'app.detailsController',
   'app.googleMapController',
   'app.mapService',
-  'ui.router'
+  'ui.router',
+  'ui.bootstrap'
 ])
 .config(function($urlRouterProvider, $stateProvider) {
   $urlRouterProvider.otherwise('/');
