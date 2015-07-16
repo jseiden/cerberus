@@ -31,7 +31,7 @@ exports.beachDataUpdate = function(id, data){
   })
 };
 
-exports.retrieveBeachDatas = function (req, res, cb) {
+exports.retrieveBeachDatas = function (cb) {
   	Beach.find({}, function(err, data){
   		cb(data);
   	})
