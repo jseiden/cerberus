@@ -10,12 +10,32 @@
           <marker ng-repeat="beach in beachData" position="[{{beach.lat}}, {{beach.lon}}]" name="{{beach.beachname}}" tilt="45" map-type-id="SATELLITE">   </marker>
           <!-- dummy static marker --></map></div>
     </section>
+    <script type="text/ng-template" id="detailsModal.html">
+      <div class="modal-header">
+        <div class="modal-title">Im a modal!</div>
+      </div>
+      <div class="modal-body">
+        <ul>
+          <li ng-repeat="item in items"><a ng-click="selected.item = item"></a></li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button btn btn-primary ng-click="ok()">OK</button>
+        <button btn btn-warning ng-click="cancel()">Cancel</button>
+      </div>
+    </script>
+    <button ng-click="open()" class="btn btn-default">Open me!</button>
+    <button ng-click="open(lg)" class="btn btn-default">Large modal!</button>
+    <button ng-click="open(sm)" class="btn btn-default">Small modal!</button>
+    <button ng-click="toggleAnimation()" class="btn btn-default">Toggle animation!</button>
     <script src="../../bower_components/angular/angular.js"></script>
     <script src="../../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="../../bower_components/underscore/underscore.js"></script>
+    <script src="../../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="../../bower_components/ngmap/build/scripts/ng-map.js"></script>
     <script src="../js/controllers/homeController.js"></script>
     <script src="../js/controllers/googleMapController.js"></script>
+    <script src="../js/controllers/detailsController.js"></script>
     <script src="../js/services/mapService.js"></script>
     <script src="http://maps.googleapis.com/maps/api/js"></script>
     <script src="../app.js"></script>
