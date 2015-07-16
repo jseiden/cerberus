@@ -1,5 +1,6 @@
 var app = angular.module('app', [
   'app.homeController',
+  'app.detailsController',
   'app.googleMapController',
   'app.mapService',
   'ui.router',

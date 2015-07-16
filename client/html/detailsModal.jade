@@ -1,0 +1,13 @@
+script(type='text/ng-template' id="detailsModal.html")
+  .modal-header
+    .modal-title.
+      Im a modal!
+  .modal-body
+    ul
+      li(ng-repeat="item in items")
+        a(ng-click='selected.item = item')
+  .modal-footer
+    button(btn btn-primary ng-click="ok()").
+      OK
+    button(btn btn-warning ng-click="cancel()").
+      Cancel
