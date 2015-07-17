@@ -17,42 +17,33 @@ exports.beachDataReq = function(id, cb){
   rp(options)
   //this idealy should not be a callback...should chain in promise format
     .then(function(data){
+      console.log('passed: ', id);
       cb(data)
     })
     .catch(function(){
-      failed.push(id);
+      console.log('failed: ', id)
     })
-
-  console.log(failed);
 };
 
-
-// exports.beachDataReqs = function(){   
-//   spotData.forEach(function(ids){
-//     var id = ids.mswId;
-//     exports.beachDataReq(id, function(surfData){
-//      crudUtils.beachDatumUpdate(id, surfData);
-//     })
-//   })
-// };
-
-// prototype version
-//needs to be MAJORLY refactored...callback hell :(
-exports.beachDataReqs = function() {   
-  spotData.forEach(function(ids) {
+exports.beachDataReqs = function(){   
+  //i'm pretty sure we don't need the setTimeout...this is very messy right now :(
+  var time = 500;
+  spotData.forEach(function(ids){
     var id = ids.mswId;
-    exports.beachDataReq(id, function(surfData){
-      var timeFiltered = crudUtils.filterBeachDataTime(surfData);
-      crudUtils.beachDatumUpdate(id, timeFiltered);
-    })
+    setTimeout( function() {
+      exports.beachDataReq(id, function(surfData){
+        var timeFiltered = crudUtils.filterBeachDataTime(surfData);
+        crudUtils.beachDatumUpdate(id, timeFiltered);
+      }), time});
+    time += 500;
+    console.log(time);
   })
 };
-
 
 exports.updateBeachData = function(){
   var rule = new cron.RecurrenceRule();
   rule.minute = 30;
   cron.scheduleJob(rule, function(){
-    // "export.beachDataRequests"
+    exports.beachDataReqs();
   });                                               
 };
