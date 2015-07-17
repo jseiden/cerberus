@@ -1,8 +1,8 @@
 //node modules
 var mongoose = require('mongoose');
 //mongoose config
-// mongoURI = 'mongodb://localhost/thesis'
-mongoURI = "mongodb://45.55.14.80:/testdb";
+mongoURI = 'mongodb://localhost/thesis'
+// mongoURI = "mongodb://45.55.14.80:/thesis";
 mongoose.connect(mongoURI);
 
 

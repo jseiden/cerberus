@@ -4,7 +4,7 @@ det.controller('DetailsController', function($scope, $modalInstance, items) {
   $scope.items = items;
   $scope.selected = {
     item: $scope.items
-  }
+  };
   $scope.ok = function () {
     $modalInstance.close($scope.selected.item);
   };
