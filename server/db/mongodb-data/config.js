@@ -1,8 +1,10 @@
 //node modules
 var mongoose = require('mongoose');
 //mongoose config
-mongoURI = 'mongodb://localhost/thesis'
+// mongoURI = 'mongodb://localhost/thesis'
+mongoURI = "mongodb://45.55.14.80:/testdb";
 mongoose.connect(mongoURI);
+
 
 //opens initial connection
 //Run in seperate terminal window using " mongod --dbpath . " in "./db" directory
@@ -14,4 +16,3 @@ db.once('open', function () {
 
 //exports db for use in other files
 module.exports = db;
-
