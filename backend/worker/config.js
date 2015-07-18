@@ -8,7 +8,7 @@ var crudUtils = require('./utils/crudUtils.js');
 var app = express();
 
 //utils to be called on server init
-apiUtils.updateBeachData();
+//apiUtils.updateBeachData();
 
 
 app.get('/writeBeachData', crudUtils.beachDataUpdate);
