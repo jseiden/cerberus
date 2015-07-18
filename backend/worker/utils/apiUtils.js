@@ -6,8 +6,6 @@ var _ = require('underscore');
 var spotData = require('./json/beachData.json');
 var crudUtils = require('./crudUtils');
 
-
-
 exports.beachDataReq = function(){
 
   var ids = spotData.map(function(beachData){
@@ -38,7 +36,7 @@ exports.beachDataReq = function(){
   };
 
   recurseCall(0);
-}
+};
 
 exports.updateBeachData = function(){
   var rule = new cron.RecurrenceRule();

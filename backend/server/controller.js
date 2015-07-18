@@ -11,5 +11,6 @@ exports.sendSurfSpots = function (req, res) {
 };
 
 exports.sendIndex = function (req, res) {
-  res.sendFile(path.join(__dirname, '../client/html/', 'index.html'));
+  res.sendFile(path.join(__dirname, '../../client/html/', 'index.html'));
 };
+
