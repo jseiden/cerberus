@@ -1,10 +1,9 @@
 var _ = require('underscore');
 
-var db = require('../db/mongodb-data/config.js');
-var Beach = require('../db/models/beach.js');
+var db = require('../../db/mongodb-data/config.js');
+var Beach = require('../../db/models/beach.js');
 var apiUtils = require('./apiUtils.js');
 var spotData = require('./json/beachData.json');
-
 
 exports.writeBeachEntry = function(beachData){
   	var newBeach = Beach({
@@ -20,6 +19,7 @@ exports.writeBeachEntry = function(beachData){
 				console.log('Beach Entry Created!')
 			});
 };
+
 
 exports.beachDataUpdate = function(){
 	_.each(spotData, function(spotDatum){

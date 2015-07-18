@@ -1,7 +1,6 @@
 var request = require('request');
-var db = require('./db//mongodb-data/config.js');
-var Beach = require('./db/models/beach.js');
-var spotData = require('./utils/json/beachData.json');
+var db = require('../db/mongodb-data/config.js');
+var Beach = require('../db/models/beach.js');
 var path = require('path');
 var crudUtils = require('./utils/crudUtils.js');
 
