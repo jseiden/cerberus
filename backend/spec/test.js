@@ -53,15 +53,13 @@ describe('', function() {
           .expect(200)
           .expect(function(res) {
             var ran = Math.floor( Math.random() * res.body.length );
-            console.log(ran);
             expect(res.body[ran].forecastData.length).to.equal(8);
           })
           .end(done);
       });
-
     }); 
 
-  }); 
+  }); // link creation
 
 
 
@@ -70,35 +68,17 @@ describe('', function() {
     it('Retrieves the correct beach name', function(done) {
       request(server)
         .get('/dbData')
-        .expect(202)
-        .expect(function() {
+        .expect(200)
+        .expect(function(res) {
           Beach.findOne({'mswId': '271'})
             .exec(function(err, beach) {
+              if (err) console.log(err);
               expect(beach.beachname).to.equal("Hammonds Reef");
-             // console.log('------------------', beach);
-            })
-        // })
-        .end(done);
-      });
-    });
-
-    it('Successful signup logs in a new user', function(done) {
-      request(app)
-        .post('/signup')
-        .send({
-          'username': 'Phillip',
-          'password': 'Phillip' })
-        .expect(302)
-        .expect(function(res) {
-          expect(res.headers.location).to.equal('/');
-          request(app)
-            .get('/logout')
-            .expect(200)
+            });
         })
-        .end(done);
+      .end(done);
     });
 
-  }); // 'Account Creation'
-
+  }); //Database
 
 });
