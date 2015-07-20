@@ -17,7 +17,7 @@ describe('', function() {
       });
   });
 
-    describe('Link creation: ', function() {
+    describe('Server endpoints', function() {
 
       it('Expects a 200 response code from the root endpoint', function(done) {
         request(server)
@@ -31,7 +31,9 @@ describe('', function() {
           .get('/foo')
           .expect(404)
           .end(done);
-      })
+      });
+
+    }); //server endpoints
 
     describe('Surf Data Request', function() {
 
@@ -57,14 +59,14 @@ describe('', function() {
           })
           .end(done);
       });
-    }); 
 
-  }); // link creation
+    }); //link creation
 
 
 
   describe('Database', function(){
 
+    //not sure why request is necessary for checking contents of DB...
     it('Retrieves the correct beach name', function(done) {
       request(server)
         .get('/dbData')
