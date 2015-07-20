@@ -5,7 +5,10 @@
     <link rel="stylesheet" type="text/css" href="../lib/angularjs-slider/dist/rzslider.css">
     <link rel="stylesheet" type="text/css" href="../lib/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../assets/style.css">
+<<<<<<< HEAD
     <script src="http://maps.google.com/maps/api/js?sensor=true&amp;libraries=geometry"></script>
+=======
+>>>>>>> (feat) basic autocomplete of beach names w/o action
   </head>
   <body ng-controller="HomeController">
     <div ng-attr-class="{{mapLoaded &amp;&amp; 'fadeOut' || 'overlay' }}" ng-hide="true">
@@ -40,8 +43,8 @@
       </div>
     </nav>
     <div class="well search-board left-board">
-      <form>
-        <input placeholder="Search for a surf spot">
+      <form ng-controller="TypeAheadController">
+        <input type="text" ng-model="beach" typeahead="beach for beach in beachChoices | filter:$viewValue" placeholder="Search for a beach">
         <button class="btn btn-info">Icon</button>
       </form>
     </div>
@@ -51,12 +54,16 @@
     <!-- script(src='../lib/d3/d3.min.js')-->
     <script src="../lib/angular/angular.js"></script>
     <script src="../lib/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="../lib/underscore/underscore.js"></script>
+    <script src="../lib/jquery/dist/jquery.js"></script>
+    <script src="../lib/typeahead.js/dist/typeahead.bundle.js"></script>
     <script src="../lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="../lib/ngmap/build/scripts/ng-map.js"></script>
     <script src="../lib/angularjs-slider/rzslider.js"></script>
     <script src="../js/controllers/homeController.js"></script>
     <script src="../js/controllers/googleMapController.js"></script>
     <script src="../js/controllers/detailsController.js"></script>
+    <script src="../js/controllers/typeAheadController.js"></script>
     <script src="../js/services/mapService.js"></script>
     <script src="../js/services/d3Service.js"></script>
     <script src="../app.js"></script>
