@@ -10,8 +10,8 @@ var path = require('path');
 var app = express();
 
 //middleware
-app.use(cors());
-app.use(morgan("dev"));
+//app.use(cors());
+//app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../client'));
 

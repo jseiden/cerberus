@@ -6,4 +6,5 @@ app.listen(port);
 
 console.log('Server listening on....', port);
 
+module.exports = app;
 

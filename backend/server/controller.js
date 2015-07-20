@@ -5,7 +5,7 @@ var path = require('path');
 var crudUtils = require('./utils/crudUtils.js');
 
 exports.sendIndex = function (req, res) {
-  res.sendFile(path.join(__dirname, '../../client/html/', 'index.html'));
+ res.sendFile(path.join(__dirname, '../../client/html/', 'index.html'));
 };
 
 exports.sendSurfSpots = function (req, res) {
