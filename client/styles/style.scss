@@ -214,3 +214,16 @@ html, body, #map{
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+rzslider {
+  position: absolute;
+  top: 850px;
+  left: 20px;
+  width: 80px;
+  z-index: 1;
+}
+
+rzslider span.rz-bubble.rz-limit {
+  font-size: 0;
+}
+

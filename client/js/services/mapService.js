@@ -16,11 +16,12 @@ angular.module('app.mapService', [])
       $rootScope.$broadcast('map loaded');
     };
 
-    var setMap = function(map) {
-      map = map;
+    var setMap = function(mapInstance) {
+      map = mapInstance;
     };
 
     var getMap = function() {
+
       if (!map) {
         return null;
       }
