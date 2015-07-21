@@ -6,6 +6,7 @@ var a11y = require("gulp-a11y");
 var jasmine = require("gulp-jasmine");
 var watch = require("gulp-watch");
 var nodemon = require("gulp-nodemon");
+var Server = require('karma').Server;
 
 gulp.task("lint", function(){
   return gulp.src(["./client/**/*.js", "!./client/lib/**"])
@@ -14,7 +15,6 @@ gulp.task("lint", function(){
 });
 
 gulp.task("jade", function(){
-  // return gulp.src("./client/html/index.jade", "./client/html/map.jade", "./client/html/scripts.jade", "./client/html/dependencies.jade")
   return gulp.src("./client/html/index.jade")
   .pipe(jade({
     pretty: true
@@ -24,11 +24,11 @@ gulp.task("jade", function(){
   }));
 });
 
-gulp.task("test", function(){
-  return gulp.src("./spec/test.js")
-    .pipe(jasmine({
-      verbose: true
-    }))
+gulp.task("test", function(done){
+  new Server({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: true
+  }, done).start();
 });
 
 // evaluates accessibility features in html
@@ -61,8 +61,8 @@ gulp.task("serve", function () {
     env: {
       "NODE_ENV": "development"
     }
-  })
-})
+  });
+});
 
 gulp.task("default", ["sass", "jade", "lint", "audit", "serve"], function(){
   "gulp says hi"

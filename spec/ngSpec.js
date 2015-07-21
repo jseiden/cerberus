@@ -54,6 +54,37 @@ describe("DetailsController", function(){
     it("returns a number", function() {
       expect(typeof $scope.remainingStars(2)).toBe('number');
     });
-  })
+  });
+
+});
+
+describe("GoogleMapController", function(){
+  var $controller;
+  var $scope = {};
+
+  beforeEach(module('app'));
+  beforeEach(inject(function(_$controller_) {
+    $controller = _$controller_;
+  }));
+  beforeEach(inject(function() {
+    var controller = $controller('GoogleMapController', {
+      $scope: $scope
+    });
+  }));
+
+  describe("$scope.getBestWavesFromLoc", function() {
+
+    it("should be a function", function() {
+      expect(typeof $scope.getBestWavesFromLoc).toBe('function');
+    });
+
+    it("should return null if there are no beaches with the input distance")
+
+  });
+
+  describe("googlemapsmock", function () {
+    var pos = new google.maps.LatLng(34.274646, -119.229032);
+    expect(typeof pos).toBe('object');
+  });
 
 });
