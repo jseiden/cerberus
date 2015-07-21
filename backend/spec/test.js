@@ -48,7 +48,7 @@ describe('', function() {
 
       it('Responds with JSON data', function(done) {
         request(server)
-          .get('/dbData')
+          .get('/fetch')
           .expect(200)
           .expect(function(res) {
             expect(typeof res.body === "object").to.equal(true);
@@ -59,7 +59,7 @@ describe('', function() {
       //need to find a more creative (i.e. effective) way to actually test this...
       it('Responds with surf data with a timebox of 24 hours', function(done) {
         request(server)
-          .get('/dbData')
+          .get('/fetch')
           .expect(200)
           .expect(function(res) {
             var ran = Math.floor( Math.random() * res.body.length );
@@ -76,7 +76,7 @@ describe('', function() {
       //this test could do something more useful/helpful...
       it('Retrieves the correct beach name', function(done) {
         request(server)
-          .get('/dbData')
+          .get('/fetch')
           .expect(200)
           .expect(function(res) {
             Beach.findOne({'mswId': '271'})
