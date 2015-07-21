@@ -20,6 +20,7 @@ module.exports = function(config) {
       'client/lib/angular-ui-router/release/angular-ui-router.js',
       'client/lib/ngmap/build/scripts/ng-map.js',
       'client/lib/angular-bootstrap/ui-bootstrap-tpls.js',
+      'client/lib/angularjs-slider/rzslider.js',
       'client/app.js',
       'client/js/services/*.js',
       'client/js/controllers/*.js',
