@@ -1,9 +1,9 @@
 var request = require('supertest');
 var express = require('express');
 var expect = require('chai').expect;
+
 var server = require('../server/config.js');
 var worker = require('../worker/config.js')
-
 var db = require('../db/mongodb-data/config.js');
 var Beach = require('../db/models/beach.js');
 
@@ -26,24 +26,36 @@ describe('', function() {
           .end(done);
       });
 
+      it ('Expects html to be served from the root endpoint', function(done){
+        request(server)
+          .get('/')
+          .expect(function(res){
+            var trueFalse = res.type === 'text/html';
+            expect(trueFalse).to.equal(true);
+          })
+          .end(done);
+      })
+
       it('Expects a 404 response code on an invalid endpoint', function(done){
         request(server)
-          .get('/foo')
+          .get('/foo/bar')
           .expect(404)
           .end(done);
       });
+
+
 
     }); //server endpoints
 
     describe('Surf Data Request', function() {
 
-      it('Responds with with JSON data', function(done) {
+      it('Responds with JSON data', function(done) {
         request(server)
           .get('/dbData')
           .expect(200)
           .expect(function(res) {
-            var ran = Math.floor( Math.random() * res.body.length );
-            expect(res.body[ran].forecastData.length).to.equal(8);
+            var trueFalse = typeof res.body === "object";
+            expect(trueFalse).to.equal(true);
           })
           .end(done);
       });
@@ -60,7 +72,7 @@ describe('', function() {
           .end(done);
       });
 
-    }); //link creation
+    }); //Surf Data Request
 
 
 
