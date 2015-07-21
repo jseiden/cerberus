@@ -4,7 +4,7 @@ html(lang="en" ng-app="app")
     title Gnar Swells, Brah
     include preload
   body(ng-controller="HomeController")
-    div(ng-attr-class="{{mapLoaded && 'fadeOut' || 'overlay' }}" ng-hide="animationFinished")
+    div(ng-attr-class="{{mapLoaded && 'fadeOut' || 'overlay' }}" ng-hide="true")
       include loading
       //- img.center(src="../assets/loading.svg")
     nav.navbar.navbar-inverse
@@ -21,6 +21,7 @@ html(lang="en" ng-app="app")
         input(placeholder="Search for a surf spot")
         button.btn.btn-info.
           Icon
+    rzslider(rz-slider-model="distanceSlider" rz-slider-ceil="100")
     div(ui-view id="map")
     //- Using include instead of extends
     //- block scripts

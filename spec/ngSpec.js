@@ -54,6 +54,31 @@ describe("DetailsController", function(){
     it("returns a number", function() {
       expect(typeof $scope.remainingStars(2)).toBe('number');
     });
-  })
+  });
+
+});
+
+describe("HomeController", function(){
+  var $controller;
+  var $scope = {};
+
+  beforeEach(module('app'));
+  beforeEach(inject(function(_$controller_) {
+    $controller = _$controller_;
+  }));
+  beforeEach(inject(function() {
+    var controller = $controller('HomeController', {
+      $scope: $scope
+    });
+  }));
+
+  // describe("$scope.getBestWavesFromLoc", function() {
+
+  //   it("should be a function", function() {
+  //     // expect(typeof $scope.getBestWavesFromLoc).toBe('function');
+  //     expect(true).toBe(true);
+  //   });
+
+  // });
 
 });

@@ -5,7 +5,8 @@ var app = angular.module('app', [
   'app.mapService',
   'd3',
   'ui.router',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'rzModule'
   // 'ngMock'
 ])
 // TODO: fix router when expanding beyond our only view
