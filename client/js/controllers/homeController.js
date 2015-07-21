@@ -11,4 +11,9 @@ home.controller('HomeController', function($scope, $modal, $log, $timeout, MapSe
       }, 2000)
     }, 10000)
   });
+
+  $scope.distanceSlider = 100;
+  $scope.$on("slideEnded", function () {
+    console.log('$scope.distanceSlider =', $scope.distanceSlider);
+  })
 });

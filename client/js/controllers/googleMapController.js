@@ -4,7 +4,7 @@ angular.module('app.googleMapController', [])
     // $scope.spotColors = ['#EBF5FF', '#ADD6FF', '#70B8FF', '#3399FF', '#246BB2'];
     // $scope.spotColors = ['#F0FFFA', '#C2FFEB', '#94FFDB', '#66FFCC', '#3D997A'];
     $scope.spotColors = ['#E6FAF5', '#99EBD6', '#4DDBB8', '#00CC99', '#008F6B'];
-
+    
     $scope.open = function() {
       console.log('scope clicked')
       // TODO: Add modal animation toggle
