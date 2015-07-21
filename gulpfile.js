@@ -68,3 +68,4 @@ gulp.task("serve", function () {
 gulp.task("default", ["sass", "jade", "lint", "serve"], function(){
   "gulp says hi"
 });
+// TODO checkout karma version and how they mess up travis
