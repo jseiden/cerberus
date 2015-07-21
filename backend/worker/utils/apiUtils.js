@@ -3,6 +3,7 @@ var rp = require('request-promise');
 var cron = require('node-schedule');
 var _ = require('underscore');
 var Promise = require('bluebird');
+var Twitter = require('twitter');
 
 var spotData = require('./json/beachData.json');
 var crudUtils = require('./crudUtils');
@@ -46,3 +47,29 @@ exports.updateBeachData = function(){
     exports.beachDataReq();
   });                                               
 };
+
+
+ 
+ 
+exports.getTweets = function(){ 
+
+  var client = new Twitter({
+   consumer_key: 'o9odfZmdeKbvrgpCVLotcPCNE',
+   consumer_secret: 'siz3xPWBJ1iS14KPmSajdIn6DDmHjxHO7vBYr1fIt9E7XvgRrL',
+   access_token_key: '874702442-UH5dCPdQ2tyl6NiqbwPFhyzsFNOYbFDdzQiuC0ar',
+   access_token_secret: 'QLDf9QCxUzMxD7FkXMkTDKSmM5bB3Fe3ypvbw4Gq1GpAv'
+  });
+
+ client.stream('statuses/filter', {track: 'stinson beach'}, function(stream){
+   stream.on('data', function(tweet){
+    console.log('data received');
+     console.log(tweet)
+   });
+
+   stream.on('error', function(error){
+    console.log('error encountered')
+    throw error;
+   });
+ });
+
+}();
