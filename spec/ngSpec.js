@@ -72,13 +72,13 @@ describe("HomeController", function(){
     });
   }));
 
-  describe("$scope.getBestWavesFromLoc", function() {
+  // describe("$scope.getBestWavesFromLoc", function() {
 
-    it("should be a function", function() {
-      // expect(typeof $scope.getBestWavesFromLoc).toBe('function');
-      expect(true).toBe(true);
-    });
+  //   it("should be a function", function() {
+  //     // expect(typeof $scope.getBestWavesFromLoc).toBe('function');
+  //     expect(true).toBe(true);
+  //   });
 
-  });
+  // });
 
 });
