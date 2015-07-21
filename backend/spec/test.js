@@ -30,8 +30,7 @@ describe('', function() {
         request(server)
           .get('/')
           .expect(function(res){
-            var trueFalse = res.type === 'text/html';
-            expect(trueFalse).to.equal(true);
+            expect(res.type === 'text/html').to.equal(true);
           })
           .end(done);
       })
@@ -43,9 +42,7 @@ describe('', function() {
           .end(done);
       });
 
-
-
-    }); //server endpoints
+    }); //Server endpoints
 
     describe('Surf Data Request', function() {
 
@@ -54,13 +51,12 @@ describe('', function() {
           .get('/dbData')
           .expect(200)
           .expect(function(res) {
-            var trueFalse = typeof res.body === "object";
-            expect(trueFalse).to.equal(true);
+            expect(typeof res.body === "object").to.equal(true);
           })
           .end(done);
       });
 
-      //need to find a more creative (i.e. effective) way to actualy test this...
+      //need to find a more creative (i.e. effective) way to actually test this...
       it('Responds with surf data with a timebox of 24 hours', function(done) {
         request(server)
           .get('/dbData')
@@ -74,24 +70,23 @@ describe('', function() {
 
     }); //Surf Data Request
 
+    describe('Database', function(){
 
-
-  describe('Database', function(){
-
-    //not sure why request is necessary for checking contents of DB...
-    it('Retrieves the correct beach name', function(done) {
-      request(server)
-        .get('/dbData')
-        .expect(200)
-        .expect(function(res) {
-          Beach.findOne({'mswId': '271'})
-            .exec(function(err, beach) {
-              if (err) console.log(err);
-              expect(beach.beachname).to.equal("Hammonds Reef");
-            });
-        })
-      .end(done);
-    });
+      //not sure why request is necessary for checking contents of DB...
+      //this test could do something more useful/helpful...
+      it('Retrieves the correct beach name', function(done) {
+        request(server)
+          .get('/dbData')
+          .expect(200)
+          .expect(function(res) {
+            Beach.findOne({'mswId': '271'})
+              .exec(function(err, beach) {
+                if (err) console.log(err);
+                expect(beach.beachname).to.equal("Hammonds Reef");
+              });
+          })
+        .end(done);
+      });
 
   }); //Database
 

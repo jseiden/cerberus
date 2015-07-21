@@ -2,6 +2,7 @@ var request = require('request');
 var rp = require('request-promise');
 var cron = require('node-schedule');
 var _ = require('underscore');
+var Promise = require('bluebird');
 
 var spotData = require('./json/beachData.json');
 var crudUtils = require('./crudUtils');

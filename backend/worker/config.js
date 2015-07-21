@@ -10,4 +10,3 @@ app.get('/writeBeachData', crudUtils.beachDataUpdate);
 app.get('/requestBeachData', apiUtils.beachDataReq);
 
 module.exports = app;
-
