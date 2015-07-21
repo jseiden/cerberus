@@ -162,5 +162,6 @@ angular.module('app.googleMapController', [])
       }).then(MapService.markersLoaded());
     };
     // $scope.getBestWavesFromCurrentLoc(10);
+    // dummy
     $scope.renderMarkers();
   });
