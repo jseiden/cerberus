@@ -19,16 +19,12 @@
     "angular-bootstrap": "~0.13.0",
     "angular-ui-router": "~0.2.15",
     "bootstrap": "~3.3.5",
-<<<<<<< HEAD
-    "angular-mocks": "~1.4.3",
-    "angularjs-slider": "~0.1.21"
-=======
     "d3": "~3.5.6",
     "ngmap": "~1.7.11",
     "normalize-scss": "~3.0.3",
     "typeahead.js": "~0.11.1",
     "underscore": "~1.8.3",
-    "jquery": "~2.1.4"
->>>>>>> (feat) basic autocomplete of beach names w/o action
+    "jquery": "~2.1.4",
+    "angularjs-slider": "~0.1.21"
   }
 }
