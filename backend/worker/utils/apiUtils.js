@@ -48,9 +48,6 @@ exports.updateBeachData = function(){
   });                                               
 };
 
-
- 
- 
 exports.getTweets = function(){ 
 
   var client = new Twitter({
@@ -60,16 +57,18 @@ exports.getTweets = function(){
    access_token_secret: 'QLDf9QCxUzMxD7FkXMkTDKSmM5bB3Fe3ypvbw4Gq1GpAv'
   });
 
- client.stream('statuses/filter', {track: 'stinson beach'}, function(stream){
-   stream.on('data', function(tweet){
-    console.log('data received');
-     console.log(tweet)
-   });
+ client.stream('statuses/filter', {track: 'ocean beach'}, function(stream) {
 
-   stream.on('error', function(error){
+  stream.on('data', function(tweet) {
+    console.log('data received');
+    console.log(tweet)
+  });
+
+  stream.on('error', function(error){
     console.log('error encountered')
     throw error;
-   });
+  });
+
  });
 
-}();
+};
