@@ -1,6 +1,12 @@
 var home = angular.module('app.homeController', []);
 
 home.controller('HomeController', function($scope, $modal, $log, $timeout, MapService) {
+  
+  var directionsDisplay;
+  var map;
+  var directionsService = new google.maps.DirectionsService();
+
+  $scope.distanceSlider = 100;
   $scope.mapLoaded = false;
   $scope.animationFinished = false;
   $scope.$on('map loaded', function() {
@@ -11,8 +17,6 @@ home.controller('HomeController', function($scope, $modal, $log, $timeout, MapSe
       }, 2000);
     }, 10000);
   });
-
-  $scope.distanceSlider = 100;
 
   $scope.getBestWavesFromCurrentLoc = function(distance) {
     if (navigator.geolocation) {
@@ -44,6 +48,7 @@ home.controller('HomeController', function($scope, $modal, $log, $timeout, MapSe
         var beachCoords = new google.maps.LatLng(beach.lat, beach.lon);
         // computeDistanceBetween returns a distance in meters, must convert to mi to 
         beach.distance = google.maps.geometry.spherical.computeDistanceBetween(loc, beachCoords) * 0.00062137;
+        beach.coords = beachCoords;
         return beach.distance <= distance;
       });
 
@@ -52,7 +57,7 @@ home.controller('HomeController', function($scope, $modal, $log, $timeout, MapSe
         return null;
       }
 
-      var topBeach = beachesWithinDistance.reduce(function(best, cur) {
+      var destination = beachesWithinDistance.reduce(function(best, cur) {
 
         var bestSolidRating = best.forecastData[0].solidRating;
         var bestFadedRating = best.forecastData[0].fadedRating;
@@ -73,10 +78,34 @@ home.controller('HomeController', function($scope, $modal, $log, $timeout, MapSe
         }
         return bestTotalStars > curTotalStars ? best : cur;
       });
-      console.log('go slay some waves at', topBeach.beachname);
-      return topBeach;
+      console.log('go slay some waves at', destination.beachname);
+      $scope.renderPathToBeach(loc, destination.coords);
     });
   };
+
+  $scope.renderPathToBeach = function (origin, destination) {
+
+    map = MapService.getMap();
+    directionsDisplay = new google.maps.DirectionsRenderer();
+    directionsDisplay.setMap(map);
+    console.log('renderPathToBeach invoked...');
+    console.log('with map:', map);
+
+    var options = {
+      origin: origin,
+      destination: destination,
+      travelMode: google.maps.TravelMode.DRIVING,
+      provideRouteAlternatives: false,
+      unitSystem: google.maps.UnitSystem.IMPERIAL
+    };
+
+    directionsService.route(options, function(response, status) {
+      if (status === google.maps.DirectionsStatus.OK) {
+        directionsDisplay.setDirections(response);
+      }
+    });
+
+  }
 
   $scope.$on("slideEnded", function () {
     console.log('$scope.distanceSlider =', $scope.distanceSlider);

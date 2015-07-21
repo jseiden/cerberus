@@ -37,7 +37,7 @@ angular.module('app.googleMapController', [])
           zoom: 6,
           center: new google.maps.LatLng(36.958, -119.2658)
         });
-
+        
         MapService.setMap(map);
         MapService.getBeachData().then(function (beaches) {
 
