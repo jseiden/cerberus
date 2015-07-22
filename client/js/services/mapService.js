@@ -30,20 +30,15 @@ angular.module('app.mapService', [])
 
     // setting beachCache for ready access without extra ajax calls
     var setBeachCache = function(beachObj){
-      console.log("argument to setBeachCache: ", beachObj);
       beachCache = beachObj;
-      console.log("beachCache set to: ", beachCache);
       $rootScope.$broadcast("beachCacheSet");
     };
 
     var getBeachCache = function(){
-      console.log("getBeachCache fired");
-      console.log("beachCache in getBeachCache: ", beachCache);
       return beachCache;
     };
 
     var zoomToBeach = function(beach){
-      console.log("zoomToBeach fired with ", beach);
       var targetCoordinates = {};
       var zoomMap = getMap();
       for(var i = 0; i < beachCache.length; i++){

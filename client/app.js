@@ -4,6 +4,7 @@ var app = angular.module('app', [
   'app.googleMapController',
   'app.typeAheadController',
   'app.mapService',
+  'app.animationService',
   'd3',
   'ui.router',
   'ui.bootstrap',
