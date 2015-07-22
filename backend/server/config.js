@@ -13,7 +13,7 @@ var app = express();
 //app.use(cors());
 //app.use(morgan("dev"));
 app.use(bodyParser.json());
-app.use(express.static(__dirname + '/../client'));
+app.use(express.static(__dirname + '/../../client'));
 
 app.get('/', controller.sendIndex);
 //these routes are for TESTING ONLY
