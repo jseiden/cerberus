@@ -57,7 +57,7 @@ gulp.task("sass", function(){
 
 gulp.task("serve", function () {
   nodemon({
-    script: "./server/server.js",
+    script: "./backend/server/server.js",
     env: {
       "NODE_ENV": "development"
     }

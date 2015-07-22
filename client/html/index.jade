@@ -4,7 +4,7 @@ html(lang="en" ng-app="app")
     title Gnar Swells, Brah
     include preload
   body(ng-controller="HomeController")
-    div(ng-attr-class="{{mapLoaded && 'fadeOut' || 'overlay' }}" ng-hide="true")
+    div(ng-attr-class="{{mapLoaded && 'fadeOut' || 'overlay' }}" ng-hide="animationFinished")
       include loading
       //- img.center(src="../assets/loading.svg")
     nav.navbar.navbar-inverse
