@@ -40,6 +40,7 @@
     "karma-jasmine": "^0.3.6",
     "karma-phantomjs-launcher": "^0.2.0",
     "karma-spec-reporter": "0.0.20",
+    "mocha": "^2.2.5",
     "mongoose": "^4.0.7",
     "morgan": "^1.6.1",
     "node-schedule": "^0.2.9",
@@ -50,6 +51,7 @@
   },
   "devDependencies": {
     "gulp-a11y": "^0.1.1",
-    "jshint-stylish": "^2.0.1"
+    "jshint-stylish": "^2.0.1",
+    "supertest": "^1.0.1"
   }
 }
