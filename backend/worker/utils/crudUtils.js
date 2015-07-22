@@ -11,7 +11,7 @@ exports.writeBeachEntry = function(beachData){
 			beachname: beachData.beachName,
 			lat: beachData.lat,
 			lon: beachData.lon,
-			forecastData: ['justin f puts the lotion on its skin']
+			forecastData: ['test']
 		});
 
 		newBeach.save(function(err){

@@ -49,7 +49,7 @@ exports.updateBeachData = function(){
   });                                               
 };
 
-getTweets = function(lat, lon, cb){ 
+var getTweets = function(lat, lon, cb){ 
 
   var client = new Twitter({
    consumer_key: 'o9odfZmdeKbvrgpCVLotcPCNE',
@@ -62,12 +62,12 @@ getTweets = function(lat, lon, cb){
   //e.g. '34.0300,-118.7500,1mi'
 
   client.get('search/tweets', {q: 'surf', geocode: geocode}, function(error, tweets, response){
-    cb(tweets);
+    cb(error, tweets);
     //console.log(tweets);
   });
 };
 
-getTweetText = function(obj){
+var getTweetText = function(obj){
   return _.map(obj.statuses, function(tweet){
     return tweet.text;
   })
@@ -86,26 +86,23 @@ exports.tweets = function(){
         var id = data[ind].mswId;
         //console.log('test');
         getTweets(lat, lon, function(tweets){
-          console.log(tweets);
           var tweet = getTweetText(tweets);
-          console.log('-----', tweet);
           crudUtils.writeTweets(tweet, id);
         });
         setTimeout( function(){recurse(ind+1)}, time);
       }
-      recurse(30);
+      recurse(0);
     })
 };
+
+
 
 ////////////////////////////EXPERIMENTAL//////////////////////////
 // var promisedTwitter = Promise.promisify(exports.getTweets);
 
-// promisedTwitter(34.0300, 118.7500)
-//   .then(function(tweet){
-//     log(tweet);
-// })
+var getTweetsAsync = Promise.promisify(getTweets);
 
-var log = function(item){
-  console.log(item);
-};
-
+getTweetsAsync(34.0300, 118.7500)
+  .then(function(tweet){
+    console.log('---------', tweet);
+});
