@@ -6,7 +6,10 @@ var crudUtils = require('./utils/crudUtils.js');
 
 var app = express();
 
-apiUtils.getTweets();
+//apiUtils.getTweets(34.0300, 118.7500);
+
+apiUtils.tweets();
+
 
 app.get('/writeBeachData', crudUtils.beachDataUpdate);
 app.get('/requestBeachData', apiUtils.beachDataReq);

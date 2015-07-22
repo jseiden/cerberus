@@ -7,6 +7,7 @@ var Twitter = require('twitter');
 
 var spotData = require('./json/beachData.json');
 var crudUtils = require('./crudUtils');
+var Beach = require('../../db/models/beach.js');
 
 exports.beachDataReq = function(){
 
@@ -48,7 +49,7 @@ exports.updateBeachData = function(){
   });                                               
 };
 
-exports.getTweets = function(lat, lon){ 
+getTweets = function(lat, lon, cb){ 
 
   var client = new Twitter({
    consumer_key: 'o9odfZmdeKbvrgpCVLotcPCNE',
@@ -57,11 +58,54 @@ exports.getTweets = function(lat, lon){
    access_token_secret: 'QLDf9QCxUzMxD7FkXMkTDKSmM5bB3Fe3ypvbw4Gq1GpAv'
   });
 
-  var geocode = lat + ",-" + lon + ",1mi";
+  var geocode = lat + "," + lon + ",5mi";
   //e.g. '34.0300,-118.7500,1mi'
 
   client.get('search/tweets', {q: 'surf', geocode: geocode}, function(error, tweets, response){
-     //console.log(tweets);
+    cb(tweets);
+    //console.log(tweets);
   });
-
 };
+
+getTweetText = function(obj){
+  return _.map(obj.statuses, function(tweet){
+    return tweet.text;
+  })
+};
+
+exports.tweets = function(){
+  var time = 60010;
+
+  Beach.find({})
+    .then(function(data){
+
+      function recurse(ind){
+        if (ind === data.length-1) return;
+        var lat = data[ind].lat;
+        var lon = data[ind].lon;
+        var id = data[ind].mswId;
+        //console.log('test');
+        getTweets(lat, lon, function(tweets){
+          console.log(tweets);
+          var tweet = getTweetText(tweets);
+          console.log('-----', tweet);
+          crudUtils.writeTweets(tweet, id);
+        });
+        setTimeout( function(){recurse(ind+1)}, time);
+      }
+      recurse(30);
+    })
+};
+
+////////////////////////////EXPERIMENTAL//////////////////////////
+// var promisedTwitter = Promise.promisify(exports.getTweets);
+
+// promisedTwitter(34.0300, 118.7500)
+//   .then(function(tweet){
+//     log(tweet);
+// })
+
+var log = function(item){
+  console.log(item);
+};
+

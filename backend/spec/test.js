@@ -57,6 +57,7 @@ describe('', function() {
       });
 
       //need to find a more creative (i.e. effective) way to actually test this...
+      //could test what time is exactley on object
       it('Responds with surf data with a timebox of 24 hours', function(done) {
         request(server)
           .get('/fetch')
@@ -77,7 +78,7 @@ describe('', function() {
       it('Retrieves the correct beach name', function(done) {
         request(server)
           .get('/fetch')
-          .expect(200)
+          .expect(200)    
           .expect(function(res) {
             Beach.findOne({'mswId': '271'})
               .exec(function(err, beach) {

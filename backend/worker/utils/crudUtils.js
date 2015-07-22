@@ -49,3 +49,10 @@ exports.filterBeachDataTime = function(data){
 		return datum.timestamp > time && datum.timestamp < (time + 86402);
 	});
 };
+
+exports.writeTweets = function(tweets, id){
+	Beach.findOneAndUpdate({mswId: id}, {tweets: tweets}, function(err, success){
+		if (err) throw err;
+		else console.log('Tweet Data written', success);
+	})
+};
