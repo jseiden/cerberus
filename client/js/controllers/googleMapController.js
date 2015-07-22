@@ -33,12 +33,15 @@ angular.module('app.googleMapController', [])
     $scope.renderMarkers = function () {
       // All d3 renderings must be done after injecting the d3 library into the controller by calling d3Service.d3()
       d3Service.d3().then(function(d3) {
+        // var bounds =
         var map = new google.maps.Map(d3.select('#map').node(), {
           zoom: 6,
+          minZoom: 6,
           center: new google.maps.LatLng(36.958, -119.2658)
         });
-        
+
         MapService.setMap(map);
+        // map.fitBounds()
         MapService.getBeachData().then(function (beaches) {
           console.log("beaches in gmapController: ", beaches);
           MapService.setBeachCache(beaches);

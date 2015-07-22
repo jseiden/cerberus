@@ -22,7 +22,6 @@ angular.module('app.mapService', [])
     };
 
     var getMap = function() {
-
       if (!map) {
         return null;
       }
@@ -39,15 +38,36 @@ angular.module('app.mapService', [])
 
     var getBeachCache = function(){
       console.log("getBeachCache fired");
-      // if(!beachCache) {
-      //   return null
-      // }
       console.log("beachCache in getBeachCache: ", beachCache);
       return beachCache;
     };
 
     var zoomToBeach = function(beach){
       console.log("zoomToBeach fired with ", beach);
+      var targetCoordinates = {};
+      var zoomMap = getMap();
+      for(var i = 0; i < beachCache.length; i++){
+        if(beachCache[i].beachname === beach){
+          targetCoordinates.lat = beachCache[i].lat;
+          targetCoordinates.lng = beachCache[i].lon;
+        }
+      }
+
+      // zoomMap.center = targetCoordinates;
+      // console.log("new map: ", zoomMap);
+      // setMap(zoomMap);
+      // console.log(zoomMap.getCenter());
+      // console.log("bounds: ", map.getBounds());
+
+      map.setCenter(targetCoordinates);
+      map.setZoom(11);
+      // map.setCenter({lat: -34.397, lng: 150.644});
+      console.log(map);
+
+    };
+
+    var printBounds = function(){
+      console.log(map.getBounds());
     };
 
     return {
