@@ -17,9 +17,11 @@ det.controller('DetailsController', function($scope, $modalInstance, forecast, b
     }
     return results;
   }
+
   $scope.remainingStars = function(num) {
     return 5 - num;
   }
+  
   // TODO: Template for data selection from modal
   // $scope.ok = function () {
   //   $modalInstance.close($scope.selected.forecast);
