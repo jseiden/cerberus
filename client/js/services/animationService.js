@@ -129,6 +129,63 @@ angular.module('app.animationService', [])
 
       function renderWind () {
 
+        d3Service.d3().then(function(d3) {
+
+          var beaches = MapService.getBeachCache();
+          var map = MapService.getMap();
+
+          var overlay = new google.maps.OverlayView();
+
+          overlay.onAdd = function () {
+            var layer = d3.select(this.getPanes().overlayMouseTarget).append('div')
+              .attr('class', 'winds');
+
+            overlay.draw = function () {
+              var projection = this.getProjection();
+              var padding = 50;
+              var t = 5; // length of the wind vector will be t * speed
+
+              var windContainer = layer.selectAll('svg')
+                  .data(d3.entries(beaches))
+                  .each(transform)
+                .enter().append('svg:svg')
+                  .each(transform)
+                  .attr('class', 'wind-container');
+
+              windContainer.append('svg:line')
+                .attr('x1', padding)
+                .attr('y1', padding)
+                .attr('x2', getX2)
+                .attr('y2', getY2);
+
+              function getX2(d) {
+                if(!d.value.forecastData.length) { return padding; }
+                var direction = d.value.forecastData[0].wind.direction;
+                var speed = d.value.forecastData[0].wind.speed;
+                var distance = speed * t;
+                return padding + distance * Math.cos(direction);
+              };
+
+              function getY2(d) {
+                if(!d.value.forecastData.length) { return padding; }
+                var direction = d.value.forecastData[0].wind.direction;
+                var speed = d.value.forecastData[0].wind.speed;
+                var distance = speed * t;
+                return padding + distance * Math.sin(direction);
+              };
+
+              function transform(d) {
+                d = new google.maps.LatLng(d.value.lat, d.value.lon);
+                d = projection.fromLatLngToDivPixel(d);
+                return d3.select(this)
+                    .style('left', (d.x - padding) + 'px')
+                    .style('top', (d.y - padding) + 'px');
+              }
+            };
+          };
+          overlay.setMap(map);
+        });
+        
         // given:
           // a beach lat,lng
           // wind speed (mph)
@@ -143,15 +200,10 @@ angular.module('app.animationService', [])
               // ending point will be based on distance travelled
           // render a few others as slight offsets from the 1 line      
       };
-
-
+      
       return {
         renderBeaches: renderBeaches,
         renderWind: renderWind
       };
-
-
-
-
 
     }]);

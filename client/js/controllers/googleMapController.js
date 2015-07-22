@@ -16,8 +16,8 @@ angular.module('app.googleMapController', [])
     };
 
     $rootScope.$on('beachCacheSet', function () {
-      AnimationService.renderBeaches();
       AnimationService.renderWind();
+      AnimationService.renderBeaches();
     });
 
     $scope.init();
