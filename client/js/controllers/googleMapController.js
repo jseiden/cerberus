@@ -150,5 +150,23 @@ angular.module('app.googleMapController', [])
         });
       }).then(MapService.markersLoaded());
     };
+
+    $scope.renderWind = function () {
+
+      // given:
+        // a beach lat,lng
+        // wind speed (mph)
+        // wind direction (deg)
+      // create an animation around the beach
+        // render some lines around the beach coords
+          // render 1 line at the beach coords
+            // starting point will be the beach svg top and left
+            // length will be based on wind speed set some x such that:
+              // every 1 mph more, increase the distance of the line by x
+            // calculate the ending point based on start and length
+            // ending point will be based on distance travelled
+        // render a few others as slight offsets from the 1 line      
+    };
+
     $scope.renderMarkers();
   });
