@@ -534,8 +534,8 @@ html, body, #map {
   position: absolute; }
 
 .winds svg {
-  width: 150px;
-  height: 200px;
+  width: 300px;
+  height: 300px;
   font: 14px sans-serif;
   font-family: 'Helvetica'; }
 
