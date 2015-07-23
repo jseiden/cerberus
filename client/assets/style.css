@@ -502,12 +502,6 @@ html, body {
   padding: 15px;
   z-index: 5; }
 
-.no-js {
-  display: none; }
-
-.js {
-  display: block; }
-
 .fadeOut {
   animation: fadeOut 2s 1 forwards; }
 

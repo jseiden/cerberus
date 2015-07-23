@@ -153,25 +153,30 @@ angular.module('app.animationService', [])
                   .attr('class', 'wind-container');
 
               windContainer.append('svg:line')
+                .attr('class', 'wind-vector')
                 .attr('x1', padding)
                 .attr('y1', padding)
                 .attr('x2', getX2)
                 .attr('y2', getY2);
 
+              function getRadians (degrees) {
+                return degrees * Math.PI / 180;
+              }
+
               function getX2(d) {
                 if(!d.value.forecastData.length) { return padding; }
-                var direction = d.value.forecastData[0].wind.direction;
+                var direction = -(d.value.forecastData[0].wind.direction + 90)
                 var speed = d.value.forecastData[0].wind.speed;
                 var distance = speed * t;
-                return padding + distance * Math.cos(direction);
+                return padding + distance * Math.cos( getRadians(direction) );
               };
 
               function getY2(d) {
                 if(!d.value.forecastData.length) { return padding; }
-                var direction = d.value.forecastData[0].wind.direction;
+                var direction = -(d.value.forecastData[0].wind.direction + 90);
                 var speed = d.value.forecastData[0].wind.speed;
                 var distance = speed * t;
-                return padding + distance * Math.sin(direction);
+                return padding + distance * -Math.sin( getRadians(direction) );
               };
 
               function transform(d) {
