@@ -142,8 +142,13 @@ angular.module('app.animationService', [])
 
             overlay.draw = function () {
               var projection = this.getProjection();
-              var padding = 50;
+              var padding = 100;
               var t = 5; // length of the wind vector will be t * speed
+              var lineColor = 'grey';
+              var lineWidth = '4';
+              var maxAnimationDuration = 2000;
+              var minAnimationDuration = 200;
+              var windSpeedMultiplier = findWindSpeedMultiplier(25, maxAnimationDuration, minAnimationDuration);
 
               var windContainer = layer.selectAll('svg')
                   .data(d3.entries(beaches))
@@ -155,30 +160,36 @@ angular.module('app.animationService', [])
               var path = windContainer.append('svg:path')
                 .attr('class', 'wind-vector')
                 .attr('d', getD)
-                .attr('stroke', 'steelblue')
-                .attr('stroke-width', '2')
+                .attr('stroke', lineColor)
+                .attr('stroke-width', lineWidth)
                 .attr('fill', 'none')
                 .attr('stroke-dasharray', function(d) {
                   var l = d3.select(this).node().getTotalLength() / 2;
                   return l + ' ' + l;
                 })
-                // .each(function(d) {
-                //   // console.log(this.getTotalLength())
-                //   d.totalLength = this.getTotalLength();
-                // })
+                .attr('opacity', '.50')
+                .attr('stroke-linecap', 'round')
                 .each(animatePath);
+
+              function findWindSpeedMultiplier (maxWindSpeed, maxDuration, minDuration) {
+                return (minDuration - maxDuration) / maxWindSpeed;
+              }
 
               function animatePath (d) {
                 var l = d3.select(this).node().getTotalLength();
                 d3.select(this)
                   .attr('stroke-dashoffset', l)
                   .transition()
-                  .duration(2000)
+                  .duration(function(d) {
+                    if(!d.value.forecastData.length) { return 0; }
+                    var speed = d.value.forecastData[0].wind.speed;
+                    return maxAnimationDuration + (speed * windSpeedMultiplier);
+                  })
                   .ease('linear')
                   .attr('stroke-dashoffset', 0)
                   .each('end', animatePath);
               }
-              // path.each(animatePath)
+
               function getD(d) {
                 return 'M' + padding + ' ' + padding + ' L ' + getX2(d) + ' ' + getY2(d);
               }
@@ -192,6 +203,7 @@ angular.module('app.animationService', [])
                 var direction = -(d.value.forecastData[0].wind.direction + 90);
                 var speed = d.value.forecastData[0].wind.speed;
                 var distance = speed * t;
+                // var distance = 50
                 return padding + distance * Math.cos( getRadians(direction) );
               };
 
@@ -200,6 +212,7 @@ angular.module('app.animationService', [])
                 var direction = -(d.value.forecastData[0].wind.direction + 90);
                 var speed = d.value.forecastData[0].wind.speed;
                 var distance = speed * t;
+                // var distance = 50
                 return padding + distance * -Math.sin( getRadians(direction) );
               };
 
@@ -213,21 +226,7 @@ angular.module('app.animationService', [])
             };
           };
           overlay.setMap(map);
-        });
-        
-        // given:
-          // a beach lat,lng
-          // wind speed (mph)
-          // wind direction (deg)
-        // create an animation around the beach
-          // render some lines around the beach coords
-            // render 1 line at the beach coords
-              // starting point will be the beach svg top and left
-              // length will be based on wind speed set some x such that:
-                // every 1 mph more, increase the distance of the line by x
-              // calculate the ending point based on start and length
-              // ending point will be based on distance travelled
-          // render a few others as slight offsets from the 1 line      
+        });   
       };
       
       return {
