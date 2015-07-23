@@ -5,38 +5,37 @@
     <link rel="stylesheet" type="text/css" href="../lib/angularjs-slider/dist/rzslider.css">
     <link rel="stylesheet" type="text/css" href="../lib/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../assets/style.css">
-    <script src="http://maps.google.com/maps/api/js?sensor=true&amp;libraries=geometry"></script>
   </head>
   <body ng-controller="HomeController">
+    <div ng-attr-class="{{mapLoaded &amp;&amp; 'fadeOut' || 'overlay' }}" ng-hide="animationFinished" class="overlay">
+      <svg viewbox="0 0 600 300" class="svg-defs">
+        <!-- Symbol with text-->
+        <symbol id="s-text">
+          <text text-anchor="middle" x="50%" y="50%" dy=".35em" class="text">HANG {{counter}}</text>
+        </symbol>
+        <!-- Mask with text-->
+        <mask id="m-text" maskunits="userSpaceOnUse" maskcontentunits="userSpaceOnUse">
+          <rect width="100%" height="100%" class="mask__shape"></rect>
+          <use xlink:href="#s-text" class="mask__text"></use>
+        </mask>
+      </svg>
+      <div class="box-with-text">
+        <!-- Container for video-->
+        <div class="text-fill">
+          <video src="http://zacharylester.com/tube.mp4" autoplay="" loop="" muted="" class="video"></video>
+        </div>
+        <!-- Visible SVG-->
+        <svg viewbox="0 0 600 300" class="svg-inverted-mask">
+          <rect width="100%" height="100%" mask="url(#m-text)" class="shape--fill"></rect>
+          <use xlink:href="#s-text" class="text--transparent"></use>
+        </svg>
+      </div>
+    </div>
     <div id="site-wrapper" ng-class="sideMenu ? 'show-nav' : ''">
       <div id="site-canvas">
         <div id="site-menu">
           <h2>Hello Menu!</h2>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed felis tempus, tempor massa nec, sollicitudin sapien. Suspendisse potenti. Praesent quis urna at sem varius aliquam maximus eu ipsum. Sed facilisis consectetur lectus, vitae congue libero aliquet vitae. Vestibulum posuere odio ut lacus pharetra, sit amet elementum dolor sagittis. Fusce maximus leo ac felis faucibus auctor. Maecenas sollicitudin dui quis eros dictum, a pellentesque velit laoreet. Aenean tempus massa et nisl pulvinar, et tempor lacus vehicula.</p>
-        </div>
-        <div ng-attr-class="{{mapLoaded &amp;&amp; 'fadeOut' || 'overlay' }}" ng-hide="animationFinished">
-          <svg viewbox="0 0 600 300" class="svg-defs">
-            <!-- Symbol with text-->
-            <symbol id="s-text">
-              <text text-anchor="middle" x="50%" y="50%" dy=".35em" class="text">HANG {{counter}}</text>
-            </symbol>
-            <!-- Mask with text-->
-            <mask id="m-text" maskunits="userSpaceOnUse" maskcontentunits="userSpaceOnUse">
-              <rect width="100%" height="100%" class="mask__shape"></rect>
-              <use xlink:href="#s-text" class="mask__text"></use>
-            </mask>
-          </svg>
-          <div class="box-with-text">
-            <!-- Container for video-->
-            <div class="text-fill">
-              <video src="http://zacharylester.com/tube.mp4" autoplay="" loop="" muted="" class="video"></video>
-            </div>
-            <!-- Visible SVG-->
-            <svg viewbox="0 0 600 300" class="svg-inverted-mask">
-              <rect width="100%" height="100%" mask="url(#m-text)" class="shape--fill"></rect>
-              <use xlink:href="#s-text" class="text--transparent"></use>
-            </svg>
-          </div>
         </div>
         <nav class="navbar navbar-inverse">
           <div class="container-fluid">
@@ -64,6 +63,7 @@
     <script src="../lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="../lib/ngmap/build/scripts/ng-map.js"></script>
     <script src="../lib/angularjs-slider/rzslider.js"></script>
+    <script src="http://maps.google.com/maps/api/js?sensor=true&amp;libraries=geometry"></script>
     <script src="../js/controllers/homeController.js"></script>
     <script src="../js/controllers/googleMapController.js"></script>
     <script src="../js/controllers/detailsController.js"></script>

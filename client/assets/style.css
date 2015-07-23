@@ -480,7 +480,10 @@ html, body {
   position: relative;
   overflow: hidden;
   width: 100%;
-  height: 728px; }
+  height: 100%; }
+  #site-wrapper.show-nav #site-canvas {
+    -webkit-transform: translateX(300px);
+    transform: translateX(300px); }
 
 #site-canvas {
   width: 100%;
@@ -499,9 +502,11 @@ html, body {
   padding: 15px;
   z-index: 5; }
 
-#site-wrapper.show-nav #site-canvas {
-  -webkit-transform: translateX(300px);
-  transform: translateX(300px); }
+.no-js {
+  display: none; }
+
+.js {
+  display: block; }
 
 .fadeOut {
   animation: fadeOut 2s 1 forwards; }

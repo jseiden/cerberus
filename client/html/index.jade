@@ -4,6 +4,8 @@ html(lang="en" ng-app="app")
     title Gnar Swells, Brah
     include preload
   body(ng-controller="HomeController")
+    div.overlay(ng-attr-class="{{mapLoaded && 'fadeOut' || 'overlay' }}" ng-hide="animationFinished")
+      include loading 
     #site-wrapper(ng-class="sideMenu ? 'show-nav' : ''")
       #site-canvas
         #site-menu
@@ -11,8 +13,6 @@ html(lang="en" ng-app="app")
             Hello Menu!
           p.
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed felis tempus, tempor massa nec, sollicitudin sapien. Suspendisse potenti. Praesent quis urna at sem varius aliquam maximus eu ipsum. Sed facilisis consectetur lectus, vitae congue libero aliquet vitae. Vestibulum posuere odio ut lacus pharetra, sit amet elementum dolor sagittis. Fusce maximus leo ac felis faucibus auctor. Maecenas sollicitudin dui quis eros dictum, a pellentesque velit laoreet. Aenean tempus massa et nisl pulvinar, et tempor lacus vehicula.
-        div(ng-attr-class="{{mapLoaded && 'fadeOut' || 'overlay' }}" ng-hide="animationFinished")
-          include loading
         nav.navbar.navbar-inverse
           .container-fluid
             .navbar-header
