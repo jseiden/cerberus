@@ -4,7 +4,9 @@ node_js:
   - '0.12'
 notifications:
   - slack: insuperable-arete:c5vFufBHIzIlotTw1kFXEB6p
-before_install: npm install -g bower
+before_install:
+  - npm install -g bower
+  - npm update -g
 install:
   - npm install
   - bower install
