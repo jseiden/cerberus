@@ -502,12 +502,6 @@ html, body {
   padding: 15px;
   z-index: 5; }
 
-.no-js {
-  display: none; }
-
-.js {
-  display: block; }
-
 .fadeOut {
   animation: fadeOut 2s 1 forwards; }
 
@@ -533,6 +527,22 @@ html, body, #map {
   font-color: teal; }
 
 .beaches circle {
+  stroke: black;
+  stroke-width: 1.2px; }
+
+.winds, .winds svg {
+  position: absolute; }
+
+.winds svg {
+  width: 150px;
+  height: 200px;
+  font: 14px sans-serif;
+  font-family: 'Helvetica'; }
+
+.winds svg text {
+  font-color: teal; }
+
+.winds line {
   stroke: black;
   stroke-width: 1.2px; }
 

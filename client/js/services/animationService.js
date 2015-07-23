@@ -1,6 +1,6 @@
 angular.module('app.animationService', [])
-  .service('AnimationService', ['$modal', '$rootScope', 'MapService', 'd3Service', 
-    function($modal, $rootScope, MapService, d3Service) {
+  .service('AnimationService', ['$modal', '$rootScope', '$interval', 'MapService', 'd3Service', 
+    function($modal, $rootScope, $interval, MapService, d3Service) {
 
       // spotColors = ['#EBF5FF', '#ADD6FF', '#70B8FF', '#3399FF', '#246BB2'];
       // spotColors = ['#F0FFFA', '#C2FFEB', '#94FFDB', '#66FFCC', '#3D997A'];
@@ -129,29 +129,109 @@ angular.module('app.animationService', [])
 
       function renderWind () {
 
-        // given:
-          // a beach lat,lng
-          // wind speed (mph)
-          // wind direction (deg)
-        // create an animation around the beach
-          // render some lines around the beach coords
-            // render 1 line at the beach coords
-              // starting point will be the beach svg top and left
-              // length will be based on wind speed set some x such that:
-                // every 1 mph more, increase the distance of the line by x
-              // calculate the ending point based on start and length
-              // ending point will be based on distance travelled
-          // render a few others as slight offsets from the 1 line      
+        d3Service.d3().then(function(d3) {
+
+          var beaches = MapService.getBeachCache();
+          var map = MapService.getMap();
+
+          var overlay = new google.maps.OverlayView();
+
+          overlay.onAdd = function () {
+            var layer = d3.select(this.getPanes().overlayMouseTarget).append('div')
+              .attr('class', 'winds');
+
+            overlay.draw = function () {
+              var projection = this.getProjection();
+              var padding = 100;
+              var t = 5; // length of the wind vector will be t * speed
+              var lineColor = 'grey';
+              var lineWidth = '4';
+              var maxAnimationDuration = 2000;
+              var minAnimationDuration = 200;
+              var windSpeedMultiplier = findWindSpeedMultiplier(25, maxAnimationDuration, minAnimationDuration);
+
+              var windContainer = layer.selectAll('svg')
+                  .data(d3.entries(beaches))
+                  .each(transform)
+                .enter().append('svg:svg')
+                  .each(transform)
+                  .attr('class', 'wind-container');
+
+              var path = windContainer.append('svg:path')
+                .attr('class', 'wind-vector')
+                .attr('d', getD)
+                .attr('stroke', lineColor)
+                .attr('stroke-width', lineWidth)
+                .attr('fill', 'none')
+                .attr('stroke-dasharray', function(d) {
+                  var l = d3.select(this).node().getTotalLength() / 2;
+                  return l + ' ' + l;
+                })
+                .attr('opacity', '.50')
+                .attr('stroke-linecap', 'round')
+                .each(animatePath);
+
+              function findWindSpeedMultiplier (maxWindSpeed, maxDuration, minDuration) {
+                return (minDuration - maxDuration) / maxWindSpeed;
+              }
+
+              function animatePath (d) {
+                var l = d3.select(this).node().getTotalLength();
+                d3.select(this)
+                  .attr('stroke-dashoffset', l)
+                  .transition()
+                  .duration(function(d) {
+                    if(!d.value.forecastData.length) { return 0; }
+                    var speed = d.value.forecastData[0].wind.speed;
+                    return maxAnimationDuration + (speed * windSpeedMultiplier);
+                  })
+                  .ease('linear')
+                  .attr('stroke-dashoffset', 0)
+                  .each('end', animatePath);
+              }
+
+              function getD(d) {
+                return 'M' + padding + ' ' + padding + ' L ' + getX2(d) + ' ' + getY2(d);
+              }
+
+              function getRadians (degrees) {
+                return degrees * Math.PI / 180;
+              }
+
+              function getX2(d) {
+                if(!d.value.forecastData.length) { return padding; }
+                var direction = -(d.value.forecastData[0].wind.direction + 90);
+                var speed = d.value.forecastData[0].wind.speed;
+                var distance = speed * t;
+                // var distance = 50
+                return padding + distance * Math.cos( getRadians(direction) );
+              };
+
+              function getY2(d) {
+                if(!d.value.forecastData.length) { return padding; }
+                var direction = -(d.value.forecastData[0].wind.direction + 90);
+                var speed = d.value.forecastData[0].wind.speed;
+                var distance = speed * t;
+                // var distance = 50
+                return padding + distance * -Math.sin( getRadians(direction) );
+              };
+
+              function transform(d) {
+                d = new google.maps.LatLng(d.value.lat, d.value.lon);
+                d = projection.fromLatLngToDivPixel(d);
+                return d3.select(this)
+                    .style('left', (d.x - padding) + 'px')
+                    .style('top', (d.y - padding) + 'px');
+              }
+            };
+          };
+          overlay.setMap(map);
+        });   
       };
-
-
+      
       return {
         renderBeaches: renderBeaches,
         renderWind: renderWind
       };
-
-
-
-
 
     }]);
