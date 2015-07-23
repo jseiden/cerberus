@@ -39,7 +39,7 @@ home.controller('HomeController', function($rootScope, $scope, $modal, $log, $ti
       if ($scope.counter > 1) {
         $scope.counter = $scope.counter - 1;
       } else {
-        $scope.counter = "";
+        $scope.counter = "TEN";
         $interval.cancel(decrementCounter);
       }
     }, 1000);

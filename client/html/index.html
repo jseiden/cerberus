@@ -7,7 +7,11 @@
     <link rel="stylesheet" type="text/css" href="../assets/style.css">
   </head>
   <body ng-controller="HomeController">
+<<<<<<< HEAD
     <div ng-attr-class="{{mapLoaded &amp;&amp; 'fadeOut' || 'overlay' }}" ng-hide="true">
+=======
+    <div ng-attr-class="{{mapLoaded &amp;&amp; 'fadeOut' || 'overlay' }}" ng-hide="animationFinished" class="overlay">
+>>>>>>> (feat) Fix tab selector margins
       <svg viewbox="0 0 600 300" class="svg-defs">
         <!-- Symbol with text-->
         <symbol id="s-text">
@@ -81,8 +85,8 @@
             </div>
           </div>
         </div>
+        <div ng-click="toggleTab()" ng-class="bottomTab ? 'show-tab' : ''" class="tab-selector">Click me!</div>
         <div id="site-tab" ng-class="bottomTab ? 'show-tab' : ''">
-          <div ng-click="toggleTab()" class="tab-selector">Click me!</div>
           <div class="tab-content">
             <h2>Some bottom tab</h2>
             <p>The path of the righteous man is beset on all sides by the iniquities of the selfish and the tyranny of evil men. Blessed is he who, in the name of charity and good will, shepherds the weak through the valley of darkness, for he is truly his brother's keeper and the finder of lost children. And I will strike down upon thee with great vengeance and furious anger those who would attempt to poison and destroy My brothers. And you will know My name is the Lord when I lay My vengeance upon thee.</p>

@@ -502,37 +502,40 @@ html, body {
   padding: 15px;
   z-index: 5; }
 
-<<<<<<< HEAD
-=======
 #site-tab {
   width: 300px;
   height: 300px;
   position: absolute;
-  bottom: -270px;
+  bottom: -300px;
   left: 200px;
   z-index: 5;
   transform: translateY(0);
   transition: .3s ease all; }
   #site-tab.show-tab {
-    transform: translateY(-270px); }
+    transform: translateY(-300px); }
 
 .tab-selector {
-  position: relative;
+  position: absolute;
   background-color: aqua;
-  top: 0;
-  left: 0;
+  bottom: 0;
+  left: 200px;
   width: 90px;
   height: 30px;
-  padding: 5px; }
+  padding: 5px;
+  z-index: 5;
+  transform: translateY(0);
+  transition: .3s ease all; }
   .tab-selector:hover {
     background-color: black;
     color: white; }
+  .tab-selector.show-tab {
+    transform: translateY(-300px); }
 
 .tab-content {
   background-color: aqua;
-  padding: 15px; }
+  padding: 15px;
+  position: absolute; }
 
->>>>>>> (feat) Add tab to the bottom of map view
 .fadeOut {
   animation: fadeOut 2s 1 forwards; }
 
