@@ -17,6 +17,7 @@ home.controller('HomeController', function($rootScope, $scope, $modal, $log, $ti
   $scope.animationFinished = false;
   $scope.counter = 10;
   $scope.sideMenu = false;
+  $scope.bottomTab = false;
 
   $scope.getDirections = function () {
     BestSpotService.getBestWavesFromCurrentLoc($scope.distance, $scope.timeIndex);
@@ -24,6 +25,10 @@ home.controller('HomeController', function($rootScope, $scope, $modal, $log, $ti
 
   $scope.toggleClass = function() {
     $scope.sideMenu = !$scope.sideMenu;
+  }
+
+  $scope.toggleTab = function() {
+    $scope.bottomTab = !$scope.bottomTab;
   }
 
   $scope.$on('map loaded', function() {
