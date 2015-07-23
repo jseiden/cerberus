@@ -1,6 +1,6 @@
 angular.module('app.animationService', [])
-  .service('AnimationService', ['$modal', '$rootScope', 'MapService', 'd3Service', 
-    function($modal, $rootScope, MapService, d3Service) {
+  .service('AnimationService', ['$modal', '$rootScope', '$interval', 'MapService', 'd3Service', 
+    function($modal, $rootScope, $interval, MapService, d3Service) {
 
       // spotColors = ['#EBF5FF', '#ADD6FF', '#70B8FF', '#3399FF', '#246BB2'];
       // spotColors = ['#F0FFFA', '#C2FFEB', '#94FFDB', '#66FFCC', '#3D997A'];
@@ -152,12 +152,36 @@ angular.module('app.animationService', [])
                   .each(transform)
                   .attr('class', 'wind-container');
 
-              windContainer.append('svg:line')
+              var path = windContainer.append('svg:path')
                 .attr('class', 'wind-vector')
-                .attr('x1', padding)
-                .attr('y1', padding)
-                .attr('x2', getX2)
-                .attr('y2', getY2);
+                .attr('d', getD)
+                .attr('stroke', 'steelblue')
+                .attr('stroke-width', '2')
+                .attr('fill', 'none')
+                .attr('stroke-dasharray', function(d) {
+                  var l = d3.select(this).node().getTotalLength() / 2;
+                  return l + ' ' + l;
+                })
+                // .each(function(d) {
+                //   // console.log(this.getTotalLength())
+                //   d.totalLength = this.getTotalLength();
+                // })
+                .each(animatePath);
+
+              function animatePath (d) {
+                var l = d3.select(this).node().getTotalLength();
+                d3.select(this)
+                  .attr('stroke-dashoffset', l)
+                  .transition()
+                  .duration(2000)
+                  .ease('linear')
+                  .attr('stroke-dashoffset', 0)
+                  .each('end', animatePath);
+              }
+              // path.each(animatePath)
+              function getD(d) {
+                return 'M' + padding + ' ' + padding + ' L ' + getX2(d) + ' ' + getY2(d);
+              }
 
               function getRadians (degrees) {
                 return degrees * Math.PI / 180;
@@ -165,7 +189,7 @@ angular.module('app.animationService', [])
 
               function getX2(d) {
                 if(!d.value.forecastData.length) { return padding; }
-                var direction = -(d.value.forecastData[0].wind.direction + 90)
+                var direction = -(d.value.forecastData[0].wind.direction + 90);
                 var speed = d.value.forecastData[0].wind.speed;
                 var distance = speed * t;
                 return padding + distance * Math.cos( getRadians(direction) );
