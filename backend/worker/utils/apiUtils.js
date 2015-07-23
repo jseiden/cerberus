@@ -73,6 +73,30 @@ var getTweetText = function(obj){
   })
 };
 
+// exports.tweets = function(){
+//   var time = 60010;
+
+//   Beach.find({})
+//     .then(function(data){
+
+//       function recurse(ind){
+//         if (ind === data.length-1) return;
+//         var lat = data[ind].lat;
+//         var lon = data[ind].lon;
+//         var id = data[ind].mswId;
+//         //console.log('test');
+//         getTweets(lat, lon, function(tweets){
+//           var tweet = getTweetText(tweets);
+//           crudUtils.writeTweets(tweet, id);
+//         });
+//         setTimeout( function(){recurse(ind+1)}, time);
+//       }
+//       recurse(0);
+//     })
+// };
+
+var getTweetsAsync = Promise.promisify(getTweets);
+
 exports.tweets = function(){
   var time = 60010;
 
@@ -84,25 +108,29 @@ exports.tweets = function(){
         var lat = data[ind].lat;
         var lon = data[ind].lon;
         var id = data[ind].mswId;
-        //console.log('test');
-        getTweets(lat, lon, function(tweets){
-          var tweet = getTweetText(tweets);
-          crudUtils.writeTweets(tweet, id);
-        });
+        getTweetsAsync(lat, lon)
+          .then(function(tweets){
+            var tweetText = getTweetText(tweets);
+            console.log(tweetText);
+            crudUtils.writeTweets(tweetText, id);
+          })
         setTimeout( function(){recurse(ind+1)}, time);
       }
       recurse(0);
     })
 };
 
+exports.tweets();
+
+
 
 
 ////////////////////////////EXPERIMENTAL//////////////////////////
 // var promisedTwitter = Promise.promisify(exports.getTweets);
 
-var getTweetsAsync = Promise.promisify(getTweets);
 
-getTweetsAsync(34.0300, 118.7500)
-  .then(function(tweet){
-    console.log('---------', tweet);
-});
+
+// getTweetsAsync(34.0300, 118.7500)
+//   .then(function(tweet){
+//     console.log('---------', tweet);
+// });
