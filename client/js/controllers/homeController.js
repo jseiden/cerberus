@@ -9,7 +9,7 @@ home.controller('HomeController', function($scope, $modal, $log, $timeout, $inte
   $scope.distanceSlider = 100;
   $scope.mapLoaded = false;
   $scope.animationFinished = false;
-  $scope.counter = "TEN";
+  $scope.counter = 10;
 
   $scope.sideMenu = false;
 
@@ -36,6 +36,25 @@ home.controller('HomeController', function($scope, $modal, $log, $timeout, $inte
       }, 2000);
     }, 10000);
   });
+
+  // $scope.$on('map loaded', function() {
+  //   var countDown = ['NINE', 'EIGHT', 'SEVEN', 'SIX', 'FIVE', 'FOUR', 'THREE', 'TWO', 'ONE', '']
+  //   var count = count + 1 || 0;
+  //   var decrementCounter = $interval(function() {
+  //       console.log(count);
+  //       $scope.counter = countDown[count];
+  //       count++;
+  //       if (count > countDown.length) {
+  //         $interval.cancel(decrementCounter);
+  //       }
+  //   }, 1000);
+  //   $timeout(function() {
+  //     $scope.mapLoaded = true;
+  //     $timeout(function() {
+  //       $scope.animationFinished = true;
+  //     }, 2000);
+  //   }, 10000);
+  // });
 
   $scope.getBestWavesFromCurrentLoc = function(distance) {
     if (navigator.geolocation) {
