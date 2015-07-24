@@ -30,7 +30,11 @@ exports.beachDataUpdate = function(){
 exports.beachDatumUpdate = function(id, data){
   Beach.findOneAndUpdate({mswId: id}, {forecastData: data}, function(err, beach){
     if (err) throw err;
-    else console.log('Wrote beach data');
+    if (!beach){
+    	console.log('Beach does not exist!')
+    	throw err;
+    } 
+    console.log('Wrote beach data');
   })
 };
 

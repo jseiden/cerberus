@@ -16,7 +16,7 @@ exports.beachDataReq = function(){
   });
 
   var recurseCall = function(ind){
-    if (ind === ids.length-1) return;
+    if (ind === ids.length) return;
 
     var id = ids[ind];
 
@@ -39,7 +39,7 @@ exports.beachDataReq = function(){
   };
 
   recurseCall(0);
-};
+}
 
 exports.updateBeachData = function(){
   var rule = new cron.RecurrenceRule();
@@ -67,70 +67,39 @@ var getTweets = function(lat, lon, cb){
   });
 };
 
-var getTweetText = function(obj){
-  return _.map(obj.statuses, function(tweet){
-    return tweet.text;
-  })
-};
-
-// exports.tweets = function(){
-//   var time = 60010;
-
-//   Beach.find({})
-//     .then(function(data){
-
-//       function recurse(ind){
-//         if (ind === data.length-1) return;
-//         var lat = data[ind].lat;
-//         var lon = data[ind].lon;
-//         var id = data[ind].mswId;
-//         //console.log('test');
-//         getTweets(lat, lon, function(tweets){
-//           var tweet = getTweetText(tweets);
-//           crudUtils.writeTweets(tweet, id);
-//         });
-//         setTimeout( function(){recurse(ind+1)}, time);
-//       }
-//       recurse(0);
-//     })
-// };
-
 var getTweetsAsync = Promise.promisify(getTweets);
 
+
+
 exports.tweets = function(){
-  var time = 60010;
+
+  var getTweetText = function(obj){
+    return _.map(obj.statuses, function(tweet){
+      return tweet.text;
+    })
+  };
 
   Beach.find({})
     .then(function(data){
-
-      function recurse(ind){
+      (function recurse(ind){
         if (ind === data.length-1) return;
-        var lat = data[ind].lat;
-        var lon = data[ind].lon;
-        var id = data[ind].mswId;
-        getTweetsAsync(lat, lon)
+        var beach = data[ind];
+        getTweetsAsync(beach.lat, beach.lon)
           .then(function(tweets){
             var tweetText = getTweetText(tweets);
-            console.log(tweetText);
-            crudUtils.writeTweets(tweetText, id);
+            crudUtils.writeTweets(tweetText, beach.mswId);
           })
-        setTimeout( function(){recurse(ind+1)}, time);
-      }
-      recurse(0);
+        setTimeout( function(){recurse(ind+1)}, 60010);
+      })(0)
     })
 };
 
-exports.tweets();
 
 
 
 
 ////////////////////////////EXPERIMENTAL//////////////////////////
-// var promisedTwitter = Promise.promisify(exports.getTweets);
 
+//api key
+//a4c78a3d-49e6-4372-a97f-3e424d517ab9
 
-
-// getTweetsAsync(34.0300, 118.7500)
-//   .then(function(tweet){
-//     console.log('---------', tweet);
-// });
