@@ -13,7 +13,6 @@ var Beach = require('../../db/models/beach.js');
 var endpoint = 'http://magicseaweed.com/api/436cadbb6caccea6e366ed1bf3640257/forecast/?spot_id='
 
 exports.beachDataReq = function(){
-  
   Beach.find({})
     .then(function(data){
       (function recurse(ind){
@@ -28,44 +27,18 @@ exports.beachDataReq = function(){
           .then(function(response){
             console.log('passed', beach.mswId);
             var timeFiltered = crudUtils.filterBeachDataTime(response);
-            crudUtils.beachDatumUpdate(beach.mswId, timeFiltered);
-            recurse(ind + 1)
-          })
-          .catch(function(error){
-            console.log(error);
-          })
+            Beach.findOneAndUpdate({mswId: beach.mswId, forecastData: timeFiltered})
+              .then(function(success){
+                console.log('Wrote Beach Data');
+                recurse(ind + 1)
+              })
+              .catch(function(error){
+                console.log(error);
+              })
+            })
       })(0)
     })
 };
-
-// exports.beachDataReq = function(){
-//   var ids = spotData.map(function(beachData){
-//     return beachData.mswId
-//   });
-
-//   (function recurse (ind){
-//     if (ind === ids.length) return;
-
-//     var id = ids[ind];
-
-//     var endpoint = 'http://magicseaweed.com/api/436cadbb6caccea6e366ed1bf3640257/forecast/?spot_id=' + id.toString();
-//     var options = {
-//       method: 'GET', 
-//       uri: endpoint
-//     };
-
-//     rp(options)
-//       .then(function(response){
-//         console.log('passed: ', id);
-//         var timeFiltered = crudUtils.filterBeachDataTime(response);
-//         crudUtils.beachDatumUpdate(id, timeFiltered);
-//         recurseCall(ind + 1)
-//       })
-//       .catch(function(error){
-//         console.log(error);
-//       });
-//   })(0)
-// };
 
 
 exports.updateBeachData = function(){
