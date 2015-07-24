@@ -1,10 +1,41 @@
 var home = angular.module('app.homeController', []);
 
 
-home.controller('HomeController', function($scope, $modal, $log, $timeout, $interval, MapService, BestSpotService, AnimationService) {
+home.controller('HomeController', function($rootScope, $scope, $modal, $log, $timeout, $interval, MapService, BestSpotService, AnimationService) {
 
   $scope.distance = 100;
   $scope.timeIndex = 0;
+  $scope.timeStamps;
+  $scope.forecastTime; 
+
+  $rootScope.$on('beachCacheSet', function() {
+    var beaches = MapService.getBeachCache();
+    $scope.timeStamps = $scope.getLocalTimeStamps(beaches);
+  });
+
+  $scope.getLocalTimeStamps = function (beaches) {
+    var beach;
+    // get the first beach that has forecast Data
+    for (var i = 0; i < beaches.length; i++) {
+      if (beaches[i].forecastData.length) {
+        beach = beaches[i];
+        break;
+      }
+    }
+    return beach.forecastData.map(function (forecast) {
+      var options = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      };
+      var date = new Date (forecast.localTimestamp * 1000);
+      return date.toLocaleTimeString('en-us', options);
+    });
+  }
+
   $scope.mapLoaded = false;
   $scope.animationFinished = false;
   $scope.counter = 10;
@@ -38,8 +69,9 @@ home.controller('HomeController', function($scope, $modal, $log, $timeout, $inte
     console.log('$scope.timeIndex=', $scope.timeIndex);
     // console.log('$scope.distance =', $scope.distance);
     // BestSpotService.getBestWavesFromCurrentLoc($scope.distance, $scope.timeIndex);
-    AnimationService.renderBeaches($scope.timeIndex);
+    $scope.forecastTime = $scope.timeStamps[$scope.timeIndex];
     AnimationService.renderWind($scope.timeIndex);
+    AnimationService.renderBeaches($scope.timeIndex);
   });
 
 });
