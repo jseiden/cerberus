@@ -14,6 +14,7 @@ gulp.task("lint", function(){
   .pipe(jshint.reporter("jshint-stylish"));
 });
 
+// compiles jade to html
 gulp.task("jade", function(){
   return gulp.src("./client/html/index.jade")
   .pipe(jade({
@@ -39,6 +40,7 @@ gulp.task("test", function(done){
 //   .pipe(a11y.reporter());
 // });
 
+// compiles sass to css
 gulp.task("sass", function(){
   return gulp.src("./client/styles/style.scss")
     .pipe(sass({
