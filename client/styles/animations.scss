@@ -124,10 +124,28 @@
   animation-duration: 5s;
   animation-iteration-count: infinite;
   animation-fill-mode: forwards;
+  &-slow {
+    @extend .path-3;
+    animation-duration: 10s;
+  }
+  &-fast {
+    @extend .path-3;
+    animation-duration: 2s;
+  }
 }
 .path-4 {
   @extend .path-3;
   animation-delay: 2.5s;
+  &-slow {
+    @extend .path-4;
+    animation-delay: 5s;
+    animation-duration: 10s;
+  }
+  &-fast {
+    @extend .path-4;
+    animation-delay: 1s;
+    animation-duration: 2s;
+  }
 }
 .wave {
   stroke-dasharray: 350;

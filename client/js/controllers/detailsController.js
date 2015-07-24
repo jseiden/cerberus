@@ -46,6 +46,19 @@ det.controller('DetailsController', function($scope, $modalInstance, forecast, b
 
     return className;
   };
+  $scope.swellPeriodClass = function(specifier) {
+    specifier = specifier || "";
+    var className = "path" + specifier;
+
+    if ($scope.swellPeriod >= 10) {
+      className += "-fast";
+    }
+    if ($scope.swellPeriod <= 4) {
+      className += "-slow"
+    }
+
+    return className;
+  };
 
   $scope.toRepeat = function(num) {
     var results = [];

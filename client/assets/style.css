@@ -668,15 +668,25 @@ html, body, #map {
   .path-2-large {
     transform: translateX(-1450px) scale(2.5) translateY(-55px); }
 
-.path-3, .path-4 {
+.path-3, .path-3-slow, .path-3-fast, .path-4, .path-4-slow, .path-4-fast {
   transform: translateX(-1150px) scale(1.5) translateY(-40px);
   animation-name: waveIn;
   animation-duration: 5s;
   animation-iteration-count: infinite;
   animation-fill-mode: forwards; }
+  .path-3-slow {
+    animation-duration: 10s; }
+  .path-3-fast {
+    animation-duration: 2s; }
 
-.path-4 {
+.path-4, .path-4-slow, .path-4-fast {
   animation-delay: 2.5s; }
+  .path-4-slow {
+    animation-delay: 5s;
+    animation-duration: 10s; }
+  .path-4-fast {
+    animation-delay: 1s;
+    animation-duration: 2s; }
 
 .wave, .wave-1, .wave-2, .wave-3, .wave-4 {
   stroke-dasharray: 350;
