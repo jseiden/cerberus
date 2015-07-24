@@ -7,7 +7,6 @@
     <link rel="stylesheet" type="text/css" href="../assets/style.css">
   </head>
   <body ng-controller="HomeController">
-    <!--div.overlay(ng-attr-class="{{mapLoaded && 'fadeOut' || 'overlay' }}" ng-hide="animationFinished")-->
     <div ng-attr-class="{{mapLoaded &amp;&amp; 'fadeOut' || 'overlay' }}" ng-hide="true">
       <svg viewbox="0 0 600 300" class="svg-defs">
         <!-- Symbol with text-->
@@ -35,8 +34,12 @@
     <div id="site-wrapper" ng-class="sideMenu ? 'show-nav' : ''">
       <div id="site-canvas">
         <div id="site-menu">
-          <h2>Hello Menu!</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed felis tempus, tempor massa nec, sollicitudin sapien. Suspendisse potenti. Praesent quis urna at sem varius aliquam maximus eu ipsum. Sed facilisis consectetur lectus, vitae congue libero aliquet vitae. Vestibulum posuere odio ut lacus pharetra, sit amet elementum dolor sagittis. Fusce maximus leo ac felis faucibus auctor. Maecenas sollicitudin dui quis eros dictum, a pellentesque velit laoreet. Aenean tempus massa et nisl pulvinar, et tempor lacus vehicula.</p>
+          <h1>Where should I Go?
+            <rzslider rz-slider-model="distance" rz-slider-ceil="100" class="distance-slider"></rzslider>
+          </h1>
+          <h1>Look into the crystal ball:
+            <rzslider rz-slider-model="timeIndex" rz-slider-ceil="7" class="time-slider"></rzslider>
+          </h1>
         </div>
         <nav class="navbar navbar-inverse">
           <div class="container-fluid">
@@ -52,7 +55,6 @@
             <button ng-click="zoomToBeach(searchBeach)" class="btn btn-info">Icon</button>
           </form>
         </div>
-        <rzslider rz-slider-model="distanceSlider" rz-slider-ceil="100"></rzslider>
         <div ui-view id="map"></div>
       </div>
     </div>
@@ -72,6 +74,7 @@
     <script src="../js/services/animationService.js"></script>
     <script src="../js/services/mapService.js"></script>
     <script src="../js/services/d3Service.js"></script>
+    <script src="../js/services/bestSpotService.js"></script>
     <script src="../app.js"></script>
     <script type="text/ng-template" id="detailsModal.html">
       <div class="modal-header">

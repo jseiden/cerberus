@@ -5,6 +5,7 @@ var app = angular.module('app', [
   'app.typeAheadController',
   'app.mapService',
   'app.animationService',
+  'app.bestSpotService',
   'd3',
   'ui.router',
   'ui.bootstrap',
@@ -14,10 +15,9 @@ var app = angular.module('app', [
 // TODO: fix router when expanding beyond our only view
 .config(function($urlRouterProvider, $stateProvider) {
   $urlRouterProvider.otherwise('/');
-
   $stateProvider
-  .state('home', {
-    url: '/',
-    controller: 'GoogleMapController'
-  });
+    .state('home', {
+      url: '/',
+      controller: 'GoogleMapController'
+    })
 });

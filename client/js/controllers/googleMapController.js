@@ -5,7 +5,8 @@ angular.module('app.googleMapController', [])
       var map = new google.maps.Map(document.getElementById( 'map' ), {
         zoom: 6,
         minZoom: 6,
-        center: new google.maps.LatLng(36.958, -119.2658)
+        center: new google.maps.LatLng(36.958, -119.2658),
+        mapTypeId: google.maps.MapTypeId.SATELLITE
       });
 
       MapService.setMap( map );
@@ -16,8 +17,8 @@ angular.module('app.googleMapController', [])
     };
 
     $rootScope.$on('beachCacheSet', function () {
-      AnimationService.renderWind();
-      AnimationService.renderBeaches();
+      AnimationService.renderWind(0);
+      AnimationService.renderBeaches(0);
     });
 
     $scope.init();

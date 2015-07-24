@@ -9,7 +9,10 @@ var nodemon = require("gulp-nodemon");
 var Server = require('karma').Server;
 
 gulp.task("lint", function(){
-  return gulp.src(["./client/**/*.js", "!./client/lib/**"])
+  return gulp.src([
+    "./client/**/*.js", 
+    "!./client/lib/**"
+    ])
   .pipe(jshint(".jshintrc"))
   .pipe(jshint.reporter("jshint-stylish"));
 });
@@ -65,7 +68,7 @@ gulp.task("serve", function () {
 });
 
 // gulp.task("default", ["sass", "jade", "lint", "audit", "serve"], function(){
-gulp.task("default", ["sass", "jade", "lint", "serve"], function(){
-  "gulp says hi"
+gulp.task("default", ["sass", "jade", "lint", "serve"], function() {
+  "gulp says hi";
 });
 // TODO checkout karma version and how they mess up travis

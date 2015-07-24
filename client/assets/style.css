@@ -524,7 +524,7 @@ html, body, #map {
   font-family: 'Helvetica'; }
 
 .beaches svg text {
-  font-color: teal; }
+  fill: white; }
 
 .beaches circle {
   stroke: black;
@@ -534,13 +534,10 @@ html, body, #map {
   position: absolute; }
 
 .winds svg {
-  width: 150px;
-  height: 200px;
+  width: 300px;
+  height: 300px;
   font: 14px sans-serif;
   font-family: 'Helvetica'; }
-
-.winds svg text {
-  font-color: teal; }
 
 .winds line {
   stroke: black;
@@ -711,13 +708,3 @@ html, body, #map {
     transform: rotate(0deg); }
   100% {
     transform: rotate(360deg); } }
-
-rzslider {
-  position: absolute;
-  bottom: 0;
-  left: 20px;
-  width: 80px;
-  z-index: 1; }
-
-rzslider span.rz-bubble.rz-limit {
-  font-size: 0; }
