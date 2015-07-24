@@ -25,7 +25,7 @@ exports.beachDataUpdate = function(){
 	_.each(spotData, function(spotDatum){
 		exports.writeBeachEntry(spotDatum)
 	})
-};
+}
 
 exports.beachDatumUpdate = function(id, data){
   Beach.findOneAndUpdate({mswId: id}, {forecastData: data}, function(err, beach){

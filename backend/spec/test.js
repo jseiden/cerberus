@@ -3,7 +3,10 @@ var express = require('express');
 var expect = require('chai').expect;
 
 var server = require('../server/config.js');
-var worker = require('../worker/config.js')
+
+var worker = require('../worker/config.js');
+var workerApiUtils = require('../worker/utils/apiUtils.js');
+
 var db = require('../db/mongodb-data/config.js');
 var Beach = require('../db/models/beach.js');
 
@@ -75,7 +78,7 @@ describe('', function() {
 
       //not sure why request is necessary for checking contents of DB...
       //this test could do something more useful/helpful...
-      it('Retrieves the correct beach name', function(done) {
+      it('The database should be popualted', function(done) {
         request(server)
           .get('/fetch')
           .expect(200)    

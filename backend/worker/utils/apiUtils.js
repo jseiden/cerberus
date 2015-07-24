@@ -1,5 +1,5 @@
 var request = require('request');
-var rp = require('request-promise');
+var requestPromise = require('request-promise');
 var cron = require('node-schedule');
 var _ = require('underscore');
 var Promise = require('bluebird');
@@ -9,37 +9,64 @@ var spotData = require('./json/beachData.json');
 var crudUtils = require('./crudUtils');
 var Beach = require('../../db/models/beach.js');
 
+
+var endpoint = 'http://magicseaweed.com/api/436cadbb6caccea6e366ed1bf3640257/forecast/?spot_id='
+
 exports.beachDataReq = function(){
+  
+  Beach.find({})
+    .then(function(data){
+      (function recurse(ind){
+        if (ind === data.length) return;
+        var beach = data[ind];
+        var options = {
+          method: 'GET',
+          uri: endpoint + (beach.mswId).toString()
+        }
 
-  var ids = spotData.map(function(beachData){
-    return beachData.mswId
-  });
+        requestPromise(options)
+          .then(function(response){
+            console.log('passed', beach.mswId);
+            var timeFiltered = crudUtils.filterBeachDataTime(response);
+            crudUtils.beachDatumUpdate(beach.mswId, timeFiltered);
+            recurse(ind + 1)
+          })
+          .catch(function(error){
+            console.log(error);
+          })
+      })(0)
+    })
+};
 
-  var recurseCall = function(ind){
-    if (ind === ids.length) return;
+// exports.beachDataReq = function(){
+//   var ids = spotData.map(function(beachData){
+//     return beachData.mswId
+//   });
 
-    var id = ids[ind];
+//   (function recurse (ind){
+//     if (ind === ids.length) return;
 
-    var endpoint = 'http://magicseaweed.com/api/436cadbb6caccea6e366ed1bf3640257/forecast/?spot_id=' + id.toString();
-    var options = {
-      method: 'GET', 
-      uri: endpoint
-    };
+//     var id = ids[ind];
 
-    rp(options)
-      .then(function(response){
-        console.log('passed: ', id);
-        var timeFiltered = crudUtils.filterBeachDataTime(response);
-        crudUtils.beachDatumUpdate(id, timeFiltered);
-        recurseCall(ind + 1)
-      })
-      .catch(function(error){
-        console.log(error);
-      });
-  };
+//     var endpoint = 'http://magicseaweed.com/api/436cadbb6caccea6e366ed1bf3640257/forecast/?spot_id=' + id.toString();
+//     var options = {
+//       method: 'GET', 
+//       uri: endpoint
+//     };
 
-  recurseCall(0);
-}
+//     rp(options)
+//       .then(function(response){
+//         console.log('passed: ', id);
+//         var timeFiltered = crudUtils.filterBeachDataTime(response);
+//         crudUtils.beachDatumUpdate(id, timeFiltered);
+//         recurseCall(ind + 1)
+//       })
+//       .catch(function(error){
+//         console.log(error);
+//       });
+//   })(0)
+// };
+
 
 exports.updateBeachData = function(){
   var rule = new cron.RecurrenceRule();
@@ -59,15 +86,13 @@ var getTweets = function(lat, lon, cb){
   });
 
   var geocode = lat + "," + lon + ",5mi";
-  //e.g. '34.0300,-118.7500,1mi'
 
   client.get('search/tweets', {q: 'surf', geocode: geocode}, function(error, tweets, response){
     cb(error, tweets);
-    //console.log(tweets);
   });
 };
-
 var getTweetsAsync = Promise.promisify(getTweets);
+
 
 
 

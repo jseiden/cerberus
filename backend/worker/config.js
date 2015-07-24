@@ -9,7 +9,7 @@ var app = express();
 //apiUtils.getTweets(34.0300, 118.7500);
 
 //apiUtils.tweets();
-apiUtils.beachDataReq();
+//apiUtils.beachDataReq();
 
 
 app.get('/writeBeachData', crudUtils.beachDataUpdate);
