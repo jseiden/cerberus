@@ -42,13 +42,15 @@ home.controller('HomeController', function($rootScope, $scope, $modal, $log, $ti
         $scope.counter = "TEN";
         $interval.cancel(decrementCounter);
       }
-    }, 1000);
+      //Time between each tick
+    }, 500);
     $timeout(function() {
       $scope.mapLoaded = true;
       $timeout(function() {
         $scope.animationFinished = true;
       }, 2000);
-    }, 10000);
+      //Time to remove overlay
+    }, 5000);
   });
 
   $scope.$on("slideEnded", function () {

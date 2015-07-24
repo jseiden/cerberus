@@ -10,6 +10,30 @@ det.controller('DetailsController', function($scope, $modalInstance, forecast, b
   $scope.windDirection = $scope.forecast.wind.compassDirection;
   $scope.beachName = beachName;
 
+  //TODO: refactor into service
+
+  // Takes in an animation name linked to a scope variable (eg. windSpeed)
+  // and an option div specifier (eg. 1 for rectangle-1)
+  $scope.className = function(animationName) {
+    // Windspeed animation
+
+  };
+
+  //
+  $scope.windSpeedClass = function(specifier) {
+    specifier = specifier || "";
+    var className = "rectangle" + specifier;
+
+    if ($scope.windSpeed > 10) {
+      className += "-fast";
+    }
+    if ($scope.windSpeed < 3) {
+      className += "-slow"
+    }
+
+    return className
+  };
+
   $scope.toRepeat = function(num) {
     var results = [];
     for (var i = 0; i < num; i++) {
@@ -21,7 +45,7 @@ det.controller('DetailsController', function($scope, $modalInstance, forecast, b
   $scope.remainingStars = function(num) {
     return 5 - num;
   }
-  
+
   // TODO: Template for data selection from modal
   // $scope.ok = function () {
   //   $modalInstance.close($scope.selected.forecast);
