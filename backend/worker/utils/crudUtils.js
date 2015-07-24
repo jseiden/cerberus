@@ -5,7 +5,7 @@ var Beach = require('../../db/models/beach.js');
 var apiUtils = require('./apiUtils.js');
 var spotData = require('./json/beachData.json');
 
-exports.writeBeachEntry = function(beachData){
+var writeBeachEntry = function(beachData){
 	var newBeach = Beach({
 		mswId: beachData.mswId,
 		beachname: beachData.beachName,
@@ -21,22 +21,35 @@ exports.writeBeachEntry = function(beachData){
 };
 
 
+// var writeBeachEntry = function(beachData){
+// 	var newBeach = Beach({
+// 		mswId: beachData.mswId,
+// 		beachname: beachData.beachName,
+// 		lat: beachData.lat,
+// 		lon: beachData.lon,
+// 		forecastData: ['test']
+// 	});
+
+// 	newBeach.save
+// 		.then(function(success){
+// 			console.log('Beach Entry Created!')
+// 		})
+// 		.catch(function(err){
+// 			throw err;
+// 		})
+
+// 	// (function(err){
+// 	// 		if (err) throw err;
+// 	// 		console.log('Beach Entry Created!')
+// 	// 	});
+// };
+
 exports.beachDataUpdate = function(){
 	_.each(spotData, function(spotDatum){
-		exports.writeBeachEntry(spotDatum)
+		writeBeachEntry(spotDatum)
 	})
 }
 
-exports.beachDatumUpdate = function(id, data){
-  Beach.findOneAndUpdate({mswId: id}, {forecastData: data}, function(err, beach){
-    if (err) throw err;
-    if (!beach){
-    	console.log('Beach does not exist!')
-    	throw err;
-    } 
-    console.log('Wrote beach data');
-  })
-};
 
 exports.retrieveBeachData = function (cb) {
   Beach.find({})

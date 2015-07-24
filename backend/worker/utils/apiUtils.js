@@ -1,4 +1,3 @@
-var request = require('request');
 var requestPromise = require('request-promise');
 var cron = require('node-schedule');
 var _ = require('underscore');
@@ -8,7 +7,6 @@ var Twitter = require('twitter');
 var spotData = require('./json/beachData.json');
 var crudUtils = require('./crudUtils');
 var Beach = require('../../db/models/beach.js');
-
 
 var endpoint = 'http://magicseaweed.com/api/436cadbb6caccea6e366ed1bf3640257/forecast/?spot_id='
 
@@ -34,6 +32,7 @@ exports.beachDataReq = function(){
               })
               .catch(function(error){
                 console.log(error);
+                throw error;
               })
             })
       })(0)
@@ -64,12 +63,35 @@ var getTweets = function(lat, lon, cb){
     cb(error, tweets);
   });
 };
-var getTweetsAsync = Promise.promisify(getTweets);
 
+// exports.tweets = function(){
 
+//   var getTweetsAsync = Promise.promisify(getTweets);
+//   var getTweetText = function(obj){
+//     return _.map(obj.statuses, function(tweet){
+//       return tweet.text;
+//     })
+//   };
+
+//   Beach.find({})
+//     .then(function(data){
+//       (function recurse(ind){
+//         if (ind === data.length-1) return;
+//         var beach = data[ind];
+//         getTweetsAsync(beach.lat, beach.lon)
+//           .then(function(tweets){
+//             var tweetText = getTweetText(tweets);
+//             crudUtils.writeTweets(tweetText, beach.mswId);
+//           })
+//         setTimeout( function(){recurse(ind+1)}, 60010);
+//       })(0)
+//     })
+// };
 
 
 exports.tweets = function(){
+
+  var getTweetsAsync = Promise.promisify(getTweets);
 
   var getTweetText = function(obj){
     return _.map(obj.statuses, function(tweet){
@@ -80,24 +102,21 @@ exports.tweets = function(){
   Beach.find({})
     .then(function(data){
       (function recurse(ind){
-        if (ind === data.length-1) return;
+        if (ind === data.length) return;
         var beach = data[ind];
         getTweetsAsync(beach.lat, beach.lon)
           .then(function(tweets){
             var tweetText = getTweetText(tweets);
-            crudUtils.writeTweets(tweetText, beach.mswId);
+            Beach.findOneAndUpdate({mswId: beach.mswId, tweets: tweetText})
+              .then(function(success){
+                console.log('Tweet data written!', tweetText);
+                setTimeout (function(){recurse(ind+1)}, 60010);
+              })
+              .catch(function(err){
+                throw err;
+              })
           })
-        setTimeout( function(){recurse(ind+1)}, 60010);
-      })(0)
+        })(0)
     })
 };
-
-
-
-
-
-////////////////////////////EXPERIMENTAL//////////////////////////
-
-//api key
-//a4c78a3d-49e6-4372-a97f-3e424d517ab9
 
