@@ -656,9 +656,17 @@ html, body, #map {
 
 .path-1 {
   transform: translateX(-925px) scale(1.5) translateY(-40px); }
+  .path-1-small {
+    transform: translateX(-1035px) scale(1) translateY(-10px); }
+  .path-1-large {
+    transform: translateX(-1200px) scale(2) translateY(-75px); }
 
 .path-2 {
   transform: translateX(-1200px) scale(2) translateY(-40px); }
+  .path-2-small {
+    transform: translateX(-875px) scale(1.5) translateY(-20px); }
+  .path-2-large {
+    transform: translateX(-1450px) scale(2.5) translateY(-55px); }
 
 .path-3, .path-4 {
   transform: translateX(-1150px) scale(1.5) translateY(-40px);

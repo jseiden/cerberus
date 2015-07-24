@@ -27,11 +27,24 @@ det.controller('DetailsController', function($scope, $modalInstance, forecast, b
     if ($scope.windSpeed > 10) {
       className += "-fast";
     }
-    if ($scope.windSpeed < 3) {
+    if ($scope.windSpeed <= 3) {
       className += "-slow"
     }
 
-    return className
+    return className;
+  };
+  $scope.swellHeightClass = function(specifier) {
+    specifier = specifier || "";
+    var className = "path" + specifier;
+
+    if ($scope.swellHeight >= 3) {
+      className += "-large";
+    }
+    if ($scope.swellHeight <= 1) {
+      className += "-small"
+    }
+
+    return className;
   };
 
   $scope.toRepeat = function(num) {

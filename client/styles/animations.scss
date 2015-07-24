@@ -102,9 +102,21 @@
 //Wave animations
 .path-1 {
   transform: translateX(-925px) scale(1.5) translateY(-40px);
+  &-small {
+    transform: translateX(-1035px) scale(1) translateY(-10px);
+  }
+  &-large {
+    transform: translateX(-1200px) scale(2) translateY(-75px);
+  }
 }
 .path-2 {
   transform: translateX(-1200px) scale(2) translateY(-40px);
+  &-small {
+    transform: translateX(-875px) scale(1.5) translateY(-20px);
+  }
+  &-large {
+    transform: translateX(-1450px) scale(2.5) translateY(-55px);
+  }
 }
 .path-3 {
   transform: translateX(-1150px) scale(1.5) translateY(-40px);
