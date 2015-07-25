@@ -5,7 +5,7 @@ html(lang="en" ng-app="app")
     include preload
   body(ng-controller="HomeController")
     //div.overlay(ng-attr-class="{{mapLoaded && 'fadeOut' || 'overlay' }}" ng-hide="animationFinished")
-    div(ng-attr-class="{{mapLoaded && 'fadeOut' || 'overlay' }}" ng-hide="true")
+    div(ng-attr-class="{{mapLoaded && 'fadeOut' || 'overlay' }}" ng-hide="animationFinished")
       include loading 
     #site-wrapper(ng-class="sideMenu ? 'show-nav' : ''")
       #site-canvas
