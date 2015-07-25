@@ -39,15 +39,6 @@ exports.beachDataReq = function(){
     })
 };
 
-
-exports.updateBeachData = function(){
-  var rule = new cron.RecurrenceRule();
-  rule.hour = new cron.Range(0, 23, 3);
-  cron.scheduleJob(rule, function(){
-    exports.beachDataReq();
-  });                                               
-};
-
 var getTweets = function(lat, lon, cb){ 
 
   var client = new Twitter({
@@ -63,30 +54,6 @@ var getTweets = function(lat, lon, cb){
     cb(error, tweets);
   });
 };
-
-// exports.tweets = function(){
-
-//   var getTweetsAsync = Promise.promisify(getTweets);
-//   var getTweetText = function(obj){
-//     return _.map(obj.statuses, function(tweet){
-//       return tweet.text;
-//     })
-//   };
-
-//   Beach.find({})
-//     .then(function(data){
-//       (function recurse(ind){
-//         if (ind === data.length-1) return;
-//         var beach = data[ind];
-//         getTweetsAsync(beach.lat, beach.lon)
-//           .then(function(tweets){
-//             var tweetText = getTweetText(tweets);
-//             crudUtils.writeTweets(tweetText, beach.mswId);
-//           })
-//         setTimeout( function(){recurse(ind+1)}, 60010);
-//       })(0)
-//     })
-// };
 
 
 exports.tweets = function(){
@@ -119,4 +86,13 @@ exports.tweets = function(){
         })(0)
     })
 };
+
+exports.updateBeachData = function(){
+  var rule = new cron.RecurrenceRule();
+  rule.hour = new cron.Range(0, 23, 3);
+  cron.scheduleJob(rule, function(){
+    exports.beachDataReq();
+  });                                               
+};
+
 
