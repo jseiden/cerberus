@@ -6,9 +6,15 @@ var crudUtils = require('./utils/crudUtils.js');
 
 var app = express();
 
-apiUtils.getTweets();
+//enable the below function if you want tweets to popualte
+//apiUtils.tweets();
 
-app.get('/writeBeachData', crudUtils.beachDataUpdate);
+//enable the below function if you want interval surf data updates
+//apiUtils.updateBeachData();
+
+crudUtils.writeBeachEntries();
+
+
 app.get('/requestBeachData', apiUtils.beachDataReq);
 
 module.exports = app;
