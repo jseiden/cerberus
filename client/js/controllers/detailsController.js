@@ -22,12 +22,15 @@ det.controller('DetailsController', function($scope, $modalInstance, forecast, b
   //
   $scope.windSpeedClass = function(specifier) {
     specifier = specifier || "";
+    if (typeof specifier !== "string") {
+      return null;
+    }
     var className = "rectangle" + specifier;
 
     if ($scope.windSpeed > 10) {
       className += "-fast";
     }
-    if ($scope.windSpeed <= 3) {
+    if ($scope.windSpeed < 4) {
       className += "-slow"
     }
 
@@ -35,6 +38,9 @@ det.controller('DetailsController', function($scope, $modalInstance, forecast, b
   };
   $scope.swellHeightClass = function(specifier) {
     specifier = specifier || "";
+    if (typeof specifier !== "string") {
+      return null;
+    }
     var className = "path" + specifier;
 
     if ($scope.swellHeight >= 3) {
@@ -48,6 +54,9 @@ det.controller('DetailsController', function($scope, $modalInstance, forecast, b
   };
   $scope.swellPeriodClass = function(specifier) {
     specifier = specifier || "";
+    if (typeof specifier !== "string") {
+      return null;
+    }
     var className = "path" + specifier;
 
     if ($scope.swellPeriod >= 10) {
