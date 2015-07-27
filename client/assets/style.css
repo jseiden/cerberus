@@ -477,6 +477,7 @@ html, body {
   animation-timing-function: linear; }
 
 #site-wrapper {
+  background-color: teal;
   position: relative;
   overflow: hidden;
   width: 100%;
@@ -493,14 +494,17 @@ html, body {
   transition: .3s ease all; }
 
 #site-menu {
+  background-color: teal;
   width: 300px;
   height: 100%;
   position: absolute;
   top: 0;
   left: -300px;
-  background-color: teal;
   padding: 15px;
-  z-index: 5; }
+  z-index: 5;
+  display: none; }
+  #site-menu.show-nav {
+    display: block; }
 
 #site-tab {
   width: 300px;
@@ -539,47 +543,6 @@ html, body {
 .fadeOut {
   animation: fadeOut 2s 1 forwards; }
 
-<<<<<<< HEAD
-.nav, .pagination, .carousel, .panel-title a {
-  cursor: pointer; }
-
-html, body, #map {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0; }
-
-.beaches, .beaches svg {
-  position: absolute; }
-
-.beaches svg {
-  width: 150px;
-  height: 20px;
-  font: 14px sans-serif;
-  font-family: 'Helvetica'; }
-
-.beaches svg text {
-  fill: white; }
-
-.beaches circle {
-  stroke: black;
-  stroke-width: 1.2px; }
-
-.winds, .winds svg {
-  position: absolute; }
-
-.winds svg {
-  width: 300px;
-  height: 300px;
-  font: 14px sans-serif;
-  font-family: 'Helvetica'; }
-
-.winds line {
-  stroke: black;
-  stroke-width: 1.2px; }
-
-=======
->>>>>>> (feat) Make wind speed animations dynamic
 .circle, .cloud-1, .cloud-2, .cloud-3 {
   opacity: 0;
   background-color: turquoise;
@@ -791,7 +754,7 @@ html, body, #map {
   font-family: 'Helvetica'; }
 
 .beaches svg text {
-  font-color: teal; }
+  fill: white; }
 
 .beaches circle {
   stroke: black;
@@ -805,9 +768,6 @@ html, body, #map {
   height: 300px;
   font: 14px sans-serif;
   font-family: 'Helvetica'; }
-
-.winds svg text {
-  font-color: teal; }
 
 .winds line {
   stroke: black;

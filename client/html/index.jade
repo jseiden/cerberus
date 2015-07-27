@@ -9,7 +9,7 @@ html(lang="en" ng-app="app")
     //- div(ng-attr-class="{{mapLoaded && 'fadeOut' || 'overlay' }}" ng-hide="true")
     #site-wrapper(ng-class="sideMenu ? 'show-nav' : ''")
       #site-canvas
-        #site-menu
+        #site-menu(ng-class="sideMenu ? 'show-nav' : ''")
           include sidebarView
         nav.navbar.navbar-inverse
           .container-fluid

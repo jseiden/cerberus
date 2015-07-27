@@ -54,7 +54,7 @@ home.controller('HomeController', function($rootScope, $scope, $modal, $log, $ti
   });
 
   $scope.$on("slideEnded", function () {
-    
+
     console.log('$scope.timeIndex=', $scope.timeIndex);
     // console.log('$scope.distance =', $scope.distance);
     $scope.forecastTime = $scope.timeStamps[$scope.timeIndex];

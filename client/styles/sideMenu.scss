@@ -1,5 +1,7 @@
 #site- {
   &wrapper {
+    // Change background color on #site-menu also
+    background-color: teal;
     position: relative;
     overflow: hidden;
     width: 100%;
@@ -17,14 +19,19 @@
     transition: .3s ease all;
   }
   &menu {
+    // Change background color on #site-wrapper also
+    background-color: teal;
     width: 300px;
     height: 100%;
     position: absolute;
     top: 0;
     left: -300px;
-    background-color: teal;
     padding: 15px;
     z-index: 5;
+    display: none;
+    &.show-nav {
+      display: block;
+    }
   }
   &tab {
     width: 300px;
