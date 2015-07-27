@@ -1,7 +1,7 @@
 var home = angular.module('app.homeController', []);
 
 
-home.controller('HomeController', function($rootScope, $scope, $modal, $log, $timeout, $interval, MapService, BestSpotService, AnimationService) {
+home.controller('HomeController', function($rootScope, $scope, $modal, $timeout, $interval, $location, MapService, BestSpotService, AnimationService) {
 
   // slider variables
   $scope.distance = 100;
@@ -26,7 +26,12 @@ home.controller('HomeController', function($rootScope, $scope, $modal, $log, $ti
   $scope.toggleClass = function() {
     $scope.sideMenu = !$scope.sideMenu;
   }
-
+  $scope.openSidebar = function() {
+    $scope.sideMenu = true;
+  }
+  $scope.closeSidebar = function() {
+    $scope.sideMenu = false;
+  }
   $scope.toggleTab = function() {
     $scope.bottomTab = !$scope.bottomTab;
   }

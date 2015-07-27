@@ -9,7 +9,12 @@ html(lang="en" ng-app="app")
     //- div(ng-attr-class="{{mapLoaded && 'fadeOut' || 'overlay' }}" ng-hide="true")
     #site-wrapper(ng-class="sideMenu ? 'show-nav' : ''")
       #site-canvas
-        #site-menu(ng-class="sideMenu ? 'show-nav' : ''")
+        #site-tab(ng-class="bottomTab ? 'show-tab' : ''")
+          .tab-content.
+            Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris. Hi mindless mortuis soulless creaturas, imo evil stalking monstra adventus resi dentevil vultus comedat cerebella viventium. Qui animated corpse, cricket bat max brucks terribilem incessu zomby. The voodoo sacerdos flesh eater, suscitat mortuos comedere carnem virus. Zonbi tattered for solum oculi eorum defunctis go lum cerebro. Nescio brains an Undead zombies. Sicut malus putrid voodoo horror. Nigh tofth eliv ingdead.
+        .tab-selector(ng-click="toggleTab()" ng-class="bottomTab ? 'show-tab' : ''").
+          Surf's Up!  
+        #site-menu(ng-class="sideMenu ? 'show-nav' : ''" ui-view)
           include sidebarView
         nav.navbar.navbar-inverse
           .container-fluid
@@ -18,7 +23,7 @@ html(lang="en" ng-app="app")
                 Cerferus
               p.navbar-text.navbar-left.
                 Gnar Swells, Brah
-            button(href="#" ng-click="toggleClass()").
+            button(type="button" ng-click="toggleClass()").
               Do Something
             a.mswPower.navbar-brand.navbar-right(href="http://magicseaweed.com")
               img(src="http://im-1-uk.msw.ms/msw_powered_by.png")
@@ -26,9 +31,9 @@ html(lang="en" ng-app="app")
           form(ng-controller="TypeAheadController")
             input(type="text" ng-model="searchBeach" typeahead="beach for beach in beachChoices | filter:$viewValue" placeholder ="Search for a beach")
             //- button.btn.btn-info(ng-click=("zoomToBeach(searchBeach)")).
-            button.btn.btn-info(ng-click=("zoomToBeach(searchBeach)")).
+            button.btn.btn-info(ng-click=("zoomToBeach(searchBeach); openSidebar()") ui-sref="details").
               Icon
-        div(ui-view id="map")
+        div(ng-controller="GoogleMapController" id="map")
     //- Using include instead of extends
     //- block scripts
     include dependencies
