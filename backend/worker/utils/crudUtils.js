@@ -43,6 +43,6 @@ exports.filterBeachDataTime = function(data){
 	var parsedData = JSON.parse(data);
 	var time = Math.floor( (Date.now()/1000) );
 	return _.filter(parsedData, function(datum){
-		return datum.timestamp > time && datum.timestamp < (time + 86402);
+		return datum.localTimestamp > time && datum.localTimestamp < (time + 86402);
 	});
 };

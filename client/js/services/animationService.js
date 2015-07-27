@@ -62,15 +62,17 @@ angular.module('app.animationService', [])
           .attr('r', 4.5);
       }
 
-      function renderBeaches () {
+      function renderBeaches (timeIndex) {
         // All d3 renderings must be done after injecting the d3 library into the controller by calling d3Service.d3()
         d3Service.d3().then(function(d3) {
           var beaches = MapService.getBeachCache();
           var map = MapService.getMap();
-
           var overlay = new google.maps.OverlayView();
 
           overlay.onAdd = function () {
+            // remove old beach markers if they exist
+            d3.select('.beaches').remove();
+
             var layer = d3.select(this.getPanes().overlayMouseTarget).append('div')
               .attr('class', 'beaches');
 
@@ -95,7 +97,7 @@ angular.module('app.animationService', [])
                     return spotColors[0];
                   }
                   else {
-                    return spotColors[d.value.forecastData[0].solidRating];
+                    return spotColors[d.value.forecastData[timeIndex].solidRating];
                   }
                 })
                 .attr('forecast', function(d) {
@@ -124,10 +126,13 @@ angular.module('app.animationService', [])
             };
           };
           overlay.setMap(map);
-        }).then(MapService.markersLoaded());
+        }).then(
+        function () {
+          MapService.markersLoaded()
+        });
       };
 
-      function renderWind () {
+      function renderWind (timeIndex) {
 
         d3Service.d3().then(function(d3) {
 
@@ -137,14 +142,17 @@ angular.module('app.animationService', [])
           var overlay = new google.maps.OverlayView();
 
           overlay.onAdd = function () {
+            // remove old wind vectors if they exist
+            d3.select('.winds').remove();
+
             var layer = d3.select(this.getPanes().overlayMouseTarget).append('div')
               .attr('class', 'winds');
 
             overlay.draw = function () {
               var projection = this.getProjection();
               var padding = 100;
-              var t = 5; // length of the wind vector will be t * speed
-              var lineColor = 'grey';
+              var t = 6; // length of the wind vector will be t * speed
+              var lineColor = 'yellow';
               var lineWidth = '4';
               var maxAnimationDuration = 2000;
               var minAnimationDuration = 200;
@@ -182,7 +190,7 @@ angular.module('app.animationService', [])
                   .transition()
                   .duration(function(d) {
                     if(!d.value.forecastData.length) { return 0; }
-                    var speed = d.value.forecastData[0].wind.speed;
+                    var speed = d.value.forecastData[timeIndex].wind.speed;
                     return maxAnimationDuration + (speed * windSpeedMultiplier);
                   })
                   .ease('linear')
@@ -200,8 +208,8 @@ angular.module('app.animationService', [])
 
               function getX2(d) {
                 if(!d.value.forecastData.length) { return padding; }
-                var direction = -(d.value.forecastData[0].wind.direction + 90);
-                var speed = d.value.forecastData[0].wind.speed;
+                var direction = -(d.value.forecastData[timeIndex].wind.direction + 90);
+                var speed = d.value.forecastData[timeIndex].wind.speed;
                 var distance = speed * t;
                 // var distance = 50
                 return padding + distance * Math.cos( getRadians(direction) );
@@ -209,8 +217,8 @@ angular.module('app.animationService', [])
 
               function getY2(d) {
                 if(!d.value.forecastData.length) { return padding; }
-                var direction = -(d.value.forecastData[0].wind.direction + 90);
-                var speed = d.value.forecastData[0].wind.speed;
+                var direction = -(d.value.forecastData[timeIndex].wind.direction + 90);
+                var speed = d.value.forecastData[timeIndex].wind.speed;
                 var distance = speed * t;
                 // var distance = 50
                 return padding + distance * -Math.sin( getRadians(direction) );

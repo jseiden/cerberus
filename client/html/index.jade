@@ -4,16 +4,13 @@ html(lang="en" ng-app="app")
     title Gnar Swells, Brah
     include preload
   body(ng-controller="HomeController")
-    //div.overlay(ng-attr-class="{{mapLoaded && 'fadeOut' || 'overlay' }}" ng-hide="animationFinished")
     div(ng-attr-class="{{mapLoaded && 'fadeOut' || 'overlay' }}" ng-hide="true")
       include loading 
+    //- div.overlay(ng-attr-class="{{mapLoaded && 'fadeOut' || 'overlay' }}" ng-hide="animationFinished")
     #site-wrapper(ng-class="sideMenu ? 'show-nav' : ''")
       #site-canvas
         #site-menu
-          h2.
-            Hello Menu!
-          p.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed felis tempus, tempor massa nec, sollicitudin sapien. Suspendisse potenti. Praesent quis urna at sem varius aliquam maximus eu ipsum. Sed facilisis consectetur lectus, vitae congue libero aliquet vitae. Vestibulum posuere odio ut lacus pharetra, sit amet elementum dolor sagittis. Fusce maximus leo ac felis faucibus auctor. Maecenas sollicitudin dui quis eros dictum, a pellentesque velit laoreet. Aenean tempus massa et nisl pulvinar, et tempor lacus vehicula.
+          include sidebarView
         nav.navbar.navbar-inverse
           .container-fluid
             .navbar-header
@@ -31,7 +28,6 @@ html(lang="en" ng-app="app")
             //- button.btn.btn-info(ng-click=("zoomToBeach(searchBeach)")).
             button.btn.btn-info(ng-click=("zoomToBeach(searchBeach)")).
               Icon
-        rzslider(rz-slider-model="distanceSlider" rz-slider-ceil="100")
         div(ui-view id="map")
     //- Using include instead of extends
     //- block scripts

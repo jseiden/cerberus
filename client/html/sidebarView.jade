@@ -1,0 +1,15 @@
+h3 {{ forecastTime }}
+h3 Update forecast time:  
+  rzslider(rz-slider-model="timeIndex" class="time-slider" rz-slider-ceil="7")
+h3
+  p Where should I go? 
+  rzslider(rz-slider-model="distance" class="distance-slider" rz-slider-ceil="100")
+button(ng-click="getDirections()") Get Directions!
+.circle.center
+  include anim/swellHeight.jade
+.circle.center
+  include anim/swellPeriod.jade
+.circle.center
+  include anim/windDirection.jade
+.circle.center
+  include anim/windSpeed.jade

@@ -31,7 +31,7 @@ html, body, #map{
 }
 
 .beaches svg text {
-  font-color: teal;
+  fill: white
 }
 .beaches circle {
   stroke: black;
@@ -49,9 +49,6 @@ html, body, #map{
   font-family: 'Helvetica';
 }
 
-.winds svg text {
-  font-color: teal;
-}
 .winds line {
   stroke: black;
   stroke-width: 1.2px;
@@ -240,13 +237,13 @@ html, body, #map{
 }
 
 rzslider {
-  position: absolute;
-  bottom: 0;
-  left: 20px;
-  width: 80px;
-  z-index: 1;
+  margin: 20px 0 10px 0;
 }
 
-rzslider span.rz-bubble.rz-limit {
+rzslider.time-slider span.rz-bubble  {
+  font-size: 0;
+}
+
+rzslider.distance-slider span.rz-bubble.rz-limit {
   font-size: 0;
 }
