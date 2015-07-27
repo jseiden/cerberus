@@ -236,22 +236,14 @@ html, body, #map{
   100% { transform: rotate(360deg); }
 }
 
-// rzslider {
-//   position: relative;
-//   margin: 10px;
-//   width: 150px;
-// }
+rzslider {
+  margin: 20px 0 10px 0;
+}
 
-// rzslider .time-slider {
-//   top: 50px;
-//   left: 20px;
-// }
+rzslider.time-slider span.rz-bubble  {
+  font-size: 0;
+}
 
-// rzslider .distance-slider {
-//   top: 100px;
-//   left: 20px;
-// }
-
-// rzslider span.rz-bubble.rz-limit {
-//   font-size: 10;
-// }
+rzslider.distance-slider span.rz-bubble.rz-limit {
+  font-size: 0;
+}

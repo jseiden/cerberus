@@ -708,3 +708,12 @@ html, body, #map {
     transform: rotate(0deg); }
   100% {
     transform: rotate(360deg); } }
+
+rzslider {
+  margin: 20px 0 10px 0; }
+
+rzslider.time-slider span.rz-bubble {
+  font-size: 0; }
+
+rzslider.distance-slider span.rz-bubble.rz-limit {
+  font-size: 0; }

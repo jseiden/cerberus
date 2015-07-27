@@ -31,7 +31,30 @@ angular.module('app.mapService', [])
     // setting beachCache for ready access without extra ajax calls
     var setBeachCache = function(beachObj){
       beachCache = beachObj;
-      $rootScope.$broadcast("beachCacheSet");
+      $rootScope.$broadcast("beachCacheSet", getLocalTimeStamps(beachCache));
+    };
+
+    var getLocalTimeStamps = function (beaches) {
+      var beach;
+      // get the first beach that has forecast Data
+      for (var i = 0; i < beaches.length; i++) {
+        if (beaches[i].forecastData.length) {
+          beach = beaches[i];
+          break;
+        }
+      }
+      return beach.forecastData.map(function (forecast) {
+        var options = {
+          weekday: 'long',
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit'
+        };
+        var date = new Date (forecast.localTimestamp * 1000);
+        return date.toLocaleTimeString('en-us', options);
+      });
     };
 
     var getBeachCache = function(){
@@ -65,6 +88,8 @@ angular.module('app.mapService', [])
       console.log(map.getBounds());
     };
 
+    
+
     return {
       getBeachData: getBeachData,
       markersLoaded: markersLoaded,
@@ -72,6 +97,7 @@ angular.module('app.mapService', [])
       getMap: getMap,
       setBeachCache: setBeachCache,
       getBeachCache: getBeachCache,
+      getLocalTimeStamps: getLocalTimeStamps,
       zoomToBeach: zoomToBeach
     };
   });

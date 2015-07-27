@@ -119,7 +119,6 @@ angular.module('app.animationService', [])
                     .style('top', (d.y - padding) + 'px');
               }
               function addListener(d) {
-                console.log('listeners added')
                 google.maps.event.addDomListener(this, 'click', open);
                 google.maps.event.addDomListener(this, 'mouseover', showTitle);
                 google.maps.event.addDomListener(this, 'mouseout', hideTitle);
