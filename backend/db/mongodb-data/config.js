@@ -2,7 +2,7 @@
 var mongoose = require('mongoose');
 //mongoose config
 // mongoURI = 'mongodb://localhost/thesis'
-mongoURI = 'mongodb://45.55.14.80:27017'
+mongoURI = 'mongodb://45.55.14.80:27017/thesis'
 mongoose.connect(process.env.MONGOLAB_URI || mongoURI);
 
 //opens initial connection
