@@ -83,21 +83,22 @@
     <script src="../js/services/bestSpotService.js"></script>
     <script src="../app.js"></script>
     <script type="text/ng-template" id="detailsModal.html">
+      <div class="ng-cloak"></div>
       <div class="modal-header">
-        <div class="modal-title">{{beachName}}</div>
+        <div class="modal-title ng-cloak">{{beachName}}</div>
       </div>
       <div class="modal-body">
         <div class="row">
           <div class="col-md-6">
             <div class="center"><span ng-repeat="star in toRepeat(solidRating)" class="glyphicon glyphicon-star"></span><span ng-repeat="star in toRepeat(remainingStars(solidRating))" class="glyphicon glyphicon-star-empty"></span></div>
             <div class="center"><strong>Solid Rating</strong>
-              <div class="center">{{solidRating}}</div>
+              <div class="center ng-cloak">{{solidRating}}</div>
             </div>
           </div>
           <div class="col-md-6">
             <div class="center"><span ng-repeat="star in toRepeat(fadedRating)" class="glyphicon glyphicon-star"></span><span ng-repeat="star in toRepeat(remainingStars(fadedRating))" class="glyphicon glyphicon-star-empty"></span></div>
             <div class="center"><strong>Faded Rating</strong>
-              <div class="center">{{fadedRating}}</div>
+              <div class="center ng-cloak">{{fadedRating}}</div>
             </div>
           </div>
         </div>
@@ -114,7 +115,7 @@
               </svg>
             </div>
             <div class="center"><strong>Swell Height</strong>
-              <div class="center">{{swellHeight}}</div>
+              <div class="center ng-cloak">{{swellHeight}}</div>
             </div>
           </div>
           <div class="col-md-3">
@@ -129,7 +130,7 @@
               </svg>
             </div>
             <div class="center"><strong>Swell Period</strong>
-              <div class="center">{{swellPeriod}}</div>
+              <div class="center ng-cloak">{{swellPeriod}}</div>
             </div>
           </div>
           <div class="col-md-3">
@@ -146,7 +147,7 @@
               </div>
             </div>
             <div class="center"><strong>Wind Speed</strong>
-              <div class="center">{{windSpeed}}</div>
+              <div class="center ng-cloak">{{windSpeed}}</div>
             </div>
           </div>
           <div class="col-md-3">
@@ -156,7 +157,7 @@
               <div id="compassMiddle" class="center circle"></div>
             </div>
             <div class="center"><strong>Wind Direction</strong>
-              <div class="center">{{windDirection}}</div>
+              <div class="center ng-cloak">{{windDirection}}</div>
             </div>
           </div>
         </div>

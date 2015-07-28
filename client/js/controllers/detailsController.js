@@ -1,15 +1,17 @@
 var det = angular.module('app.detailsController', []);
 
 det.controller('DetailsController', function($scope, $modalInstance, forecast, beachName) {
-  $scope.forecast = forecast;
-  $scope.solidRating = $scope.forecast.solidRating;
-  $scope.fadedRating = $scope.forecast.fadedRating;
-  $scope.swellHeight = $scope.forecast.swell.components.combined.height;
-  $scope.swellPeriod = $scope.forecast.swell.components.combined.period;
-  $scope.windSpeed = $scope.forecast.wind.speed;
-  $scope.windDirection = $scope.forecast.wind.compassDirection;
-  $scope.beachName = beachName;
 
+  $scope.init = function() {
+    $scope.forecast = forecast;
+    $scope.solidRating = $scope.forecast.solidRating;
+    $scope.fadedRating = $scope.forecast.fadedRating;
+    $scope.swellHeight = $scope.forecast.swell.components.combined.height;
+    $scope.swellPeriod = $scope.forecast.swell.components.combined.period;
+    $scope.windSpeed = $scope.forecast.wind.speed;
+    $scope.windDirection = $scope.forecast.wind.compassDirection;
+    $scope.beachName = beachName;
+  }
   //TODO: refactor into service
 
   // Takes in an animation name linked to a scope variable (eg. windSpeed)
@@ -88,4 +90,6 @@ det.controller('DetailsController', function($scope, $modalInstance, forecast, b
   $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
   };
+
+  $scope.init();
 });
