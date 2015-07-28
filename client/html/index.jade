@@ -1,8 +1,8 @@
 doctype html
 html(lang="en" ng-app="app")
   head
-    title Gnar Swells, Brah
-    include preload
+    title Surf's Up
+    include preload 
   body(ng-controller="HomeController as home")
     //- div.overlay(ng-attr-class="{{mapLoaded && 'fadeOut' || 'overlay' }}" ng-hide="animationFinished")
     div(ng-attr-class="{{mapLoaded && 'fadeOut' || 'overlay' }}" ng-hide="true")
@@ -61,16 +61,18 @@ html(lang="en" ng-app="app")
             .navbar-header
               a.navbar-brand(href="#").
                 Cerferus
-              p.navbar-text.navbar-left.
-                Gnar Swells, Brah
-            button(type="button" ng-click="openSidebar()" ui-sref="default").
-              Do Something
-        .well.search-board.left-board
-          form(ng-controller="TypeAheadController")
-            input(type="text" ng-model="searchBeach" typeahead="beach for beach in beachChoices | filter:$viewValue" placeholder ="Search for a beach")
-            //- button.btn.btn-info(ng-click=("zoomToBeach(searchBeach)")).
-            button.btn.btn-info(ng-click=("zoomToBeach(searchBeach); openSidebar(); printCurrentBeach()") ui-sref="details").
-              Icon
+              //- p.navbar-text.navbar-left.
+              //-   Swell and Wind Overview
+              //- .well.search-board.left-board
+              form.navbar-left(ng-controller="TypeAheadController" ng-submit=("zoomToBeach(searchBeach); openSidebar(); printCurrentBeach()"))
+                span(type="submit" class="glyphicon glyphicon-search"  ui-sref="details")
+                input(type="text" ng-model="searchBeach" typeahead="beach for beach in beachChoices | filter:$viewValue" placeholder ="  Search for a beach")
+              span.navbar-left(class="glyphicon glyphicon-info-sign" ng-click="openSidebar()" ui-sref="default")
+                //- button.btn.btn-info(ng-click=("zoomToBeach(searchBeach)")).
+                //- button.btn.btn-info(ng-click=("zoomToBeach(searchBeach); openSidebar(); printCurrentBeach()") ui-sref="details").
+                //-   Icon
+            //- button(type="button" ng-click="openSidebar()" ui-sref="default").
+            //-   Do Something
         div(ng-controller="GoogleMapController" id="map")
     //- Using include instead of extends
     //- block scripts

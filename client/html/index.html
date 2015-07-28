@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="app">
   <head>
-    <title>Gnar Swells, Brah</title>
+    <title>Surf's Up</title>
     <link rel="stylesheet" type="text/css" href="../lib/angularjs-slider/dist/rzslider.css">
     <link rel="stylesheet" type="text/css" href="../lib/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../assets/style.css">
@@ -112,17 +112,12 @@
         <nav class="navbar navbar-inverse">
           <div class="container-fluid">
             <div class="navbar-header"><a href="#" class="navbar-brand">Cerferus</a>
-              <p class="navbar-text navbar-left">Gnar Swells, Brah</p>
+              <form ng-controller="TypeAheadController" ng-submit="zoomToBeach(searchBeach); openSidebar(); printCurrentBeach()" class="navbar-left"><span type="submit" ui-sref="details" class="glyphicon glyphicon-search"></span>
+                <input type="text" ng-model="searchBeach" typeahead="beach for beach in beachChoices | filter:$viewValue" placeholder="  Search for a beach">
+              </form><span ng-click="openSidebar()" ui-sref="default" class="navbar-left glyphicon glyphicon-info-sign"></span>
             </div>
-            <button type="button" ng-click="openSidebar()" ui-sref="default">Do Something</button>
           </div>
         </nav>
-        <div class="well search-board left-board">
-          <form ng-controller="TypeAheadController">
-            <input type="text" ng-model="searchBeach" typeahead="beach for beach in beachChoices | filter:$viewValue" placeholder="Search for a beach">
-            <button ng-click="zoomToBeach(searchBeach); openSidebar(); printCurrentBeach()" ui-sref="details" class="btn btn-info">Icon</button>
-          </form>
-        </div>
         <div ng-controller="GoogleMapController" id="map"></div>
       </div>
     </div>

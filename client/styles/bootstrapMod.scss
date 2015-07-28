@@ -11,18 +11,41 @@
   color: white !important;
   z-index: 2;
 }
+// .search-board {
+//   position: absolute;
+//   z-index: 1;
+//   top: 70px;
+//   left: 120px;
+//   height: 50px;
+//   width: 230px;
+//   form {
+//     margin: -12px -10px;
+//     position: absolute;
+//   }
+// }
+
 .search-board {
-  position: absolute;
-  z-index: 1;
-  top: 70px;
-  left: 120px;
-  height: 50px;
-  width: 230px;
-  form {
-    margin: -12px -10px;
-    position: absolute;
-  }
+  width: auto;
 }
 .glyphicon.glyphicon-remove {
   float: right;
+}
+
+span.glyphicon.glyphicon-info-sign {
+  margin: 15px;
+  color: white;
+}
+
+input {
+  line-height: normal;
+  border-radius: 10px;
+}
+
+span.glyphicon.glyphicon-search {
+  color: white;
+}
+
+form.navbar-left {
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
