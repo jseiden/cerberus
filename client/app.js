@@ -4,6 +4,7 @@ var app = angular.module('app', [
   'app.detailsSidebarController',
   'app.googleMapController',
   'app.typeAheadController',
+  'app.infoController',
   'app.mapService',
   'app.animationService',
   'app.bestSpotService',
@@ -19,10 +20,12 @@ var app = angular.module('app', [
   $stateProvider
     .state('default', {
       url: '/',
+      templateUrl: './html/infoView.html',
+      controller: 'InfoController'
     })
-  $stateProvider
     .state('details', {
       url: '/details',
+      templateUrl: './html/sidebarView.html',
       controller: 'DetailsSidebarController'
     })
 });

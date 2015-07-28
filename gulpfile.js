@@ -18,7 +18,11 @@ gulp.task("lint", function(){
 });
 
 gulp.task("jade", function(){
-  return gulp.src("./client/html/index.jade")
+  return gulp.src([
+    "./client/html/index.jade",
+    "./client/html/infoView.jade",
+    "./client/html/sidebarView.jade"
+  ])
   .pipe(jade({
     pretty: true
   }))
@@ -50,13 +54,13 @@ gulp.task("sass", function(){
     .pipe(gulp.dest("./client/assets"));
   });
 
-// gulp.task("watch", function(){
-//   // gulp.watch(["./client/**/*/js", "./client/*.js", "./client/styles/*.scss", ".client/html/*.jade"], ["lint", "jade", "sass"])
-//   watch(["./client/html/*.jade", "./client/styles/*.scss"], function(){
-//     gulp.start("jade");
-//     gulp.start("sass");
-//   });
-// })
+gulp.task("watch", function(){
+  // gulp.watch(["./client/**/*/js", "./client/*.js", "./client/styles/*.scss", ".client/html/*.jade"], ["lint", "jade", "sass"])
+  watch(["./client/html/*.jade", "./client/styles/*.scss"], function(){
+    gulp.start("jade");
+    gulp.start("sass");
+  });
+})
 
 gulp.task("serve", function () {
   nodemon({

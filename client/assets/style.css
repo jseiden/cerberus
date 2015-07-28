@@ -392,6 +392,9 @@ th {
     margin: -12px -10px;
     position: absolute; }
 
+.glyphicon.glyphicon-remove {
+  float: right; }
+
 /* Main styles */
 .mask__shape {
   fill: white; }
@@ -770,10 +773,6 @@ html, body, #map {
   font: 14px sans-serif;
   font-family: 'Helvetica'; }
 
-.winds line {
-  stroke: black;
-  stroke-width: 1.2px; }
-
 rzslider {
   margin: 20px 0 10px 0; }
 
@@ -789,3 +788,42 @@ rzslider.distance-slider span.rz-bubble.rz-limit {
 
 .modal-dialog {
   height: 0; }
+
+div.info-circle {
+  margin: 17px 17px 0px 17px;
+  padding: 10px;
+  height: 12px;
+  width: 12px;
+  border-radius: 22px;
+  display: inline-block; }
+
+span.strong {
+  padding-right: 10px;
+  padding-left: 10px;
+  float: right; }
+
+span.weak {
+  padding-right: 10px;
+  padding-left: 10px; }
+
+svg.wind-container {
+  stroke: yellow;
+  stroke-width: 4;
+  fill: none;
+  opacity: .50;
+  stroke-linecap: round; }
+
+#example-wind {
+  width: 100px;
+  height: 50px;
+  display: block;
+  margin: auto; }
+
+li {
+  list-style: none; }
+
+a.mswPower {
+  position: absolute;
+  padding: 0 5px 10px 10px;
+  right: 10px;
+  bottom: 10px; }

@@ -6,8 +6,8 @@
     <link rel="stylesheet" type="text/css" href="../lib/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../assets/style.css">
   </head>
-  <body ng-controller="HomeController">
-    <div ng-attr-class="{{mapLoaded &amp;&amp; 'fadeOut' || 'overlay' }}" ng-hide="animationFinished" class="overlay">
+  <body ng-controller="HomeController as home">
+    <div ng-attr-class="{{mapLoaded &amp;&amp; 'fadeOut' || 'overlay' }}" ng-hide="true">
       <svg viewbox="0 0 600 300" class="svg-defs">
         <!-- Symbol with text-->
         <symbol id="s-text" ng-cloak>
@@ -34,70 +34,29 @@
     <div id="site-wrapper" ng-class="sideMenu ? 'show-nav' : ''">
       <div id="site-canvas">
         <div id="site-tab" ng-class="bottomTab ? 'show-tab' : ''">
-          <div class="tab-content">Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris. Hi mindless mortuis soulless creaturas, imo evil stalking monstra adventus resi dentevil vultus comedat cerebella viventium. Qui animated corpse, cricket bat max brucks terribilem incessu zomby. The voodoo sacerdos flesh eater, suscitat mortuos comedere carnem virus. Zonbi tattered for solum oculi eorum defunctis go lum cerebro. Nescio brains an Undead zombies. Sicut malus putrid voodoo horror. Nigh tofth eliv ingdead.</div>
+          <div class="tab-content">
+            <h3>
+              <p>Where should I go? </p>
+              <rzslider rz-slider-model="distance" rz-slider-ceil="100" class="distance-slider"></rzslider>
+            </h3>
+            <button ng-click="getDirections()">Get Directions!</button>
+          </div>
         </div>
-        <div ng-click="toggleTab()" ng-class="bottomTab ? 'show-tab' : ''" class="tab-selector">Surf's Up!  </div>
+        <div ng-click="toggleTab()" ng-class="bottomTab ? 'show-tab' : ''" class="tab-selector">Surf's Up!</div>
         <div id="site-menu" ng-class="sideMenu ? 'show-nav' : ''" ui-view>
-          <h3>{{ forecastTime }}</h3>
-          <button ng-click="closeSidebar()" ui-sref="default">Reset Sidebar</button>
-          <h3>Update forecast time:  
-            <rzslider rz-slider-model="timeIndex" rz-slider-ceil="7" class="time-slider"></rzslider>
-          </h3>
-          <h3>
-            <p>Where should I go? </p>
-            <rzslider rz-slider-model="distance" rz-slider-ceil="100" class="distance-slider"></rzslider>
-          </h3>
-          <button ng-click="getDirections()">Get Directions!</button>
-          <div class="circle center">
-            <svg xmlns="http://www.w3.org/2000/svg" width="900.918" height="600.818">
-              <g ng-class="swellHeightClass('-1')">
-                <path stroke="#4CADC1" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-dasharray="1300" stroke-dashoffset="1300" d="M1230.4 112.3c-5.6 0-10.2-4.6-10.2-10.2 0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2" fill="none" class="wave-1"></path>
-              </g>
-              <g ng-class="swellHeightClass('-2')">
-                <path stroke="#4CADC1" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-dasharray="1300" stroke-dashoffset="1300" d="M1230.4 112.3c-5.6 0-10.2-4.6-10.2-10.2 0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2" fill="none" class="wave-2"></path>
-              </g>
-            </svg>
-          </div>
-          <div class="circle center">
-            <svg xmlns="http://www.w3.org/2000/svg" width="900.918" height="600.818">
-              <g ng-class="swellPeriodClass('-3')">
-                <path stroke="#4CADC1" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-dasharray="1300" stroke-dashoffset="1300" d="M1230.4 112.3c-5.6 0-10.2-4.6-10.2-10.2 0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2" fill="none" class="wave-3"></path>
-              </g>
-              <g ng-class="swellPeriodClass('-4')">
-                <path stroke="#4CADC1" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-dasharray="1300" stroke-dashoffset="1300" d="M1230.4 112.3c-5.6 0-10.2-4.6-10.2-10.2 0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2" fill="none" class="wave-4"></path>
-              </g>
-            </svg>
-          </div>
-          <div class="circle center">
-            <div class="north"><strong>N</strong></div>
-            <div class="compassPointer"></div>
-            <div id="compassMiddle" class="center circle"></div>
-          </div>
-          <div class="circle center">
-            <div ng-class="windSpeedClass()">
-              <div class="cloud-1"></div>
-              <div class="cloud-2"></div>
-              <div class="cloud-3"></div>
-            </div>
-            <div ng-class="windSpeedClass('-1')">
-              <div class="cloud-1"></div>
-              <div class="cloud-2"></div>
-              <div class="cloud-3"></div>
-            </div>
-          </div>
         </div>
         <nav class="navbar navbar-inverse">
           <div class="container-fluid">
             <div class="navbar-header"><a href="#" class="navbar-brand">Cerferus</a>
               <p class="navbar-text navbar-left">Gnar Swells, Brah</p>
             </div>
-            <button type="button" ng-click="toggleClass()">Do Something</button><a href="http://magicseaweed.com" class="mswPower navbar-brand navbar-right"><img src="http://im-1-uk.msw.ms/msw_powered_by.png"></a>
+            <button type="button" ng-click="openSidebar()" ui-sref="default">Do Something</button>
           </div>
         </nav>
         <div class="well search-board left-board">
           <form ng-controller="TypeAheadController">
             <input type="text" ng-model="searchBeach" typeahead="beach for beach in beachChoices | filter:$viewValue" placeholder="Search for a beach">
-            <button ng-click="zoomToBeach(searchBeach); openSidebar()" ui-sref="details" class="btn btn-info">Icon</button>
+            <button ng-click="zoomToBeach(searchBeach); openSidebar(); printCurrentBeach()" ui-sref="details" class="btn btn-info">Icon</button>
           </form>
         </div>
         <div ng-controller="GoogleMapController" id="map"></div>
@@ -117,6 +76,7 @@
     <script src="../js/controllers/detailsController.js"></script>
     <script src="../js/controllers/detailsSidebarController.js"></script>
     <script src="../js/controllers/typeAheadController.js"></script>
+    <script src="../js/controllers/infoController.js"></script>
     <script src="../js/services/animationService.js"></script>
     <script src="../js/services/mapService.js"></script>
     <script src="../js/services/d3Service.js"></script>

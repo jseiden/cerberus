@@ -1,18 +1,8 @@
 var home = angular.module('app.homeController', []);
 
-
 home.controller('HomeController', function($rootScope, $scope, $modal, $timeout, $interval, $location, MapService, BestSpotService, AnimationService) {
 
-  // slider variables
   $scope.distance = 100;
-  $scope.timeIndex = 0;
-
-  $rootScope.$on('beachCacheSet', function() {
-    var beaches = MapService.getBeachCache();
-    $scope.timeStamps = MapService.getLocalTimeStamps(beaches);
-    $scope.forecastTime = $scope.timeStamps[$scope.timeIndex];
-  });
-
   $scope.mapLoaded = false;
   $scope.animationFinished = false;
   $scope.counter = 10;
@@ -30,8 +20,11 @@ home.controller('HomeController', function($rootScope, $scope, $modal, $timeout,
     $scope.sideMenu = true;
   }
   $scope.closeSidebar = function() {
+    console.log('scope.sideMenu=', $scope.sideMenu)
     $scope.sideMenu = false;
+    console.log('scope.sideMenu=', $scope.sideMenu)
   }
+
   $scope.toggleTab = function() {
     $scope.bottomTab = !$scope.bottomTab;
   }
@@ -56,15 +49,6 @@ home.controller('HomeController', function($rootScope, $scope, $modal, $timeout,
       }, 2000);
       //Time to remove overlay
     }, 5000);
-  });
-
-  $scope.$on("slideEnded", function () {
-
-    console.log('$scope.timeIndex=', $scope.timeIndex);
-    // console.log('$scope.distance =', $scope.distance);
-    $scope.forecastTime = $scope.timeStamps[$scope.timeIndex];
-    AnimationService.renderWind($scope.timeIndex);
-    AnimationService.renderBeaches($scope.timeIndex);
   });
 
 });
