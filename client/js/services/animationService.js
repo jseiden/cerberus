@@ -169,15 +169,15 @@ angular.module('app.animationService', [])
               var path = windContainer.append('svg:path')
                 .attr('class', 'wind-vector')
                 .attr('d', getD)
-                .attr('stroke', lineColor)
-                .attr('stroke-width', lineWidth)
-                .attr('fill', 'none')
+                // .attr('stroke', lineColor)
+                // .attr('stroke-width', lineWidth)
+                // .attr('fill', 'none')
                 .attr('stroke-dasharray', function(d) {
                   var l = d3.select(this).node().getTotalLength() / 2;
                   return l + ' ' + l;
                 })
-                .attr('opacity', '.50')
-                .attr('stroke-linecap', 'round')
+                // .attr('opacity', '.50')
+                // .attr('stroke-linecap', 'round')
                 .each(animatePath);
 
               function findWindSpeedMultiplier (maxWindSpeed, maxDuration, minDuration) {
@@ -209,7 +209,7 @@ angular.module('app.animationService', [])
 
               function getX2(d) {
                 if(!d.value.forecastData.length) { return padding; }
-                var direction = -(d.value.forecastData[timeIndex].wind.direction + 90);
+                var direction = -(d.value.forecastData[timeIndex].wind.direction + 90 + 180);
                 var speed = d.value.forecastData[timeIndex].wind.speed;
                 var distance = speed * t;
                 // var distance = 50
@@ -218,7 +218,7 @@ angular.module('app.animationService', [])
 
               function getY2(d) {
                 if(!d.value.forecastData.length) { return padding; }
-                var direction = -(d.value.forecastData[timeIndex].wind.direction + 90);
+                var direction = -(d.value.forecastData[timeIndex].wind.direction + 90 + 180);
                 var speed = d.value.forecastData[timeIndex].wind.speed;
                 var distance = speed * t;
                 // var distance = 50
@@ -240,7 +240,8 @@ angular.module('app.animationService', [])
 
       return {
         renderBeaches: renderBeaches,
-        renderWind: renderWind
+        renderWind: renderWind,
+        colors: spotColors
       };
 
     }]);

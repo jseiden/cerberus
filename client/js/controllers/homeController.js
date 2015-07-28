@@ -1,8 +1,9 @@
 var home = angular.module('app.homeController', []);
 
-
 home.controller('HomeController', function($rootScope, $scope, $modal, $timeout, $interval, $location, MapService, BestSpotService, AnimationService) {
 
+  $scope.colors = AnimationService.colors;
+  console.log($scope.colors);
   // slider variables
   $scope.distance = 100;
   $scope.timeIndex = 0;
