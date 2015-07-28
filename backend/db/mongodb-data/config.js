@@ -2,8 +2,11 @@
 var mongoose = require('mongoose');
 //mongoose config
 
-mongoURI = 'mongodb://45.55.14.80:27017/thesis';
-mongoose.connect(mongoURI || 'mongodb://localhost/thesis');
+var options = { server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } } }; 
+
+// mongoURI = 'mongodb://45.55.14.80:27017/thesis';
+mongoURI = 'mongodb:// '
+mongoose.connect(mongoURI || 'mongodb://localhost/thesis', options);
 
 //opens initial connection
 //Run in seperate terminal window using " mongod --dbpath . " in "./db" directory
