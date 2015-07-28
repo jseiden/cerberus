@@ -23,7 +23,6 @@ var app = angular.module('app', [
       templateUrl: './html/infoView.html',
       controller: 'InfoController'
     })
-  // $stateProvider
     .state('details', {
       url: '/details',
       templateUrl: './html/sidebarView.html',

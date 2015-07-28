@@ -92,6 +92,7 @@ angular.module('app.mapService', [])
       for(var i = 0; i < beachCache.length; i++){
         if(beachCache[i].beachname === beach){
           currentBeach = beachCache[i];
+          $rootScope.$broadcast('beach selected', currentBeach);
         }
       }
     };

@@ -31,6 +31,6 @@ angular.module('app.infoController', [])
             .attr('stroke-dashoffset', 0)
             .each('end', animatePath);
         }
-      })
-
+      });
+      
   });

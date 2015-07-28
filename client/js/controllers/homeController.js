@@ -20,8 +20,11 @@ home.controller('HomeController', function($rootScope, $scope, $modal, $timeout,
     $scope.sideMenu = true;
   }
   $scope.closeSidebar = function() {
+    console.log('scope.sideMenu=', $scope.sideMenu)
     $scope.sideMenu = false;
+    console.log('scope.sideMenu=', $scope.sideMenu)
   }
+
   $scope.toggleTab = function() {
     $scope.bottomTab = !$scope.bottomTab;
   }

@@ -3,7 +3,7 @@ html(lang="en" ng-app="app")
   head
     title Gnar Swells, Brah
     include preload
-  body(ng-controller="HomeController")
+  body(ng-controller="HomeController as home")
     //- div.overlay(ng-attr-class="{{mapLoaded && 'fadeOut' || 'overlay' }}" ng-hide="animationFinished")
     div(ng-attr-class="{{mapLoaded && 'fadeOut' || 'overlay' }}" ng-hide="true")
       include loading 

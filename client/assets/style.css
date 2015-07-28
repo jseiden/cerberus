@@ -392,6 +392,9 @@ th {
     margin: -12px -10px;
     position: absolute; }
 
+.glyphicon.glyphicon-remove {
+  float: right; }
+
 /* Main styles */
 .mask__shape {
   fill: white; }
