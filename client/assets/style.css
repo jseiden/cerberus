@@ -782,3 +782,10 @@ rzslider.time-slider span.rz-bubble {
 
 rzslider.distance-slider span.rz-bubble.rz-limit {
   font-size: 0; }
+
+.modal {
+  display: block;
+  opacity: 1; }
+
+.modal-dialog {
+  height: 0; }
