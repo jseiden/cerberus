@@ -4,7 +4,7 @@ html(lang="en" ng-app="app")
     title Gnar Swells, Brah
     include preload
   body(ng-controller="HomeController")
-    div.overlay(ng-attr-class="{{mapLoaded && 'fadeOut' || 'overlay' }}" ng-hide="animationFinished")
+    div.overlay(ng-attr-class="{{mapLoaded && 'fadeOut' || 'overlay' }}" ng-hide="true")
       include loading 
     //- div(ng-attr-class="{{mapLoaded && 'fadeOut' || 'overlay' }}" ng-hide="animationFinished")
     #site-wrapper(ng-class="sideMenu ? 'show-nav' : ''")
@@ -33,7 +33,7 @@ html(lang="en" ng-app="app")
             button.btn.btn-info(ng-click=("zoomToBeach(searchBeach)")).
              Search 
         //- rzslider(rz-slider-model="distanceSlider" rz-slider-ceil="100")
-        div(ui-view id="map")
+        #map(ng-controller="GoogleMapController")
     //- Using include instead of extends
     //- block scripts
     include dependencies

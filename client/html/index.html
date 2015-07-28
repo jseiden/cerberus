@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="../assets/style.css">
   </head>
   <body ng-controller="HomeController">
-    <div ng-attr-class="{{mapLoaded &amp;&amp; 'fadeOut' || 'overlay' }}" ng-hide="animationFinished" class="overlay">
+    <div ng-attr-class="{{mapLoaded &amp;&amp; 'fadeOut' || 'overlay' }}" ng-hide="true" class="overlay">
       <svg viewbox="0 0 600 300" class="svg-defs">
         <!-- Symbol with text-->
         <symbol id="s-text" ng-cloak>
@@ -101,7 +101,7 @@
             <button ng-click="zoomToBeach(searchBeach)" class="btn btn-info">Search </button>
           </form>
         </div>
-        <div ng-controller="GoogleMapController" id="map"></div>
+        <div id="map" ng-controller="GoogleMapController"></div>
       </div>
     </div>
     <script src="../lib/angular/angular.js"></script>
