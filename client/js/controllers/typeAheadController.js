@@ -16,6 +16,12 @@ typeAhead.controller("TypeAheadController", function($scope, $rootScope, MapServ
     console.log("beachCache in TypeAheadController: ", beachCache);
   };
 
+ $scope.printCurrentBeach = function(){
+    MapService.setCurrentBeach($scope.searchBeach);
+    console.log(MapService.getCurrentBeach());
+  };
+
   $scope.printBounds = MapService.printBounds;
   $scope.zoomToBeach = MapService.zoomToBeach;
 });
+

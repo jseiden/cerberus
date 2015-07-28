@@ -18,7 +18,11 @@ gulp.task("lint", function(){
 });
 
 gulp.task("jade", function(){
-  return gulp.src("./client/html/index.jade")
+  return gulp.src([
+    "./client/html/index.jade",
+    "./client/html/infoView.jade",
+    "./client/html/sidebarView.jade"
+  ])
   .pipe(jade({
     pretty: true
   }))
