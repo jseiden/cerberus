@@ -61,22 +61,11 @@ html(lang="en" ng-app="app")
             .navbar-header
               a.navbar-brand(href="#").
                 Cerferus
-              //- p.navbar-text.navbar-left.
-              //-   Swell and Wind Overview
-              //- .well.search-board.left-board
-              form.navbar-left(ng-controller="TypeAheadController" ng-submit=("zoomToBeach(searchBeach); openSidebar(); printCurrentBeach()"))
-                span(type="submit" class="glyphicon glyphicon-search"  ui-sref="details")
+              form.navbar-left(ng-controller="TypeAheadController" ui-sref="details" ng-submit="onSubmit()")
+                span(type="submit" ui-sref="details" class="glyphicon glyphicon-search")
                 input(type="text" ng-model="searchBeach" typeahead="beach for beach in beachChoices | filter:$viewValue" placeholder ="  Search for a beach")
               span.navbar-left(class="glyphicon glyphicon-info-sign" ng-click="openSidebar()" ui-sref="default")
-                //- button.btn.btn-info(ng-click=("zoomToBeach(searchBeach)")).
-                //- button.btn.btn-info(ng-click=("zoomToBeach(searchBeach); openSidebar(); printCurrentBeach()") ui-sref="details").
-                //-   Icon
-            //- button(type="button" ng-click="openSidebar()" ui-sref="default").
-            //-   Do Something
         div(ng-controller="GoogleMapController" id="map")
-    //- Using include instead of extends
-    //- block scripts
     include dependencies
     include scripts
-    //- Include templates for adding modals on map
     include ngTemplates
