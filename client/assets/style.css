@@ -574,7 +574,7 @@ html, body {
       color: white; }
   .side-menu-tab-content {
     position: relative;
-    padding: auto 15px; }
+    padding: 0 15px 15px; }
 
 h1 .glyphicon-remove {
   position: relative;
