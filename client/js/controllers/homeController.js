@@ -1,6 +1,6 @@
 var home = angular.module('app.homeController', []);
 
-home.controller('HomeController', function($rootScope, $scope, $modal, $timeout, $interval, $location, MapService, BestSpotService, AnimationService) {
+home.controller('HomeController', function($rootScope, $state, $scope, $modal, $timeout, $interval, $location, MapService, BestSpotService, AnimationService) {
 
   $scope.distance = 100;
   $scope.mapLoaded = false;
@@ -64,5 +64,13 @@ home.controller('HomeController', function($rootScope, $scope, $modal, $timeout,
       //Time to remove overlay
     }, 5000);
   });
+
+  $scope.resetMap = function () {
+    var map = MapService.getMap();
+    $state.go('default')
+    $scope.closeSidebar();
+    map.setCenter(new google.maps.LatLng(36.958, -119.2658));
+    map.setZoom(6);
+  }
 
 });

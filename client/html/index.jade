@@ -59,7 +59,7 @@ html(lang="en" ng-app="app")
         nav.navbar.navbar-inverse
           .container-fluid
             .navbar-header
-              a.navbar-brand(href="#").
+              a.navbar-brand(ng-click="resetMap()").
                 Cerferus
               form.navbar-left(ng-controller="TypeAheadController" ui-sref="details" ng-submit="onSubmit()")
                 span(type="submit" ui-sref="details" class="glyphicon glyphicon-search")
