@@ -84,20 +84,6 @@
   margin: 0 auto;
   text-align: center;
 }
-.glyphicon {
-  &.glyphicon-star {
-    opacity: 0;
-    font-size: 50px;
-    color: darkturquoise;
-    animation-name: fadeIn;
-    animation-duration: 1s;
-    animation-delay: 1s;
-    animation-fill-mode:forwards;
-    &-empty {
-      @extend .glyphicon.glyphicon-star;
-    }
-  }
-}
 
 //Wave animations
 .path-1 {

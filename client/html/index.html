@@ -43,8 +43,72 @@
           </div>
         </div>
         <div ng-click="toggleTab()" ng-class="bottomTab ? 'show-tab' : ''" class="tab-selector">Surf's Up!</div>
-        <div id="site-menu" ng-class="sideMenu ? 'show-nav' : ''" ui-view>
+        <div id="site-menu" ng-class="sideMenu ? 'show-nav' : ''" ui-view></div>
+        <div ng-show="sideMenu &amp;&amp; isOnDetails" ng-class="detailsTab ? 'show-tab' : ''" ng-controller="DetailsTabController" class="side-menu-tab">
+          <div class="side-menu-tab-content">
+            <h1>{{beachName}}<span ng-click="toggleDetailsTab()" class="glyphicon glyphicon-remove"></span></h1>Blue Bottle hella trust fund, Marfa food truck yr before they sold out pickled Kickstarter try-hard flexitarian next level cred. Fashion axe normcore 90's, Blue Bottle hoodie Carles drinking vinegar farm-to-table direct trade 3 wolf moon before they sold out kogi messenger bag occupy post-ironic. Try-hard aesthetic lomo, cliche blog Blue Bottle synth messenger bag hella yr Pitchfork leggings pug. Food truck Wes Anderson PBR pop-up before they sold out quinoa jean shorts. Chambray Tumblr direct trade readymade farm-to-table. Mixtape meggings pork belly tattooed before they sold out. 8-bit fingerstache Pitchfork, iPhone direct trade chia cronut heirloom keffiyeh gluten-free Shoreditch irony cred.
+            <div class="row">
+              <div class="col-md-3">
+                <div class="circle center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="900.918" height="600.818">
+                    <g ng-class="swellHeightClass('-1')">
+                      <path stroke="#4CADC1" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-dasharray="1300" stroke-dashoffset="1300" d="M1230.4 112.3c-5.6 0-10.2-4.6-10.2-10.2 0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2" fill="none" class="wave-1"></path>
+                    </g>
+                    <g ng-class="swellHeightClass('-2')">
+                      <path stroke="#4CADC1" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-dasharray="1300" stroke-dashoffset="1300" d="M1230.4 112.3c-5.6 0-10.2-4.6-10.2-10.2 0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2" fill="none" class="wave-2"></path>
+                    </g>
+                  </svg>
+                </div>
+                <div class="center"><strong>Swell Height</strong>
+                  <div class="center ng-cloak">{{swellHeight}}</div>
+                </div>
+              </div>
+              <div class="col-md-3">   
+                <div class="circle center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="900.918" height="600.818">
+                    <g ng-class="swellPeriodClass('-3')">
+                      <path stroke="#4CADC1" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-dasharray="1300" stroke-dashoffset="1300" d="M1230.4 112.3c-5.6 0-10.2-4.6-10.2-10.2 0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2" fill="none" class="wave-3"></path>
+                    </g>
+                    <g ng-class="swellPeriodClass('-4')">
+                      <path stroke="#4CADC1" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-dasharray="1300" stroke-dashoffset="1300" d="M1230.4 112.3c-5.6 0-10.2-4.6-10.2-10.2 0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2" fill="none" class="wave-4"></path>
+                    </g>
+                  </svg>
+                </div>
+                <div class="center"><strong>Swell Period</strong>
+                  <div class="center ng-cloak">{{swellPeriod}}</div>
+                </div>
+              </div>
+              <div class="col-md-3">   
+                <div class="circle center">
+                  <div ng-class="windSpeedClass()">
+                    <div class="cloud-1"></div>
+                    <div class="cloud-2"></div>
+                    <div class="cloud-3"></div>
+                  </div>
+                  <div ng-class="windSpeedClass('-1')">
+                    <div class="cloud-1"></div>
+                    <div class="cloud-2"></div>
+                    <div class="cloud-3"></div>
+                  </div>
+                </div>
+                <div class="center"><strong>Wind Speed</strong>
+                  <div class="center ng-cloak">{{windSpeed}}</div>
+                </div>
+              </div>
+              <div class="col-md-3">   
+                <div class="circle center">
+                  <div class="north"><strong>N</strong></div>
+                  <div class="compassPointer"></div>
+                  <div id="compassMiddle" class="center circle"></div>
+                </div>
+                <div class="center"><strong>Wind Direction</strong>
+                  <div class="center ng-cloak">{{windDirection}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+        <div ng-show="sideMenu &amp;&amp; isOnDetails" ng-click="toggleDetailsTab()" ng-class="detailsTab ? 'show-tab' : ''" class="side-menu-tab-selector">Details</div>
         <nav class="navbar navbar-inverse">
           <div class="container-fluid">
             <div class="navbar-header"><a href="#" class="navbar-brand">Cerferus</a>
@@ -77,27 +141,29 @@
     <script src="../js/controllers/detailsSidebarController.js"></script>
     <script src="../js/controllers/typeAheadController.js"></script>
     <script src="../js/controllers/infoController.js"></script>
+    <script src="../js/controllers/detailsTabController.js"></script>
     <script src="../js/services/animationService.js"></script>
     <script src="../js/services/mapService.js"></script>
     <script src="../js/services/d3Service.js"></script>
     <script src="../js/services/bestSpotService.js"></script>
     <script src="../app.js"></script>
     <script type="text/ng-template" id="detailsModal.html">
+      <div class="ng-cloak"></div>
       <div class="modal-header">
-        <div class="modal-title">{{beachName}}</div>
+        <div class="modal-title ng-cloak">{{beachName}}</div>
       </div>
       <div class="modal-body">
         <div class="row">
           <div class="col-md-6">
             <div class="center"><span ng-repeat="star in toRepeat(solidRating)" class="glyphicon glyphicon-star"></span><span ng-repeat="star in toRepeat(remainingStars(solidRating))" class="glyphicon glyphicon-star-empty"></span></div>
             <div class="center"><strong>Solid Rating</strong>
-              <div class="center">{{solidRating}}</div>
+              <div class="center ng-cloak">{{solidRating}}</div>
             </div>
           </div>
           <div class="col-md-6">
             <div class="center"><span ng-repeat="star in toRepeat(fadedRating)" class="glyphicon glyphicon-star"></span><span ng-repeat="star in toRepeat(remainingStars(fadedRating))" class="glyphicon glyphicon-star-empty"></span></div>
             <div class="center"><strong>Faded Rating</strong>
-              <div class="center">{{fadedRating}}</div>
+              <div class="center ng-cloak">{{fadedRating}}</div>
             </div>
           </div>
         </div>
@@ -114,7 +180,7 @@
               </svg>
             </div>
             <div class="center"><strong>Swell Height</strong>
-              <div class="center">{{swellHeight}}</div>
+              <div class="center ng-cloak">{{swellHeight}}</div>
             </div>
           </div>
           <div class="col-md-3">
@@ -129,7 +195,7 @@
               </svg>
             </div>
             <div class="center"><strong>Swell Period</strong>
-              <div class="center">{{swellPeriod}}</div>
+              <div class="center ng-cloak">{{swellPeriod}}</div>
             </div>
           </div>
           <div class="col-md-3">
@@ -146,7 +212,7 @@
               </div>
             </div>
             <div class="center"><strong>Wind Speed</strong>
-              <div class="center">{{windSpeed}}</div>
+              <div class="center ng-cloak">{{windSpeed}}</div>
             </div>
           </div>
           <div class="col-md-3">
@@ -156,7 +222,7 @@
               <div id="compassMiddle" class="center circle"></div>
             </div>
             <div class="center"><strong>Wind Direction</strong>
-              <div class="center">{{windDirection}}</div>
+              <div class="center ng-cloak">{{windDirection}}</div>
             </div>
           </div>
         </div>

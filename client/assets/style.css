@@ -503,9 +503,11 @@ html, body {
   position: absolute;
   top: 0;
   left: -300px;
-  padding: 15px;
   z-index: 5;
-  display: none; }
+  display: none;
+  overflow-y: auto; }
+  #site-menu-content {
+    padding: 15px; }
   #site-menu.show-nav {
     display: block; }
 
@@ -543,6 +545,47 @@ html, body {
   background-color: aqua;
   padding: 15px;
   position: absolute; }
+
+.side-menu-tab {
+  position: absolute;
+  background-color: cyan;
+  width: 800px;
+  left: -800px;
+  bottom: 35px;
+  z-index: 4;
+  transform: translateY(0);
+  transition: .3s ease all; }
+  .side-menu-tab.show-tab {
+    transform: translateX(800px); }
+  .side-menu-tab-selector {
+    position: absolute;
+    bottom: 35px;
+    left: 0;
+    z-index: 4;
+    background-color: cyan;
+    height: 30px;
+    width: 50px;
+    transform: translateY(0);
+    transition: .3s ease all; }
+    .side-menu-tab-selector.show-tab {
+      transform: translateX(800px); }
+    .side-menu-tab-selector:hover {
+      background-color: black;
+      color: white; }
+  .side-menu-tab-content {
+    position: relative;
+    padding: 0 15px 15px; }
+
+h1 .glyphicon-remove {
+  position: relative;
+  float: right; }
+
+.glyphicon.glyphicon-star, .glyphicon.glyphicon-star-empty {
+  font-size: 50px; }
+  .glyphicon.glyphicon-star.solid-star, .solid-star.glyphicon.glyphicon-star-empty {
+    color: dodgerblue; }
+  .glyphicon.glyphicon-star.faded-star, .faded-star.glyphicon.glyphicon-star-empty {
+    color: lightblue; }
 
 .fadeOut {
   animation: fadeOut 2s 1 forwards; }
@@ -611,15 +654,6 @@ html, body {
   position: relative;
   margin: 0 auto;
   text-align: center; }
-
-.glyphicon.glyphicon-star, .glyphicon.glyphicon-star-empty {
-  opacity: 0;
-  font-size: 50px;
-  color: darkturquoise;
-  animation-name: fadeIn;
-  animation-duration: 1s;
-  animation-delay: 1s;
-  animation-fill-mode: forwards; }
 
 .path-1 {
   transform: translateX(-925px) scale(1.5) translateY(-40px); }
@@ -739,6 +773,9 @@ html, body {
   100% {
     transform: rotate(360deg); } }
 
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important; }
+
 .nav, .pagination, .carousel, .panel-title a {
   cursor: pointer; }
 
@@ -823,7 +860,7 @@ li {
   list-style: none; }
 
 a.mswPower {
-  position: absolute;
+  position: relative;
   padding: 0 5px 10px 10px;
   right: 10px;
   bottom: 10px; }

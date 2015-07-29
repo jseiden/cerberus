@@ -1,27 +1,28 @@
-var det = angular.module('app.detailsController', []);
+var tab = angular.module('app.detailsTabController', [])
 
-det.controller('DetailsController', function($scope, $modalInstance, forecast, beachName) {
+tab.controller('DetailsTabController', function($scope, MapService) {
+  $scope.theBeach;
 
-  $scope.init = function() {
-    $scope.forecast = forecast;
+  var init = function() {
+    $scope.theBeach = MapService.getCurrentBeach();
+    $scope.timeIndex = MapService.getCurrentTimeStamp() || 0;
+    $scope.forecast = $scope.theBeach.forecastData[$scope.timeIndex];
     $scope.solidRating = $scope.forecast.solidRating;
     $scope.fadedRating = $scope.forecast.fadedRating;
     $scope.swellHeight = $scope.forecast.swell.components.combined.height;
     $scope.swellPeriod = $scope.forecast.swell.components.combined.period;
     $scope.windSpeed = $scope.forecast.wind.speed;
     $scope.windDirection = $scope.forecast.wind.compassDirection;
-    $scope.beachName = beachName;
-  }
-  //TODO: refactor into service
-
-  // Takes in an animation name linked to a scope variable (eg. windSpeed)
-  // and an option div specifier (eg. 1 for rectangle-1)
-  $scope.className = function(animationName) {
-    // Windspeed animation
-
+    $scope.beachName = $scope.theBeach.beachname;
   };
 
-  //
+  $scope.$on('beach selected', function() {
+    init();
+  });
+  $scope.$on('time changed', function() {
+    init();
+  });
+
   $scope.windSpeedClass = function(specifier) {
     specifier = specifier || "";
     if (typeof specifier !== "string") {
@@ -82,14 +83,4 @@ det.controller('DetailsController', function($scope, $modalInstance, forecast, b
   $scope.remainingStars = function(num) {
     return 5 - num;
   }
-
-  // TODO: Template for data selection from modal
-  // $scope.ok = function () {
-  //   $modalInstance.close($scope.selected.forecast);
-  // };
-  $scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
-  };
-
-  $scope.init();
 });

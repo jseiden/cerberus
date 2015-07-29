@@ -1,7 +1,8 @@
 //- Modal template
 script(type='text/ng-template' id="detailsModal.html")
+  .ng-cloak
   .modal-header
-    .modal-title.
+    .modal-title.ng-cloak.
       {{beachName}}
   .modal-body
     .row
@@ -12,7 +13,7 @@ script(type='text/ng-template' id="detailsModal.html")
         .center
           strong.
             Solid Rating
-          .center.
+          .center.ng-cloak.
             {{solidRating}}
       .col-md-6
         .center
@@ -21,7 +22,7 @@ script(type='text/ng-template' id="detailsModal.html")
         .center
           strong.
             Faded Rating
-          .center.
+          .center.ng-cloak.
             {{fadedRating}}
     .row
       .col-md-3
@@ -30,7 +31,7 @@ script(type='text/ng-template' id="detailsModal.html")
         .center
           strong.
             Swell Height
-          .center.  
+          .center.ng-cloak.
             {{swellHeight}}
       .col-md-3
         .circle.center
@@ -38,7 +39,7 @@ script(type='text/ng-template' id="detailsModal.html")
         .center
           strong.
             Swell Period
-          .center.
+          .center.ng-cloak.
             {{swellPeriod}}
       .col-md-3
         .circle.center
@@ -46,7 +47,7 @@ script(type='text/ng-template' id="detailsModal.html")
         .center
           strong.
             Wind Speed
-          .center.
+          .center.ng-cloak.
             {{windSpeed}}
       .col-md-3
         .circle.center
@@ -54,7 +55,7 @@ script(type='text/ng-template' id="detailsModal.html")
         .center
           strong.
             Wind Direction
-          .center.
+          .center.ng-cloak.
             {{windDirection}}
   .modal-footer
     button(btn btn-warning ng-click="cancel()").

@@ -1,6 +1,5 @@
 angular.module('app.googleMapController', [])
   .controller('GoogleMapController', function($scope, $rootScope, MapService, AnimationService) {
-
     $scope.init = function () {
       var map = new google.maps.Map(document.getElementById( 'map' ), {
         zoom: 6,

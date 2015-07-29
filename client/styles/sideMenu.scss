@@ -20,15 +20,18 @@
   }
   &menu {
     // Change background color on #site-wrapper also
+    &-content {
+      padding: 15px;
+    }
     background-color: teal;
     width: 300px;
     height: 100%;
     position: absolute;
     top: 0;
     left: -300px;
-    padding: 15px;
     z-index: 5;
     display: none;
+    overflow-y: auto;
     &.show-nav {
       display: block;
     }
@@ -73,5 +76,68 @@
     background-color: aqua;
     padding: 15px;
     position: absolute;
+  }
+}
+
+.side-menu- {
+  &tab {
+    position: absolute;
+    background-color: cyan;
+    width: 800px;
+    left: -800px;
+    bottom: 35px;
+    z-index: 4;
+    transform: translateY(0);
+    transition: .3s ease all;
+    &.show-tab {
+      transform: translateX(800px);
+    }
+    &-selector {
+      position: absolute;
+      bottom: 35px;
+      left: 0;
+      z-index: 4;
+      background-color: cyan;
+      height: 30px;
+      width: 50px;
+      transform: translateY(0);
+      transition: .3s ease all;
+      &.show-tab {
+        transform: translateX(800px);
+      }
+      &:hover {
+        background-color: black;
+        color: white;
+      }
+    }
+    &-content {
+      position: relative;
+      padding: 0 15px 15px;
+    }
+  }
+}
+
+h1 .glyphicon-remove {
+  position: relative;
+  float: right;
+}
+
+.glyphicon {
+  &.glyphicon-star {
+    // opacity: 0;
+    font-size: 50px;
+    // animation-name: fadeIn;
+    // animation-duration: 1s;
+    // animation-delay: 1s;
+    // animation-fill-mode:forwards;
+    &.solid-star {
+      color: dodgerblue;
+    }
+    &.faded-star {
+      color: lightblue;
+    }
+    &-empty {
+      @extend .glyphicon.glyphicon-star;
+    }
   }
 }
