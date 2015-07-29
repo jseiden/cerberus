@@ -1,8 +1,8 @@
 doctype html
 html(lang="en" ng-app="app")
   head
-    title Gnar Swells, Brah
-    include preload
+    title Surf's Up
+    include preload 
   body(ng-controller="HomeController as home")
     //- div.overlay(ng-attr-class="{{mapLoaded && 'fadeOut' || 'overlay' }}" ng-hide="animationFinished")
     div(ng-attr-class="{{mapLoaded && 'fadeOut' || 'overlay' }}" ng-hide="true")
@@ -17,10 +17,7 @@ html(lang="en" ng-app="app")
         #site-menu(ng-class="sideMenu ? 'show-nav' : ''" ui-view)
         .side-menu-tab(ng-show="sideMenu && isOnDetails" ng-class="detailsTab ? 'show-tab' : ''" ng-controller="DetailsTabController")
           .side-menu-tab-content
-            h1
-              | {{beachName}}
               span.glyphicon.glyphicon-remove(ng-click="toggleDetailsTab()")
-            | Blue Bottle hella trust fund, Marfa food truck yr before they sold out pickled Kickstarter try-hard flexitarian next level cred. Fashion axe normcore 90's, Blue Bottle hoodie Carles drinking vinegar farm-to-table direct trade 3 wolf moon before they sold out kogi messenger bag occupy post-ironic. Try-hard aesthetic lomo, cliche blog Blue Bottle synth messenger bag hella yr Pitchfork leggings pug. Food truck Wes Anderson PBR pop-up before they sold out quinoa jean shorts. Chambray Tumblr direct trade readymade farm-to-table. Mixtape meggings pork belly tattooed before they sold out. 8-bit fingerstache Pitchfork, iPhone direct trade chia cronut heirloom keffiyeh gluten-free Shoreditch irony cred.
             .row
               .col-md-3
                 .circle.center
@@ -59,22 +56,13 @@ html(lang="en" ng-app="app")
         nav.navbar.navbar-inverse
           .container-fluid
             .navbar-header
-              a.navbar-brand(href="#").
+              a.navbar-brand(ng-click="resetMap()").
                 Cerferus
-              p.navbar-text.navbar-left.
-                Gnar Swells, Brah
-            button(type="button" ng-click="openSidebar()" ui-sref="default").
-              Do Something
-        .well.search-board.left-board
-          form(ng-controller="TypeAheadController")
-            input(type="text" ng-model="searchBeach" typeahead="beach for beach in beachChoices | filter:$viewValue" placeholder ="Search for a beach")
-            //- button.btn.btn-info(ng-click=("zoomToBeach(searchBeach)")).
-            button.btn.btn-info(ng-click=("zoomToBeach(searchBeach); openSidebar(); printCurrentBeach()") ui-sref="details").
-              Icon
+              form.navbar-left(ng-controller="TypeAheadController" ui-sref="details" ng-submit="onSubmit()")
+                span(type="submit" ui-sref="details" class="glyphicon glyphicon-search")
+                input(type="text" ng-model="searchBeach" typeahead="beach for beach in beachChoices | filter:$viewValue" placeholder ="  Search for a beach")
+              span.navbar-left(class="glyphicon glyphicon-info-sign" ng-click="openSidebar()" ui-sref="default")
         div(ng-controller="GoogleMapController" id="map")
-    //- Using include instead of extends
-    //- block scripts
     include dependencies
     include scripts
-    //- Include templates for adding modals on map
     include ngTemplates

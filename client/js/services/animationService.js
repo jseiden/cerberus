@@ -5,8 +5,28 @@ angular.module('app.animationService', [])
       // spotColors = ['#EBF5FF', '#ADD6FF', '#70B8FF', '#3399FF', '#246BB2'];
       // spotColors = ['#F0FFFA', '#C2FFEB', '#94FFDB', '#66FFCC', '#3D997A'];
       var spotColors = ['#E6FAF5', '#99EBD6', '#4DDBB8', '#00CC99', '#008F6B'];
+      var currentlyHighlighted = null;
 
-      function open () {
+      function highlightMarker() {
+        var beach = MapService.getCurrentBeach();
+
+        if (currentlyHighlighted) {
+          hideTitle(currentlyHighlighted);
+          currentlyHighlighted = null;
+        }
+
+        d3.selectAll('circle').each(function(d) {
+          if (d === undefined) {
+            return;
+          }
+          if (d.value.beachname === beach.beachname) {
+            currentlyHighlighted = this;
+          }
+        });
+        showTitle(currentlyHighlighted);
+      }
+
+      function open() {
         var context = this;
         var modalInstance = $modal.open({
           scope: $rootScope,
@@ -25,12 +45,16 @@ angular.module('app.animationService', [])
         });
       };
 
-      function showTitle () {
+      function getHighlightedBeach() {
+        return currentlyHighlighted;
+      }
 
-        var padding = parseInt( this.getAttribute('cx'));
-        var beachName = this.getAttribute('name').split('"')[1];
+      function showTitle(el) {
 
-        var text = d3.select(this.parentElement)
+        var padding = parseInt(el.getAttribute('cx'));
+        var beachName = el.getAttribute('name').split('"')[1];
+
+        var text = d3.select(el.parentElement)
           .append('svg:text')
           .attr('x', padding + 9)
           .attr('y', padding)
@@ -43,27 +67,27 @@ angular.module('app.animationService', [])
           .duration(300)
           .attr('opacity', 1);
 
-        d3.select(this)
+        d3.select(el)
           .transition()
           .duration(300)
           .attr('r', 8);
       }
 
-      function hideTitle () {
-        d3.select(this.parentElement)
+      function hideTitle(el) {
+        d3.select(el.parentElement)
           .selectAll('text')
           .transition()
           .duration(1500)
           .style('opacity', 0)
           .remove();
 
-        d3.select(this)
+        d3.select(el)
           .transition()
           .duration(1500)
           .attr('r', 4.5);
       }
 
-      function renderBeaches (timeIndex) {
+      function renderBeaches(timeIndex) {
         // All d3 renderings must be done after injecting the d3 library into the controller by calling d3Service.d3()
         d3Service.d3().then(function(d3) {
           var beaches = MapService.getBeachCache();
@@ -121,8 +145,12 @@ angular.module('app.animationService', [])
               }
               function addListener(d) {
                 google.maps.event.addDomListener(this, 'click', open);
-                google.maps.event.addDomListener(this, 'mouseover', showTitle);
-                google.maps.event.addDomListener(this, 'mouseout', hideTitle);
+                google.maps.event.addDomListener(this, 'mouseover', function () {
+                  showTitle(this);
+                });
+                google.maps.event.addDomListener(this, 'mouseout', function() {
+                  hideTitle(this);
+                });
               }
             };
           };
@@ -133,7 +161,7 @@ angular.module('app.animationService', [])
         });
       };
 
-      function renderWind (timeIndex) {
+      function renderWind(timeIndex) {
 
         d3Service.d3().then(function(d3) {
 
@@ -241,7 +269,11 @@ angular.module('app.animationService', [])
       return {
         renderBeaches: renderBeaches,
         renderWind: renderWind,
-        colors: spotColors
+        colors: spotColors,
+        highlightMarker: highlightMarker,
+        getHighlightedBeach: getHighlightedBeach,
+        hideTitle: hideTitle,
+        showTitle: showTitle
       };
 
     }]);

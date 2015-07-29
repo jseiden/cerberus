@@ -72,17 +72,8 @@ angular.module('app.mapService', [])
           targetCoordinates.lng = beachCache[i].lon;
         }
       }
-
-      // zoomMap.center = targetCoordinates;
-      // console.log("new map: ", zoomMap);
-      // setMap(zoomMap);
-      // console.log(zoomMap.getCenter());
-      // console.log("bounds: ", map.getBounds());
-
       map.setCenter(targetCoordinates);
       map.setZoom(11);
-      // map.setCenter({lat: -34.397, lng: 150.644});
-      console.log(map);
     };
 
     var printBounds = function(){

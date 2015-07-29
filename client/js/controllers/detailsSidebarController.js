@@ -1,6 +1,6 @@
 var sideBar = angular.module('app.detailsSidebarController', []);
 
-sideBar.controller('DetailsSidebarController', function($rootScope, $scope, MapService, AnimationService) {
+sideBar.controller('DetailsSidebarController', function($timeout, $rootScope, $scope, MapService, AnimationService, BestSpotService) {
 
   $scope.init = function() {
     var beaches = MapService.getBeachCache();
@@ -12,7 +12,9 @@ sideBar.controller('DetailsSidebarController', function($rootScope, $scope, MapS
     $scope.fadedRating = $scope.currentForecast.fadedRating;
     $scope.solidRating = $scope.currentForecast.solidRating;
     $scope.detailsTab = false;
-  }
+  };
+
+  // $scope.init()
 
   $scope.updateForecast = function() {
     $scope.currentForecast = $scope.selectedBeach.forecastData[$scope.timeIndex];
@@ -45,16 +47,26 @@ sideBar.controller('DetailsSidebarController', function($rootScope, $scope, MapS
     $scope.detailsTab = !$scope.detailsTab;
   };
 
-  $scope.$on("slideEnded", function () {
+  $scope.$on('slideEnded', function() {
     $scope.forecastTime = $scope.timeStamps[$scope.timeIndex];
     MapService.setCurrentTimeStamp($scope.timeIndex);
     AnimationService.renderWind($scope.timeIndex);
     AnimationService.renderBeaches($scope.timeIndex);
     $scope.updateForecast();
+    $timeout(function(){
+      AnimationService.highlightMarker();
+    }, 100);
   });
 
   $scope.$on('beach selected', function() {
     $scope.selectedBeach = MapService.getCurrentBeach();
+    $scope.updateForecast();
   });
+
+  $scope.getDirections = function() {
+    BestSpotService.renderPathToBeachFromCurrentLocation($scope.selectedBeach);
+  };
+
+
 
 });
