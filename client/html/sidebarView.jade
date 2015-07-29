@@ -6,12 +6,16 @@
     Reset Sidebar
   h3 Update forecast time:  
     rzslider(rz-slider-model="timeIndex" class="time-slider" rz-slider-ceil="7")
-//- 
-//- .circle.center
-//-   include anim/swellHeight.jade
-//- .circle.center
-//-   include anim/swellPeriod.jade
-//- .circle.center
-//-   include anim/windDirection.jade
-//- .circle.center
-//-   include anim/windSpeed.jade
+  .center
+    span.glyphicon.glyphicon-star.solid-star(ng-repeat="star in toRepeat(solidRating)")
+    span.glyphicon.glyphicon-star.faded-star(ng-repeat="star in toRepeat(fadedRating)")
+    span.glyphicon.glyphicon-star-empty(ng-repeat="star in toRepeat(remainingStars())") 
+  .center
+    strong.
+      Solid Rating
+    .center.
+      {{solidRating}}
+    strong.
+      Faded Rating
+    .center.
+      {{fadedRating}}

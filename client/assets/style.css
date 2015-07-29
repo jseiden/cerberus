@@ -580,6 +580,13 @@ h1 .glyphicon-remove {
   position: relative;
   float: right; }
 
+.glyphicon.glyphicon-star, .glyphicon.glyphicon-star-empty {
+  font-size: 50px; }
+  .glyphicon.glyphicon-star.solid-star, .solid-star.glyphicon.glyphicon-star-empty {
+    color: dodgerblue; }
+  .glyphicon.glyphicon-star.faded-star, .faded-star.glyphicon.glyphicon-star-empty {
+    color: lightblue; }
+
 .fadeOut {
   animation: fadeOut 2s 1 forwards; }
 
@@ -647,15 +654,6 @@ h1 .glyphicon-remove {
   position: relative;
   margin: 0 auto;
   text-align: center; }
-
-.glyphicon.glyphicon-star, .glyphicon.glyphicon-star-empty {
-  opacity: 0;
-  font-size: 50px;
-  color: darkturquoise;
-  animation-name: fadeIn;
-  animation-duration: 1s;
-  animation-delay: 1s;
-  animation-fill-mode: forwards; }
 
 .path-1 {
   transform: translateX(-925px) scale(1.5) translateY(-40px); }

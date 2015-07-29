@@ -8,7 +8,29 @@ sideBar.controller('DetailsSidebarController', function($rootScope, $scope, MapS
     $scope.selectedBeach = MapService.getCurrentBeach();
     $scope.timeStamps = MapService.getLocalTimeStamps(beaches);
     $scope.forecastTime = $scope.timeStamps[$scope.timeIndex];
+    $scope.currentForecast = $scope.selectedBeach.forecastData[$scope.timeIndex];
+    $scope.fadedRating = $scope.currentForecast.fadedRating;
+    $scope.solidRating = $scope.currentForecast.solidRating;
     $scope.detailsTab = false;
+  }
+
+  $scope.updateForecast = function() {
+    $scope.currentForecast = $scope.selectedBeach.forecastData[$scope.timeIndex];
+    $scope.fadedRating = $scope.currentForecast.fadedRating;
+    $scope.solidRating = $scope.currentForecast.solidRating;
+    console.log($scope.currentForecast);
+  }
+
+  $scope.toRepeat = function(num) {
+    var results = [];
+    for (var i = 0; i < num; i++) {
+      results.push(i);
+    }
+    return results;
+  }
+
+  $scope.remainingStars = function() {
+    return 5 - $scope.fadedRating - $scope.solidRating;
   }
 
   if (MapService.getBeachCache()) {
@@ -28,6 +50,7 @@ sideBar.controller('DetailsSidebarController', function($rootScope, $scope, MapS
     MapService.setCurrentTimeStamp($scope.timeIndex);
     AnimationService.renderWind($scope.timeIndex);
     AnimationService.renderBeaches($scope.timeIndex);
+    $scope.updateForecast();
   });
 
   $scope.$on('beach selected', function() {

@@ -121,3 +121,23 @@ h1 .glyphicon-remove {
   position: relative;
   float: right;
 }
+
+.glyphicon {
+  &.glyphicon-star {
+    // opacity: 0;
+    font-size: 50px;
+    // animation-name: fadeIn;
+    // animation-duration: 1s;
+    // animation-delay: 1s;
+    // animation-fill-mode:forwards;
+    &.solid-star {
+      color: dodgerblue;
+    }
+    &.faded-star {
+      color: lightblue;
+    }
+    &-empty {
+      @extend .glyphicon.glyphicon-star;
+    }
+  }
+}
