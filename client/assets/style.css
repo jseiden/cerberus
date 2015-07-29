@@ -503,9 +503,11 @@ html, body {
   position: absolute;
   top: 0;
   left: -300px;
-  padding: 15px;
   z-index: 5;
-  display: none; }
+  display: none;
+  overflow-y: auto; }
+  #site-menu-content {
+    padding: 15px; }
   #site-menu.show-nav {
     display: block; }
 
@@ -543,6 +545,35 @@ html, body {
   background-color: aqua;
   padding: 15px;
   position: absolute; }
+
+.side-menu-tab {
+  position: absolute;
+  background-color: cyan;
+  width: 800px;
+  left: -800px;
+  bottom: 35px;
+  z-index: 4;
+  transform: translateY(0);
+  transition: .3s ease all; }
+  .side-menu-tab.show-tab {
+    transform: translateX(800px); }
+  .side-menu-tab-selector {
+    position: absolute;
+    bottom: 35px;
+    left: 0;
+    z-index: 4;
+    background-color: cyan;
+    height: 30px;
+    width: 50px;
+    transform: translateY(0);
+    transition: .3s ease all; }
+    .side-menu-tab-selector.show-tab {
+      transform: translateX(800px); }
+    .side-menu-tab-selector:hover {
+      background-color: black;
+      color: white; }
+  .side-menu-tab-content {
+    position: relative; }
 
 .fadeOut {
   animation: fadeOut 2s 1 forwards; }
@@ -826,7 +857,7 @@ li {
   list-style: none; }
 
 a.mswPower {
-  position: absolute;
+  position: relative;
   padding: 0 5px 10px 10px;
   right: 10px;
   bottom: 10px; }

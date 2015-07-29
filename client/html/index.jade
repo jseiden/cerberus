@@ -15,7 +15,20 @@ html(lang="en" ng-app="app")
         .tab-selector(ng-click="toggleTab()" ng-class="bottomTab ? 'show-tab' : ''").
           Surf's Up!
         #site-menu(ng-class="sideMenu ? 'show-nav' : ''" ui-view)
-          //- include sidebarView
+        .side-menu-tab(ng-class="detailsTab ? 'show-tab' : ''" ng-controller="DetailsTabController as detailsTab")
+          .side-menu-tab-content
+            | Blue Bottle hella trust fund, Marfa food truck yr before they sold out pickled Kickstarter try-hard flexitarian next level cred. Fashion axe normcore 90's, Blue Bottle hoodie Carles drinking vinegar farm-to-table direct trade 3 wolf moon before they sold out kogi messenger bag occupy post-ironic. Try-hard aesthetic lomo, cliche blog Blue Bottle synth messenger bag hella yr Pitchfork leggings pug. Food truck Wes Anderson PBR pop-up before they sold out quinoa jean shorts. Chambray Tumblr direct trade readymade farm-to-table. Mixtape meggings pork belly tattooed before they sold out. 8-bit fingerstache Pitchfork, iPhone direct trade chia cronut heirloom keffiyeh gluten-free Shoreditch irony cred.
+            .circle.center
+              include anim/swellHeight.jade
+            .circle.center
+              include anim/swellPeriod.jade
+            .circle.center
+              include anim/windDirection.jade
+            .circle.center
+              include anim/windSpeed.jade
+            span.glyphicon.glyphicon-remove(ng-click="toggleDetailsTab()")
+        .side-menu-tab-selector(ng-show="sideMenu && isOnDetails" ng-click="toggleDetailsTab()" ng-class="detailsTab ? 'show-tab' : ''").
+          Details
         nav.navbar.navbar-inverse
           .container-fluid
             .navbar-header

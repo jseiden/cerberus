@@ -8,7 +8,21 @@ home.controller('HomeController', function($rootScope, $scope, $modal, $timeout,
   $scope.counter = 10;
   $scope.sideMenu = false;
   $scope.bottomTab = false;
+  $scope.isOnDetails = false;
+  $scope.detailsTab = false;
 
+  $rootScope.$on('$locationChangeSuccess', function () {
+    if ($location.url() === "/details") {
+      $scope.isOnDetails = true;
+      $timeout(function() { $scope.detailsTab = true; }, 1000)
+    } else {
+      $scope.isOnDetails = false;
+      $scope.detailsTab = false;
+    }
+  });
+  $scope.toggleDetailsTab = function() {
+    $scope.detailsTab = !$scope.detailsTab;
+  }
   $scope.getDirections = function () {
     BestSpotService.getBestWavesFromCurrentLoc($scope.distance, $scope.timeIndex);
   }

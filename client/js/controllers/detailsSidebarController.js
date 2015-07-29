@@ -8,6 +8,12 @@ sideBar.controller('DetailsSidebarController', function($rootScope, $scope, MapS
   $scope.timeStamps = MapService.getLocalTimeStamps(beaches);
   $scope.forecastTime = $scope.timeStamps[$scope.timeIndex];
 
+  $scope.detailsTab = false;
+
+  $scope.toggleTab = function() {
+    $scope.detailsTab = !$scope.detailsTab;
+  };
+
   $scope.$on("slideEnded", function () {
     $scope.forecastTime = $scope.timeStamps[$scope.timeIndex];
     AnimationService.renderWind($scope.timeIndex);
