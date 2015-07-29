@@ -25,6 +25,7 @@ sideBar.controller('DetailsSidebarController', function($rootScope, $scope, MapS
 
   $scope.$on("slideEnded", function () {
     $scope.forecastTime = $scope.timeStamps[$scope.timeIndex];
+    MapService.setCurrentTimeStamp($scope.timeIndex);
     AnimationService.renderWind($scope.timeIndex);
     AnimationService.renderBeaches($scope.timeIndex);
   });

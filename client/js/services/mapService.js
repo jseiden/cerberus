@@ -4,6 +4,7 @@ angular.module('app.mapService', [])
     var map;
     var beachCache;
     var currentBeach;
+    var currentTime
 
     var getBeachData = function() {
       return $http({
@@ -101,6 +102,15 @@ angular.module('app.mapService', [])
       return currentBeach;
     };
 
+    var setCurrentTimeStamp = function(sliderTime) {
+      currentTime = sliderTime;
+      $rootScope.$broadcast('time changed');
+    }
+
+    var getCurrentTimeStamp = function() {
+      return currentTime;
+    }
+
     return {
       getBeachData: getBeachData,
       markersLoaded: markersLoaded,
@@ -111,6 +121,8 @@ angular.module('app.mapService', [])
       getLocalTimeStamps: getLocalTimeStamps,
       zoomToBeach: zoomToBeach,
       setCurrentBeach: setCurrentBeach,
-      getCurrentBeach: getCurrentBeach
+      getCurrentBeach: getCurrentBeach,
+      setCurrentTimeStamp: setCurrentTimeStamp,
+      getCurrentTimeStamp: getCurrentTimeStamp
     };
   });
