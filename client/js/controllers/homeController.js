@@ -25,23 +25,23 @@ home.controller('HomeController', function($rootScope, $state, $scope, $modal, $
   }
   $scope.getDirections = function () {
     BestSpotService.getBestWavesFromCurrentLoc($scope.distance, $scope.timeIndex);
-  }
+  };
 
   $scope.toggleClass = function() {
     $scope.sideMenu = !$scope.sideMenu;
-  }
+  };
+
   $scope.openSidebar = function() {
     $scope.sideMenu = true;
-  }
+  };
+
   $scope.closeSidebar = function() {
-    console.log('scope.sideMenu=', $scope.sideMenu)
     $scope.sideMenu = false;
-    console.log('scope.sideMenu=', $scope.sideMenu)
-  }
+  };
 
   $scope.toggleTab = function() {
     $scope.bottomTab = !$scope.bottomTab;
-  }
+  };
 
   $scope.$on('map loaded', function() {
     var decrementCounter = $interval(function() {
@@ -67,6 +67,7 @@ home.controller('HomeController', function($rootScope, $state, $scope, $modal, $
 
   $scope.resetMap = function () {
     var map = MapService.getMap();
+    AnimationService.hideTitle(AnimationService.getHighlightedBeach());
     $state.go('default')
     $scope.closeSidebar();
     map.setCenter(new google.maps.LatLng(36.958, -119.2658));

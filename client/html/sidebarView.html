@@ -2,7 +2,7 @@
 <div id="site-menu-content"><span ng-click="closeSidebar()" class="glyphicon glyphicon-remove"></span>
   <h1>{{ selectedBeach.beachname }}</h1>
   <h3>{{ forecastTime }}</h3>
-  <button ng-click="closeSidebar()" ui-sref="default">Reset Sidebar</button>
+  <button ng-click="getDirections()">show route</button>
   <h3>Update forecast time:  
     <rzslider rz-slider-model="timeIndex" rz-slider-ceil="7" class="time-slider"></rzslider>
   </h3>

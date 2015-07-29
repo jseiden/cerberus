@@ -1,6 +1,6 @@
 var typeAhead = angular.module("app.typeAheadController", []);
 
-typeAhead.controller("TypeAheadController", function($scope, $rootScope, MapService, $state) {
+typeAhead.controller("TypeAheadController", function($scope, $rootScope, MapService, $state, AnimationService) {
   $scope.searchBeach = undefined;
   $scope.beachChoices = [];
   // $scope.printBounds = MapService.printBounds;
@@ -27,6 +27,7 @@ typeAhead.controller("TypeAheadController", function($scope, $rootScope, MapServ
     MapService.setCurrentBeach($scope.searchBeach);
     MapService.zoomToBeach($scope.searchBeach);
     $scope.openSidebar();
+    AnimationService.highlightMarker();
   };
 
 });

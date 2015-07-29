@@ -7,6 +7,7 @@ angular.module('app.bestSpotService', [])
       var directionsService = new google.maps.DirectionsService();
 
       var getBestWavesFromCurrentLoc = function(distance, timeIndex) {
+
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function (position) {
             var pos = [position.coords.latitude, position.coords.longitude];
@@ -95,8 +96,36 @@ angular.module('app.bestSpotService', [])
 
       };
 
+
+      var renderPathToBeachFromCurrentLocation = function(beach) {
+  
+        var destination = new google.maps.LatLng(beach.lat, beach.lon)
+
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function (position) {
+            var pos = [position.coords.latitude, position.coords.longitude];
+            var origin = new google.maps.LatLng(pos[0], pos[1]);
+            renderPathToBeach(origin, destination);
+          }, function() { 
+            handleNoGeolocation(true);
+          });
+        } else {
+          handleNoGeolocation(false);
+        }
+        // can build additional error handling within this
+        function handleNoGeolocation(errorFlag) {
+          if (errorFlag) {
+            console.log('Error: the Geolocation service failed');
+          } else {
+            console.log('Error: your browser doesn\'t support geolocation');
+          }
+        }
+      };
+
       return {
-        getBestWavesFromCurrentLoc: getBestWavesFromCurrentLoc
+        renderPathToBeach: renderPathToBeach,
+        getBestWavesFromCurrentLoc: getBestWavesFromCurrentLoc,
+        renderPathToBeachFromCurrentLocation: renderPathToBeachFromCurrentLocation
       };
 
 
