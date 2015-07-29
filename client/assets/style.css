@@ -573,7 +573,12 @@ html, body {
       background-color: black;
       color: white; }
   .side-menu-tab-content {
-    position: relative; }
+    position: relative;
+    padding: auto 15px; }
+
+h1 .glyphicon-remove {
+  position: relative;
+  float: right; }
 
 .fadeOut {
   animation: fadeOut 2s 1 forwards; }

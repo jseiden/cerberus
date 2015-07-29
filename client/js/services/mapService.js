@@ -100,7 +100,7 @@ angular.module('app.mapService', [])
     var getCurrentBeach = function(){
       return currentBeach;
     };
-    
+
     return {
       getBeachData: getBeachData,
       markersLoaded: markersLoaded,
