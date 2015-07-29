@@ -12,7 +12,9 @@ sideBar.controller('DetailsSidebarController', function($timeout, $rootScope, $s
     $scope.fadedRating = $scope.currentForecast.fadedRating;
     $scope.solidRating = $scope.currentForecast.solidRating;
     $scope.detailsTab = false;
-  }
+  };
+
+  // $scope.init()
 
   $scope.updateForecast = function() {
     $scope.currentForecast = $scope.selectedBeach.forecastData[$scope.timeIndex];
@@ -58,10 +60,13 @@ sideBar.controller('DetailsSidebarController', function($timeout, $rootScope, $s
 
   $scope.$on('beach selected', function() {
     $scope.selectedBeach = MapService.getCurrentBeach();
+    $scope.updateForecast();
   });
 
   $scope.getDirections = function() {
     BestSpotService.renderPathToBeachFromCurrentLocation($scope.selectedBeach);
-  }
+  };
+
+
 
 });
