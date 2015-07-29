@@ -40,7 +40,7 @@ exports.getMswAsync = Promise.promisify(function(beach, cb){
 
   requestPromise(options)
     .then(function(response){
-      //console.log('passed', beach.mswId);
+      console.log('passed', beach.mswId);
       var timeFiltered = crudUtils.filterBeachDataTime(response);
       Beach.findOneAndUpdate({mswId: beach.mswId, forecastData: timeFiltered})
         .then(function(error, success){
@@ -85,12 +85,8 @@ var getTweetsAsync = Promise.promisify( function(beach, cb){
     })
 });
 
-
-
-exports.getTweetAsync(33.9015, -118.423);
-// var testTweet = iterativeApiCall(getTweetsAsync, 60100)
-// var testMsw = iterativeApiCall(exports.getMswAsync, 0);
-// testMsw();
+exports.mswData = iterativeApiCall(exports.getMswAsync, 0);
+exports.tweetData = iterativeApiCall(getTweetsAsync, 60100);
 
 
 exports.updateBeachData = function(){
