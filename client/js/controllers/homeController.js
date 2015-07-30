@@ -29,7 +29,8 @@ home.controller('HomeController', function($rootScope, $state, $scope, $modal, $
 
   $scope.$on('beach clicked', function() {
       $state.go('details');
-      $scope.openSidebar();
+      $scope.$apply($scope.openSidebar());
+      console.log('open sidebar');
   });
 
   $scope.toggleDetailsTab = function() {
