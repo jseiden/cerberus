@@ -44,7 +44,7 @@ home.controller('HomeController', function($rootScope, $state, $scope, $modal, $
     $scope.detailsTab = !$scope.detailsTab;
   }
   $scope.getDirections = function () {
-    BestSpotService.getBestWavesFromCurrentLoc($scope.distance, $scope.timeIndex);
+    BestSpotService.getBestWavesFromCurrentLoc($scope.distance, MapService.getCurrentTimeStamp());
   };
 
   $scope.toggleClass = function() {
