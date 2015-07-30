@@ -4,6 +4,7 @@ var cron = require('node-schedule');
 var _ = require('underscore');
 var Promise = require('bluebird');
 var Twitter = require('twitter');
+var cheerio = require('cheerio');
 
 var spotData = require('./json/beachData.json');
 var crudUtils = require('./crudUtils');
@@ -87,11 +88,21 @@ var getTweetsAsync = Promise.promisify( function(beach, cb){
 });
 
 var getMswHtmlAsync = Promise.promisify( function(beach, cb){
-  var url = 'http://magicseaweed.com/Playa-Linda-Surf-Report/' + (beach.mswId).toString();
+  var url = 'http://magicseaweed.com/Playa-Linda-Surf-Guide/' + (beach.mswId).toString();
   request(url, function(error, response, html){
     cb(error, html);
   })
 });
+
+getMswHtmlAsync({mswId:349})
+  .then(function(html, err){
+    var $ = cheerio.load(html);
+    var items = $('.msw-s-desc').filter(function(){
+      var data = $(this);
+      var description = data.children().text()
+      
+    })
+  });
 
 
 exports.mswHtml = iterativeApiCall(getMswHtmlAsync, 0);
