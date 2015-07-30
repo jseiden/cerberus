@@ -4,7 +4,8 @@
 }
 .circle {
   opacity: 0;
-  background-color: turquoise;
+  background: linear-gradient(to bottom, #00bcd4 0%,#ff4081 100%);
+  // background-color: turquoise;
   border-radius: 100px;
   height: 175px;
   width: 175px;
@@ -13,6 +14,7 @@
   animation-duration: 1s;
   animation-delay: 1s;
   animation-fill-mode: forwards;
+  box-shadow: 8px 9px 10px -8px rgba(0,0,0,0.64);
 }
 
 //Wind Speed animation

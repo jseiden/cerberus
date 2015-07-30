@@ -1,9 +1,19 @@
 // import a css reset
+
+$primary-color: #00BCD4;
+$primary-color-dark: #00838F;
+$primary-color-light: #80DEEA;
+$accent-color: #FF4081;
+$accent-color-dark: #C51162;
+$accent-color-light: #FF80AB;
+
 @import "../lib/normalize-scss/normalize";
 @import "bootstrapMod";
 @import "loading";
 @import "sideMenu";
 @import "animations";
+
+
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
@@ -115,4 +125,11 @@ a.mswPower {
   padding: 0 5px 10px 10px;
   right: 10px;
   bottom: 10px;
+}
+
+a {
+  color: $accent-color;
+  &:hover {
+    color: $accent-color-dark;
+  }
 }

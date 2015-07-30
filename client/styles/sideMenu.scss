@@ -1,7 +1,7 @@
 #site- {
   &wrapper {
     // Change background color on #site-menu also
-    background-color: teal;
+    background-color: $primary-color-light;
     position: relative;
     overflow: hidden;
     width: 100%;
@@ -23,7 +23,7 @@
     &-content {
       padding: 15px;
     }
-    background-color: teal;
+    background-color: $primary-color-light;
     width: 300px;
     height: 100%;
     position: absolute;
@@ -37,7 +37,7 @@
     }
   }
   &tab {
-    background-color: aqua;
+    background-color: $primary-color-light;
     width: 300px;
     height: 300px;
     position: absolute;
@@ -55,7 +55,7 @@
 .tab- {
   &selector {
     position: absolute;
-    background-color: aqua;
+    background-color: $primary-color-light;
     bottom: 0;
     left: 200px;
     width: 90px;
@@ -64,6 +64,8 @@
     z-index: 5;
     transform: translateY(0);
     transition: .3s ease all;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     &:hover {
       background-color: black;
       color: white;
@@ -73,7 +75,7 @@
     }
   }
   &content {
-    background-color: aqua;
+    background-color: $primary-color-light;
     padding: 15px;
     position: absolute;
   }
@@ -82,7 +84,7 @@
 .side-menu- {
   &tab {
     position: absolute;
-    background-color: cyan;
+    background-color: $primary-color;
     width: 800px;
     left: -800px;
     bottom: 35px;
@@ -97,7 +99,7 @@
       bottom: 35px;
       left: 0;
       z-index: 4;
-      background-color: cyan;
+      background-color: $primary-color;
       height: 30px;
       width: 50px;
       transform: translateY(0);
@@ -131,10 +133,10 @@ h1 .glyphicon-remove {
     // animation-delay: 1s;
     // animation-fill-mode:forwards;
     &.solid-star {
-      color: dodgerblue;
+      color: $accent-color-dark;
     }
     &.faded-star {
-      color: lightblue;
+      color: $accent-color-light;
     }
     &-empty {
       @extend .glyphicon.glyphicon-star;

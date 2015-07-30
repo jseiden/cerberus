@@ -31,10 +31,12 @@ home.controller('HomeController', function($rootScope, $state, $scope, $modal, $
       if ($scope.sideMenu === true) {
         $scope.$apply(function() {$scope.detailsTab = true;})
       }
+      // or if not on details
       if ($scope.sideMenu === false) {
         $scope.$apply($scope.openSidebar());
         $timeout(function() { $scope.detailsTab = true; }, 1000)
       }
+      $scope.bottomTab = false;
       console.log($scope.detailsTab);
   });
 
