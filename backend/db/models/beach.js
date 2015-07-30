@@ -7,6 +7,7 @@ var beachSchema = mongoose.Schema({
   lat: Number,
   lon: Number,
   forecastData: Array,
+  description: String,
   tweets: Array
 });
 
