@@ -1,4 +1,5 @@
 var requestPromise = require('request-promise');
+var request = require('request');
 var cron = require('node-schedule');
 var _ = require('underscore');
 var Promise = require('bluebird');
@@ -8,7 +9,7 @@ var spotData = require('./json/beachData.json');
 var crudUtils = require('./crudUtils');
 var Beach = require('../../db/models/beach.js');
 
-var endpoint = 'http://magicseaweed.com/api/436cadbb6caccea6e366ed1bf3640257/forecast/?spot_id='
+
 
 var iterativeApiCall = function(func, time){
   return function(){
@@ -31,8 +32,8 @@ var iterativeApiCall = function(func, time){
   }
 };
 
-exports.getMswAsync = Promise.promisify(function(beach, cb){
-
+var getMswAsync = Promise.promisify(function(beach, cb){
+  var endpoint = 'http://magicseaweed.com/api/436cadbb6caccea6e366ed1bf3640257/forecast/?spot_id='
   var options = {
     method: 'GET', 
     uri: endpoint + (beach.mswId).toString()
@@ -55,7 +56,7 @@ var getTweetText = function(obj){
   })
 };
 
-exports.getTweetAsync = Promise.promisify( function(lat, lon, cb){ 
+var getTweetAsync = Promise.promisify( function(lat, lon, cb){ 
 
   var client = new Twitter({
    consumer_key: 'o9odfZmdeKbvrgpCVLotcPCNE',
@@ -85,8 +86,18 @@ var getTweetsAsync = Promise.promisify( function(beach, cb){
     })
 });
 
-exports.mswData = iterativeApiCall(exports.getMswAsync, 0);
+var getMswHtmlAsync = Promise.promisify( function(beach, cb){
+  var url = 'http://magicseaweed.com/Playa-Linda-Surf-Report/' + (beach.mswId).toString();
+  request(url, function(error, response, html){
+    cb(error, html);
+  })
+});
+
+
+exports.mswHtml = iterativeApiCall(getMswHtmlAsync, 0);
+exports.mswData = iterativeApiCall(getMswAsync, 0);
 exports.tweetData = iterativeApiCall(getTweetsAsync, 60100);
+
 
 
 exports.updateBeachData = function(){
