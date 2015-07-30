@@ -91,25 +91,36 @@ var getTweetsAsync = Promise.promisify (function(beach, cb){
     })
 });
 
-var getMswHtmlAsync = Promise.promisify( function(beach, cb){
+var getMswDescriptionAsync = Promise.promisify( function(beach, cb){
   var url = 'http://magicseaweed.com/Playa-Linda-Surf-Guide/' + (beach.mswId).toString();
   request(url, function(error, response, html){
-    cb(error, html);
-  })
-});
-
-getMswHtmlAsync({mswId:349})
-  .then(function(html, err){
     var $ = cheerio.load(html);
     var items = $('.msw-s-desc').filter(function(){
       var data = $(this);
-      var description = data.children().text()
-      
+      var description = data.children().text();
+      cb(error, description)
+
     })
-  });
+  })
+});
 
 
-exports.mswHtml = iterativeApiCall(getMswHtmlAsync, 0);
+var getMswDescriptionsAsync = Promise.promisify( function(beach, cb){
+  getMswDescriptionAsync(beach)
+    .then(function(description, err){
+      //console.log('description: ', typeof description)
+      Beach.findOneAndUpdate({mswId: beach.mswId, description: description})
+        .then(function(success, error){
+          console.log('description written: ', description);
+          cb(error, success);
+        
+      })
+  })
+});
+
+
+
+exports.mswDescriptions = iterativeApiCall(getMswDescriptionsAsync, 10000);
 exports.mswData = iterativeApiCall(getMswAsync, 0);
 exports.tweetData = iterativeApiCall(getTweetsAsync, 60100);
 
