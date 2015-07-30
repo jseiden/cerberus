@@ -13,11 +13,6 @@ sideBar.controller('DetailsSidebarController', function($timeout, $rootScope, $s
     $scope.solidRating = $scope.currentForecast.solidRating;
     $scope.beachname = $scope.selectedBeach.beachname;
     $scope.detailsTab = false;
-
-    console.log('Side Menu');
-    console.log($scope.timeIndex);
-    console.log($scope.currentForecast);
-    console.log($scope.beachname);
   };
 
   // $scope.init()
@@ -34,11 +29,6 @@ sideBar.controller('DetailsSidebarController', function($timeout, $rootScope, $s
     $scope.beachname = $scope.selectedBeach.beachname;
     $scope.fadedRating = $scope.currentForecast.fadedRating;
     $scope.solidRating = $scope.currentForecast.solidRating;
-
-    console.log('Side Menu');
-    console.log($scope.timeIndex);
-    console.log($scope.currentForecast);
-    console.log($scope.beachname);
   }
 
   $scope.toRepeat = function(num) {
