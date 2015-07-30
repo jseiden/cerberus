@@ -6,16 +6,17 @@ var crudUtils = require('./utils/crudUtils.js');
 
 var app = express();
 
-//enable the below util if you want initial spot data to be written
-//crudUtils.writeBeachEntries(spotData);
+//crudUtils.writeBeachEntries();
 
-//enable the below util if you want tweets to popualte
+//enable the below function if you want tweets to popualte
 //apiUtils.tweetData();
 
 //enable the below function if you want interval surf data updates
 apiUtils.mswData();
 
-//enable the below util if you to populate DB with scraped descriptions
-//apiUtils.mswDescriptions();
+apiUtils.mswHtml();
+
+
+//app.get('/requestBeachData', apiUtils.beachDataReq);
 
 module.exports = app;
