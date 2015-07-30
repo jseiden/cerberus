@@ -28,6 +28,7 @@ var iterativeApiCall = function(func, time){
             })
             .catch(function(error){
               console.log(error);
+              //setTimeout ( function(){recurse(ind+1)}, time )
             })
         })(0)
       })
@@ -88,36 +89,54 @@ var getTweetsAsync = Promise.promisify( function(beach, cb){
     })
 });
 
+// var getMswDescriptionAsync = Promise.promisify( function(beach, cb){
+//   var url = 'http://magicseaweed.com/Playa-Linda-Surf-Guide/' + (beach.mswId).toString();
+//   request(url, function(error, response, html){
+//     if (!error){
+//       console.log('status code: ', response.statusCode)
+//       console.log(html);
+//       var $ = cheerio.load(html);
+//       $('.msw-s-desc').filter(function(){
+//         var data = $(this);
+//         if (!data) console.log('not found')
+//         var description = data.children().text();
+//         cb(error, description)
+//       })
+//     }
+//   })
+// });
+
 var getMswDescriptionAsync = Promise.promisify( function(beach, cb){
   var url = 'http://magicseaweed.com/Playa-Linda-Surf-Guide/' + (beach.mswId).toString();
-  request(url, function(error, response, html){
-    var $ = cheerio.load(html);
-    var items = $('.msw-s-desc').filter(function(){
-      var data = $(this);
-      var description = data.children().text();
-      cb(error, description)
-
+  requestPromise(url)
+    .then(function(html, err){
+      var $ = cheerio.load(html);
+      $('.msw-s-desc').filter(function(){
+        var data = $(this);
+        var description = data.children().text();
+        cb(err, description)
+      })
     })
-  })
 });
 
+//getMswDescriptionAsync({mswId: 666});
 
 var getMswDescriptionsAsync = Promise.promisify( function(beach, cb){
   getMswDescriptionAsync(beach)
     .then(function(description, err){
-      //console.log('description: ', typeof description)
       Beach.findOneAndUpdate({mswId: beach.mswId, description: description})
         .then(function(success, error){
           console.log('description written: ', description);
           cb(error, success);
         
       })
+    .catch(function(error){
+      console.log(error);
+    })
   })
 });
 
-
-
-exports.mswDescriptions = iterativeApiCall(getMswDescriptionsAsync, 10000);
+exports.mswDescriptions = iterativeApiCall(getMswDescriptionsAsync, 0);
 exports.mswData = iterativeApiCall(getMswAsync, 0);
 exports.tweetData = iterativeApiCall(getTweetsAsync, 60100);
 
