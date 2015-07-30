@@ -14,7 +14,6 @@ home.controller('HomeController', function($rootScope, $state, $scope, $modal, $
   $rootScope.$on('$locationChangeSuccess', function () {
     if ($location.url() === "/details") {
       $scope.isOnDetails = true;
-      $timeout(function() { $scope.detailsTab = true; }, 1000)
     } else {
       $scope.isOnDetails = false;
       $scope.detailsTab = false;
@@ -29,8 +28,14 @@ home.controller('HomeController', function($rootScope, $state, $scope, $modal, $
 
   $scope.$on('beach clicked', function() {
       $state.go('details');
-      $scope.$apply($scope.openSidebar());
-      console.log('open sidebar');
+      if ($scope.sideMenu === true) {
+        $scope.$apply(function() {$scope.detailsTab = true;})
+      }
+      if ($scope.sideMenu === false) {
+        $scope.$apply($scope.openSidebar());
+        $timeout(function() { $scope.detailsTab = true; }, 1000)
+      }
+      console.log($scope.detailsTab);
   });
 
   $scope.toggleDetailsTab = function() {

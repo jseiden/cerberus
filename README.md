@@ -6,9 +6,9 @@
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - __Product Owner__: Justin Thareja
+  - __Scrum Master__: Justin Fong
+  - __Development Team Members__: Jake Seiden, James Robinson
 
 ## Table of Contents
 
@@ -25,6 +25,15 @@
 > Some usage instructions
 
 ## Requirements
+
+- AngularJS
+- D3.js
+- Underbar.js
+- Bootstrap
+- Node
+- Express
+- Mongoose
+- Mongo
 
 - Node 0.10.x
 - Redis 2.6.x
@@ -46,7 +55,7 @@ bower install
 
 ### Roadmap
 
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
+View the project roadmap [here](https://github.com/Insuperable-Arete/cerberus/issues)
 
 
 ## Contributing
