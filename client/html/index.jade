@@ -16,16 +16,7 @@ html(lang="en" ng-app="app")
           Surf's Up!
         #site-menu(ng-class="sideMenu ? 'show-nav' : ''" ui-view)
         include sideTab
-        nav.navbar.navbar-inverse
-          .container-fluid
-            .navbar-header
-              a.navbar-brand(ng-click="resetMap()").
-                Cerferus
-              form.navbar-left(ng-controller="TypeAheadController" ui-sref="details" ng-submit="onSubmit()")
-                span(type="submit" ui-sref="details" class="glyphicon glyphicon-search")
-                input(type="text" ng-model="searchBeach" typeahead="beach for beach in beachChoices | filter:$viewValue" placeholder ="  Search for a beach")
-              span.navbar-left(class="glyphicon glyphicon-info-sign" ng-click="openSidebar()" ui-sref="default")
-              span.navbar-left(class="glyphicon glyphicon-info-sign" ng-click="openSidebar()" ui-sref="overview")
+        include navbar
         div(ng-controller="GoogleMapController" id="map")
     include dependencies
     include scripts

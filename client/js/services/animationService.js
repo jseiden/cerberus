@@ -8,8 +8,8 @@ angular.module('app.animationService', [])
       var currentlyHighlighted = null;
 
       function highlightMarker() {
-        var beach = MapService.getCurrentBeach();
-
+        var beach = MapService.beachInfo.name;
+        console.log('highlighted ', beach)
         if (currentlyHighlighted) {
           hideTitle(currentlyHighlighted);
           currentlyHighlighted = null;
@@ -19,7 +19,7 @@ angular.module('app.animationService', [])
           if (d === undefined) {
             return;
           }
-          if (d.value.beachname === beach.beachname) {
+          if (d.value.beachname === beach) {
             currentlyHighlighted = this;
           }
         });
@@ -32,22 +32,6 @@ angular.module('app.animationService', [])
         MapService.zoomToBeach(beachName);
         highlightMarker();
         $rootScope.$broadcast('beach clicked');
-      //   var context = this;
-      //   var modalInstance = $modal.open({
-      //     scope: $rootScope,
-      //     animation: true,
-      //     templateUrl: 'detailsModal.html',
-      //     controller: 'DetailsController',
-      //     size: 'lg',
-      //     resolve: {
-      //       forecast: function () {
-      //         return JSON.parse(angular.element(context).attr('forecast'))[0];
-      //       },
-      //       beachName: function() {
-      //         return JSON.parse(angular.element(context).attr('name'));
-      //       }
-      //     }
-      //   });
       };
 
       function getHighlightedBeach() {
@@ -160,9 +144,6 @@ angular.module('app.animationService', [])
             };
           };
           overlay.setMap(map);
-        }).then(
-        function () {
-          MapService.markersLoaded()
         });
       };
 

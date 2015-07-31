@@ -24,11 +24,12 @@ typeAhead.controller("TypeAheadController", function($scope, $rootScope, MapServ
 
   $scope.onSubmit = function () {
     $state.go('details');
+    console.log('searchbeach landed on', $scope.searchBeach, 'invokeing MapService.setCurrentBeach')
     MapService.setCurrentBeach($scope.searchBeach);
+
     MapService.zoomToBeach($scope.searchBeach);
     $scope.openSidebar();
     AnimationService.highlightMarker();
   };
 
 });
-

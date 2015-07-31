@@ -404,9 +404,8 @@ input {
 span.glyphicon.glyphicon-search {
   color: white; }
 
-form.navbar-left {
-  margin-top: 15px;
-  margin-bottom: 15px; }
+.navbar-inverse .navbar-nav > li > a {
+  color: white; }
 
 /* Main styles */
 .mask__shape {

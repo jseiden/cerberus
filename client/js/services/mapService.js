@@ -1,10 +1,35 @@
 angular.module('app.mapService', [])
-  .service('MapService', function($http, $rootScope) {
+  .factory('MapService', function($http, $rootScope) {
 
     var map;
     var beachCache;
     var currentBeach;
-    var currentTime
+    var currentTimeIndex;
+    var currentTimeStamps;
+    var beachInfo = {
+      forecast: null,
+      name: null,
+      time: null
+    };
+
+    var updateBeachInfo = function() {
+
+      if (!currentBeach) {
+        console.log("No beach selected");
+        return;
+      }
+
+      if (!currentTimeIndex) {
+        currentTimeIndex = 0;
+      }
+
+      console.log('updating beach info, beachInfo: ', beachInfo);
+      console.log('updating beach info, this.beachInfo: ', this.beachInfo);
+
+      beachInfo.forecast = currentBeach.forecastData[currentTimeIndex];
+      beachInfo.name = currentBeach.beachname;
+      beachInfo.time = currentTimeStamps[currentTimeIndex];
+    };
 
     var getBeachData = function() {
       return $http({
@@ -13,10 +38,6 @@ angular.module('app.mapService', [])
       }).then(function (resp) {
         return resp.data;
       });
-    };
-
-    var markersLoaded = function() {
-      $rootScope.$broadcast('map loaded');
     };
 
     var setMap = function(mapInstance) {
@@ -33,6 +54,7 @@ angular.module('app.mapService', [])
     // setting beachCache for ready access without extra ajax calls
     var setBeachCache = function(beachObj){
       beachCache = beachObj;
+      currentTimeStamps = getLocalTimeStamps(beachCache);
       $rootScope.$broadcast("beachCacheSet", getLocalTimeStamps(beachCache));
     };
 
@@ -80,31 +102,36 @@ angular.module('app.mapService', [])
       console.log(map.getBounds());
     };
 
-    var setCurrentBeach = function(beach){
+    var setCurrentBeach = function(beachName){
       for(var i = 0; i < beachCache.length; i++){
-        if(beachCache[i].beachname === beach){
+        if(beachCache[i].beachname === beachName){
           currentBeach = beachCache[i];
-          $rootScope.$broadcast('beach selected', currentBeach);
+          console.log('in setCurrentBeach current beach =', currentBeach)
+          // $rootScope.$broadcast('beach selected', currentBeach);
         }
       }
+      console.log('setCurrentBeach is invoking updateBeachInfo')
+      updateBeachInfo();
     };
-
-    var getCurrentBeach = function(){
-      return currentBeach;
-    };
-
-    var setCurrentTimeStamp = function(sliderTime) {
-      currentTime = sliderTime;
-      $rootScope.$broadcast('time changed');
+    //
+    // var getCurrentBeach = function(){
+    //   return currentBeach;
+    // };
+    //
+    var setCurrentTimeStamp = function(i) {
+      currentTimeIndex = i;
+      console.log('setCurrentTimeStamp invoking updateBeachInfo');
+      updateBeachInfo();
+      // $rootScope.$broadcast('time changed');
     }
-
-    var getCurrentTimeStamp = function() {
-      return currentTime;
-    }
+    //
+    // var getCurrentTimeStamp = function() {
+    //   return currentTimeIndex;
+    // }
 
     return {
       getBeachData: getBeachData,
-      markersLoaded: markersLoaded,
+      // markersLoaded: markersLoaded,
       setMap: setMap,
       getMap: getMap,
       setBeachCache: setBeachCache,
@@ -112,8 +139,12 @@ angular.module('app.mapService', [])
       getLocalTimeStamps: getLocalTimeStamps,
       zoomToBeach: zoomToBeach,
       setCurrentBeach: setCurrentBeach,
-      getCurrentBeach: getCurrentBeach,
+      // getCurrentBeach: getCurrentBeach,
       setCurrentTimeStamp: setCurrentTimeStamp,
-      getCurrentTimeStamp: getCurrentTimeStamp
+      // getCurrentTimeStamp: getCurrentTimeStamp,
+      currentBeach: currentBeach,
+      currentTimeIndex: currentTimeIndex,
+      updateBeachInfo: updateBeachInfo,
+      beachInfo: beachInfo
     };
   });
