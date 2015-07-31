@@ -12,28 +12,7 @@ var Beach = require('../../db/models/beach.js');
 
 
 
-var iterativeApiCall = function(func, time){
-  return function(){
-    Beach.find({})
-      .then(function(data){
-        (function recurse(ind){
-          if (ind === data.length){
-            console.log('Data for all beaches finished')
-            return;
-          } 
-          func(data[ind])
-            .then(function(success){
-              console.log('util run');
-              setTimeout ( function(){recurse(ind+1)}, time )
-            })
-            .catch(function(error){
-              console.log(error);
-              //setTimeout ( function(){recurse(ind+1)}, time )
-            })
-        })(0)
-      })
-  }
-};
+
 
 var getMswAsync = Promise.promisify(function(beach, cb){
   var endpoint = 'http://magicseaweed.com/api/436cadbb6caccea6e366ed1bf3640257/forecast/?spot_id='
@@ -91,52 +70,100 @@ var getTweetsAsync = Promise.promisify( function(beach, cb){
 
 // var getMswDescriptionAsync = Promise.promisify( function(beach, cb){
 //   var url = 'http://magicseaweed.com/Playa-Linda-Surf-Guide/' + (beach.mswId).toString();
-//   request(url, function(error, response, html){
-//     if (!error){
-//       console.log('status code: ', response.statusCode)
-//       console.log(html);
+//   requestPromise(url)
+//     .then(function(html, err){
 //       var $ = cheerio.load(html);
 //       $('.msw-s-desc').filter(function(){
 //         var data = $(this);
-//         if (!data) console.log('not found')
 //         var description = data.children().text();
-//         cb(error, description)
+//         cb(err, description)
 //       })
-//     }
-//   })
+//     })
 // });
-
-var getMswDescriptionAsync = Promise.promisify( function(beach, cb){
-  var url = 'http://magicseaweed.com/Playa-Linda-Surf-Guide/' + (beach.mswId).toString();
-  requestPromise(url)
-    .then(function(html, err){
-      var $ = cheerio.load(html);
-      $('.msw-s-desc').filter(function(){
-        var data = $(this);
-        var description = data.children().text();
-        cb(err, description)
-      })
-    })
-});
 
 //getMswDescriptionAsync({mswId: 666});
 
-var getMswDescriptionsAsync = Promise.promisify( function(beach, cb){
-  getMswDescriptionAsync(beach)
-    .then(function(description, err){
-      Beach.findOneAndUpdate({mswId: beach.mswId, description: description})
-        .then(function(success, error){
-          console.log('description written: ', description);
-          cb(error, success);
+// var getMswDescriptionsAsync = Promise.promisify( function(beach, cb){
+//   getMswDescriptionAsync(beach)
+//     .then(function(description, err){
+//       Beach.findOneAndUpdate({mswId: beach.mswId, description: description})
+//         .then(function(success, error){
+//           console.log('description written: ', description);
+//           cb(error, success);
         
+//       })
+//     .catch(function(error){
+//       console.log(error);
+//     })
+//   })
+// });
+
+
+/// WORKING!!!
+// var getMswDescriptionAsync = Promise.promisify( function(beach, cb){
+//   var url = 'http://magicseaweed.com/Playa-Linda-Surf-Guide/' + (beach.mswId).toString();
+//   requestPromise(url)
+//     .then(function(html){
+//       var $ = cheerio.load(html);
+//       return $('.msw-s-desc').text();
+//     })
+//     .then(function(description){
+//       Beach.findOneAndUpdate({mswId: beach.mswId, description: description})
+
+//     })
+//     .catch(function(err){}
+    
+// });
+
+var iterativeApiCall = function(func, time){
+  return function(){
+    Beach.find({})
+      .then(function(data){
+        (function recurse(ind){
+          if (ind === data.length){
+            console.log('Data for all beaches finished')
+            return;
+          } 
+          func(data[ind])
+            .then(function(success){
+              setTimeout ( function(){recurse(ind+1)}, time )
+            })
+            .catch(function(error){
+              console.log(error);
+              //setTimeout ( function(){recurse(ind+1)}, time )
+            })
+        })(0)
       })
-    .catch(function(error){
-      console.log(error);
+  }
+};
+
+var getMswDescriptionAsync = Promise.promisify (function(beach, cb){
+  var url = 'http://magicseaweed.com/Playa-Linda-Surf-Guide/' + (beach.mswId).toString();
+  requestPromise(url)
+    .then(function(html){
+      var $ = cheerio.load(html);
+      return $('.msw-s-desc').text();
     })
-  })
+    .then(function(description){
+      console.log(beach.mswId);
+      return Beach.findOneAndUpdate({mswId: beach.mswId, description: description})
+    })
+    .then(function(err, success){
+      cb(success, err);
+    })
+    .catch(function(err){
+      console.log(err);
+    })
 });
 
-exports.mswDescriptions = iterativeApiCall(getMswDescriptionsAsync, 0);
+//USE THIS TO TEST FOR SUCESFULL PROMSIFICATION
+// getMswDescriptionAsync({mswId: 666})
+//   .then(function(err, success){
+//     console.log(err)
+//   })
+
+
+exports.mswDescriptions = iterativeApiCall(getMswDescriptionAsync, 0);
 exports.mswData = iterativeApiCall(getMswAsync, 0);
 exports.tweetData = iterativeApiCall(getTweetsAsync, 60100);
 
