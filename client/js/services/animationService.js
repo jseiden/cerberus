@@ -9,7 +9,6 @@ angular.module('app.animationService', [])
 
       function highlightMarker() {
         var beach = MapService.beachInfo.name;
-        console.log('highlighted ', beach)
         if (currentlyHighlighted) {
           hideTitle(currentlyHighlighted);
           currentlyHighlighted = null;
@@ -183,15 +182,10 @@ angular.module('app.animationService', [])
               var path = windContainer.append('svg:path')
                 .attr('class', 'wind-vector')
                 .attr('d', getD)
-                // .attr('stroke', lineColor)
-                // .attr('stroke-width', lineWidth)
-                // .attr('fill', 'none')
                 .attr('stroke-dasharray', function(d) {
                   var l = d3.select(this).node().getTotalLength() / 2;
                   return l + ' ' + l;
                 })
-                // .attr('opacity', '.50')
-                // .attr('stroke-linecap', 'round')
                 .each(animatePath);
 
               function findWindSpeedMultiplier (maxWindSpeed, maxDuration, minDuration) {
@@ -226,7 +220,6 @@ angular.module('app.animationService', [])
                 var direction = -(d.value.forecastData[timeIndex].wind.direction + 90 + 180);
                 var speed = d.value.forecastData[timeIndex].wind.speed;
                 var distance = speed * t;
-                // var distance = 50
                 return padding + distance * Math.cos( getRadians(direction) );
               };
 
@@ -235,7 +228,6 @@ angular.module('app.animationService', [])
                 var direction = -(d.value.forecastData[timeIndex].wind.direction + 90 + 180);
                 var speed = d.value.forecastData[timeIndex].wind.speed;
                 var distance = speed * t;
-                // var distance = 50
                 return padding + distance * -Math.sin( getRadians(direction) );
               };
 

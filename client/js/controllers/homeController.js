@@ -33,7 +33,6 @@ home.controller('HomeController', function($rootScope, $state, $scope, $modal, $
         $timeout(function() { $scope.detailsTab = true; }, 1000)
       }
       $scope.bottomTab = false;
-      console.log($scope.detailsTab);
   });
 
   $scope.toggleDetailsTab = function() {

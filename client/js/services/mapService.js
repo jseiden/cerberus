@@ -13,19 +13,13 @@ angular.module('app.mapService', [])
     };
 
     var updateBeachInfo = function() {
-
       if (!currentBeach) {
-        console.log("No beach selected");
+        throw new Error('Error: updateBeachInfo failed, no beach selected');
         return;
       }
-
       if (!currentTimeIndex) {
         currentTimeIndex = 0;
       }
-
-      console.log('updating beach info, beachInfo: ', beachInfo);
-      console.log('updating beach info, this.beachInfo: ', this.beachInfo);
-
       beachInfo.forecast = currentBeach.forecastData[currentTimeIndex];
       beachInfo.name = currentBeach.beachname;
       beachInfo.time = currentTimeStamps[currentTimeIndex];
@@ -98,40 +92,22 @@ angular.module('app.mapService', [])
       map.setZoom(11);
     };
 
-    var printBounds = function(){
-      console.log(map.getBounds());
-    };
-
     var setCurrentBeach = function(beachName){
       for(var i = 0; i < beachCache.length; i++){
         if(beachCache[i].beachname === beachName){
           currentBeach = beachCache[i];
-          console.log('in setCurrentBeach current beach =', currentBeach)
-          // $rootScope.$broadcast('beach selected', currentBeach);
         }
       }
-      console.log('setCurrentBeach is invoking updateBeachInfo')
       updateBeachInfo();
     };
-    //
-    // var getCurrentBeach = function(){
-    //   return currentBeach;
-    // };
-    //
+
     var setCurrentTimeStamp = function(i) {
       currentTimeIndex = i;
-      console.log('setCurrentTimeStamp invoking updateBeachInfo');
       updateBeachInfo();
-      // $rootScope.$broadcast('time changed');
     }
-    //
-    // var getCurrentTimeStamp = function() {
-    //   return currentTimeIndex;
-    // }
 
     return {
       getBeachData: getBeachData,
-      // markersLoaded: markersLoaded,
       setMap: setMap,
       getMap: getMap,
       setBeachCache: setBeachCache,
@@ -139,9 +115,7 @@ angular.module('app.mapService', [])
       getLocalTimeStamps: getLocalTimeStamps,
       zoomToBeach: zoomToBeach,
       setCurrentBeach: setCurrentBeach,
-      // getCurrentBeach: getCurrentBeach,
       setCurrentTimeStamp: setCurrentTimeStamp,
-      // getCurrentTimeStamp: getCurrentTimeStamp,
       currentBeach: currentBeach,
       currentTimeIndex: currentTimeIndex,
       updateBeachInfo: updateBeachInfo,

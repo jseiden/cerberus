@@ -3,8 +3,6 @@ var typeAhead = angular.module("app.typeAheadController", []);
 typeAhead.controller("TypeAheadController", function($scope, $rootScope, MapService, $state, AnimationService) {
   $scope.searchBeach = undefined;
   $scope.beachChoices = [];
-  // $scope.printBounds = MapService.printBounds;
-  // $scope.zoomToBeach = MapService.zoomToBeach;
   var beachCache;
 
   $rootScope.$on('beachCacheSet', function() {
@@ -14,19 +12,9 @@ typeAhead.controller("TypeAheadController", function($scope, $rootScope, MapServ
     });
   });
 
-  $scope.printCache = function() {
-    console.log("beachCache in TypeAheadController: ", beachCache);
-  };
-
- $scope.printCurrentBeach = function(){
-    console.log(MapService.getCurrentBeach());
-  };
-
   $scope.onSubmit = function () {
     $state.go('details');
-    console.log('searchbeach landed on', $scope.searchBeach, 'invokeing MapService.setCurrentBeach')
     MapService.setCurrentBeach($scope.searchBeach);
-
     MapService.zoomToBeach($scope.searchBeach);
     $scope.openSidebar();
     AnimationService.highlightMarker();

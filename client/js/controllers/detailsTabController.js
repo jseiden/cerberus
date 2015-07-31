@@ -1,32 +1,11 @@
 var tab = angular.module('app.detailsTabController', [])
 
 tab.controller('DetailsTabController', function($scope, MapService) {
-  $scope.theBeach;
 
-  var init = function() {
+  $scope.init = function() {
     $scope.beachInfo = MapService.beachInfo;
-    console.log("in details tab controller: ", $scope.beachInfo.forecast);
-    // $scope.theBeach = MapService.getCurrentBeach();
-    // $scope.timeIndex = MapService.getCurrentTimeStamp();
-    // $scope.forecast = $scope.theBeach.forecastData[$scope.timeIndex];
-    // $scope.solidRating = $scope.forecast.solidRating;
-    // $scope.fadedRating = $scope.forecast.fadedRating;
-    // $scope.swellHeight = $scope.forecast.swell.components.combined.height;
-    // $scope.swellPeriod = $scope.forecast.swell.components.combined.period;
-    // $scope.windSpeed = $scope.forecast.wind.speed;
-    // $scope.windDirection = $scope.forecast.wind.compassDirection;
-    // $scope.beachName = $scope.theBeach.beachname;
   };
-  init();
-
-  // $scope.$on('beach selected', function() {
-  //   init();
-  // });
-  // $scope.$on('time changed', function() {
-  //   if (MapService.getCurrentBeach()) {
-  //     init();
-  //   }
-  // });
+  $scope.init();
 
   $scope.windSpeedClass = function(specifier) {
     specifier = specifier || "";
