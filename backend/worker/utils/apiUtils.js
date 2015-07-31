@@ -10,29 +10,28 @@ var spotData = require('./json/beachData.json');
 var crudUtils = require('./crudUtils');
 var Beach = require('../../db/models/beach.js');
 
+var getMswAsync = Promise.promisify (function(beach, cb){
+    var endpoint = 'http://magicseaweed.com/api/436cadbb6caccea6e366ed1bf3640257/forecast/?spot_id='
+    var options = {
+      method: 'GET', 
+      uri: endpoint + (beach.mswId).toString()
+    }
 
-
-
-
-var getMswAsync = Promise.promisify(function(beach, cb){
-  var endpoint = 'http://magicseaweed.com/api/436cadbb6caccea6e366ed1bf3640257/forecast/?spot_id='
-  var options = {
-    method: 'GET', 
-    uri: endpoint + (beach.mswId).toString()
-  }
-
-  requestPromise(options)
-    .then(function(response){
-      console.log('passed', beach.mswId);
-      var timeFiltered = crudUtils.filterBeachDataTime(response);
-      Beach.findOneAndUpdate({mswId: beach.mswId, forecastData: timeFiltered})
-        .then(function(error, success){
-          cb(success, error)
-        })
-    })
+    requestPromise(options)
+      .then(function(response){
+        return crudUtils.filterBeachDataTime(response)
+      })
+      .then(function(filtered){
+        console.log('Surf condition data written for beach #', beach.mswId)
+        return Beach.findOneAndUpdate({mswId: beach.mswId}, {forecastData: filtered})
+      })
+      .then(function(err, success){
+        cb(success, err)
+      })
+      .catch(function(err){
+        console.log(err)
+      })
 });
-
-
 
 var iterativeApiCall = function(func, time){
   return function(){
@@ -45,6 +44,7 @@ var iterativeApiCall = function(func, time){
           } 
           func(data[ind])
             .then(function(success){
+              console.log('util run');
               setTimeout ( function(){recurse(ind+1)}, time )
             })
             .catch(function(error){
@@ -55,24 +55,6 @@ var iterativeApiCall = function(func, time){
       })
   }
 };
-
-// I think this should work, but Twitter throws an error
-// var getTweetAsync = Promise.promisify (function(beach, cb){
-
-//     var client = new Twitter({
-//      consumer_key: 'o9odfZmdeKbvrgpCVLotcPCNE',
-//      consumer_secret: 'siz3xPWBJ1iS14KPmSajdIn6DDmHjxHO7vBYr1fIt9E7XvgRrL',
-//      access_token_key: '874702442-UH5dCPdQ2tyl6NiqbwPFhyzsFNOYbFDdzQiuC0ar',
-//      access_token_secret: 'QLDf9QCxUzMxD7FkXMkTDKSmM5bB3Fe3ypvbw4Gq1GpAv'
-//     });
-
-//     var geocode = beach.lat + "," + beach.lon + ",5mi";
-
-//     client.get('search/tweets', {q: 'surf', geocode: geocode})
-//       .then(function(response){
-//         console.log(response);
-//       })
-// });
 
 var getTweetText = function(obj){
   return _.map(obj.statuses, function(tweet){
@@ -98,7 +80,6 @@ var getTweetAsync = Promise.promisify( function(lat, lon, cb){
 
 });
 
-
 var getTweetsAsync = Promise.promisify (function(beach, cb){
   getTweetAsync(beach.lat, beach.lon)
     .then(function(tweets){
@@ -106,7 +87,7 @@ var getTweetsAsync = Promise.promisify (function(beach, cb){
     })
     .then(function(tweetText){
       console.log(tweetText);
-      return Beach.findOneAndUpdate({mswId: beach.mswId, tweets: tweetText})
+      return Beach.findOneAndUpdate({mswId: beach.mswId}, {tweets: tweetText})
     })
     .then(function(err, success){
       cb(success, err);
@@ -115,11 +96,6 @@ var getTweetsAsync = Promise.promisify (function(beach, cb){
       console.log(err);
     })
 });
-
-
-
-
-
 
 var getMswDescriptionAsync = Promise.promisify (function(beach, cb){
   var url = 'http://magicseaweed.com/Playa-Linda-Surf-Guide/' + (beach.mswId).toString();
@@ -129,8 +105,8 @@ var getMswDescriptionAsync = Promise.promisify (function(beach, cb){
       return $('.msw-s-desc').text();
     })
     .then(function(description){
-      console.log(beach.mswId);
-      return Beach.findOneAndUpdate({mswId: beach.mswId, description: description})
+      console.log('Description wrote for beach #', beach.mswId)
+      return Beach.findOneAndUpdate({mswId: beach.mswId}, {description: description})
     })
     .then(function(err, success){
       cb(success, err);
@@ -141,11 +117,10 @@ var getMswDescriptionAsync = Promise.promisify (function(beach, cb){
 });
 
 
+
 exports.mswDescriptions = iterativeApiCall(getMswDescriptionAsync, 0);
 exports.mswData = iterativeApiCall(getMswAsync, 0);
 exports.tweetData = iterativeApiCall(getTweetsAsync, 60100);
-
-
 
 exports.updateBeachData = function(){
   var rule = new cron.RecurrenceRule();
