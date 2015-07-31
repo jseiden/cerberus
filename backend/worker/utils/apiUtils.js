@@ -142,7 +142,7 @@ var getMswDescriptionAsync = Promise.promisify (function(beach, cb){
 
 
 exports.mswDescriptions = iterativeApiCall(getMswDescriptionAsync, 0);
-//exports.mswData = iterativeApiCall(getMswAsync, 0);
+exports.mswData = iterativeApiCall(getMswAsync, 0);
 exports.tweetData = iterativeApiCall(getTweetsAsync, 60100);
 
 
