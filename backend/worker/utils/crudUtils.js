@@ -34,6 +34,7 @@ exports.writeBeachEntries = function(){
 	})
 };
 
+
 exports.retrieveBeachData = function (cb) {
   Beach.find({})
   	.then(function(data){
