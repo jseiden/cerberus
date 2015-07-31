@@ -387,7 +387,7 @@ th {
 .glyphicon.glyphicon-remove {
   float: right; }
 
-span.glyphicon.glyphicon-info-sign {
+span.glyphicon.glyphicon-info-sign, span.glyphicon.glyphicon-align-justify {
   margin: 15px;
   color: white; }
 
@@ -514,7 +514,11 @@ html, body {
   display: none;
   overflow-y: auto; }
   #site-menu-content {
-    padding: 15px; }
+    padding: 18px; }
+    #site-menu-content h4 {
+      display: inline-block; }
+    #site-menu-content label {
+      margin-left: 10px; }
   #site-menu.show-nav {
     display: block; }
 
@@ -591,8 +595,52 @@ h1 .glyphicon-remove {
   font-size: 50px; }
   .glyphicon.glyphicon-star.solid-star, .solid-star.glyphicon.glyphicon-star-empty {
     color: dodgerblue; }
+    .glyphicon.glyphicon-star.solid-star.tiny, .solid-star.tiny.glyphicon.glyphicon-star-empty {
+      font-size: 10px; }
   .glyphicon.glyphicon-star.faded-star, .faded-star.glyphicon.glyphicon-star-empty {
     color: lightblue; }
+    .glyphicon.glyphicon-star.faded-star.tiny, .faded-star.tiny.glyphicon.glyphicon-star-empty {
+      font-size: 10px; }
+  .glyphicon.glyphicon-star-empty.tiny {
+    font-size: 10px; }
+
+.overview {
+  font-size: 14px; }
+  .overviewColumn1 {
+    background-color: red;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    display: inline-block;
+    float: left;
+    line-height: 48px;
+    margin-left: 3px;
+    height: 48px;
+    width: 72%;
+    word-wrap: break-word; }
+    .overviewColumn1:hover {
+      font-weight: bold; }
+  .overviewColumn2 {
+    background-color: blue;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    display: inline-block;
+    float: right;
+    line-height: 48px;
+    text-align: center;
+    height: 48px;
+    width: 25%; }
+
+.overviewEntryDiv {
+  background-color: green;
+  border: 1px solid black;
+  border-radius: 5px;
+  height: 50px;
+  margin-top: 5px; }
+  .overviewEntryDiv:hover {
+    box-shadow: 2px 2px black; }
+
+#overviewSelect {
+  margin: 5px; }
 
 .fadeOut {
   animation: fadeOut 2s 1 forwards; }

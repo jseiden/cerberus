@@ -21,7 +21,13 @@
   &menu {
     // Change background color on #site-wrapper also
     &-content {
-      padding: 15px;
+      padding: 18px;
+      h4 {
+        display: inline-block;
+      }
+      label {
+        margin-left: 10px;
+      }
     }
     background-color: teal;
     width: 300px;
@@ -36,6 +42,8 @@
       display: block;
     }
   }
+
+
   &tab {
     background-color: aqua;
     width: 300px;
@@ -132,12 +140,65 @@ h1 .glyphicon-remove {
     // animation-fill-mode:forwards;
     &.solid-star {
       color: dodgerblue;
+      &.tiny {
+        font-size: 10px;
+      }
     }
     &.faded-star {
       color: lightblue;
+      &.tiny {
+        font-size: 10px;
+      }
     }
     &-empty {
       @extend .glyphicon.glyphicon-star;
+      &.tiny {
+        font-size: 10px;
+      }
     }
   }
+}
+
+.overview {
+  font-size: 14px;
+  &Column1 {
+    background-color: red;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    display: inline-block;
+    float: left;
+    line-height: 48px;
+    margin-left: 3px;
+    height: 48px;
+    width: 72%;
+    word-wrap:break-word;
+    &:hover {
+      font-weight: bold;
+    }
+  }
+  &Column2 {
+    background-color: blue;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    display: inline-block;
+    float: right;
+    line-height: 48px;
+    text-align: center;
+    height: 48px;
+    width: 25%;
+  }
+}
+
+.overviewEntryDiv{
+  background-color: green;
+  border: 1px solid black;
+  border-radius: 5px;
+  height: 50px;
+  &:hover{
+    box-shadow: 2px 2px black;
+  }
+  margin-top: 5px;
+}
+#overviewSelect {
+  margin: 5px;
 }

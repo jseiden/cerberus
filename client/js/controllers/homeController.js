@@ -22,7 +22,7 @@ home.controller('HomeController', function($rootScope, $state, $scope, $modal, $
   });
 
   $rootScope.$on('$locationChangeStart', function() {
-    if ($location.url() === "/") {
+    if ($location.url() !== "/details") {
       MapService.setCurrentTimeStamp(0);
     }
   })
