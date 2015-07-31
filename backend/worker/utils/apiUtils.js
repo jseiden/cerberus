@@ -22,8 +22,8 @@ var getMswAsync = Promise.promisify (function(beach, cb){
         return crudUtils.filterBeachDataTime(response)
       })
       .then(function(filtered){
-        console.log(filtered);
-        return Beach.findOneAndUpdate({mswId: beach.mswId, forecastData: filtered})
+        console.log('Surf condition data written for beach #', beach.mswId)
+        return Beach.findOneAndUpdate({mswId: beach.mswId}, {forecastData: filtered})
       })
       .then(function(err, success){
         cb(success, err)
@@ -44,6 +44,7 @@ var iterativeApiCall = function(func, time){
           } 
           func(data[ind])
             .then(function(success){
+              console.log('util run');
               setTimeout ( function(){recurse(ind+1)}, time )
             })
             .catch(function(error){
@@ -54,24 +55,6 @@ var iterativeApiCall = function(func, time){
       })
   }
 };
-
-// I think this should work, but Twitter throws an error
-// var getTweetAsync = Promise.promisify (function(beach, cb){
-
-//     var client = new Twitter({
-//      consumer_key: 'o9odfZmdeKbvrgpCVLotcPCNE',
-//      consumer_secret: 'siz3xPWBJ1iS14KPmSajdIn6DDmHjxHO7vBYr1fIt9E7XvgRrL',
-//      access_token_key: '874702442-UH5dCPdQ2tyl6NiqbwPFhyzsFNOYbFDdzQiuC0ar',
-//      access_token_secret: 'QLDf9QCxUzMxD7FkXMkTDKSmM5bB3Fe3ypvbw4Gq1GpAv'
-//     });
-
-//     var geocode = beach.lat + "," + beach.lon + ",5mi";
-
-//     client.get('search/tweets', {q: 'surf', geocode: geocode})
-//       .then(function(response){
-//         console.log(response);
-//       })
-// });
 
 var getTweetText = function(obj){
   return _.map(obj.statuses, function(tweet){
@@ -97,7 +80,6 @@ var getTweetAsync = Promise.promisify( function(lat, lon, cb){
 
 });
 
-
 var getTweetsAsync = Promise.promisify (function(beach, cb){
   getTweetAsync(beach.lat, beach.lon)
     .then(function(tweets){
@@ -105,7 +87,7 @@ var getTweetsAsync = Promise.promisify (function(beach, cb){
     })
     .then(function(tweetText){
       console.log(tweetText);
-      return Beach.findOneAndUpdate({mswId: beach.mswId, tweets: tweetText})
+      return Beach.findOneAndUpdate({mswId: beach.mswId}, {tweets: tweetText})
     })
     .then(function(err, success){
       cb(success, err);
@@ -123,8 +105,8 @@ var getMswDescriptionAsync = Promise.promisify (function(beach, cb){
       return $('.msw-s-desc').text();
     })
     .then(function(description){
-      console.log(beach.mswId);
-      return Beach.findOneAndUpdate({mswId: beach.mswId, description: description})
+      console.log('Description wrote for beach #', beach.mswId)
+      return Beach.findOneAndUpdate({mswId: beach.mswId}, {description: description})
     })
     .then(function(err, success){
       cb(success, err);
