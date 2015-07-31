@@ -4,12 +4,13 @@ var db = require('../../db/mongodb-data/config.js');
 var Beach = require('../../db/models/beach.js');
 var apiUtils = require('./apiUtils.js');
 var spotData = require('./json/beachData.json');
+var Promise = require('bluebird');
 
-var writeBeachEntry = function(beachData){
+var writeBeachEntry = Promise.promisify (function(beachData, cb){
 	Beach.find({mswId: beachData.mswId})
 		.then(function(beach){
 			if (beach.length === 0){
-				var newBeach = Beach({
+				return new Beach({
 					mswId: beachData.mswId,
 					beachname: beachData.beachName,
 					lat: beachData.lat,
@@ -18,22 +19,38 @@ var writeBeachEntry = function(beachData){
 					tweets: ['test'],
 					forecastData: ['test']
 				})
-
-				newBeach.save(function(err){
-					if (err) throw err;
-					//console.log('Beach Entry Created!')
-				});
 			}
-			//else console.log('Beach Entry Exists!');
 		})
+		.then(function(newBeach){
+			console.log(newBeach);
+			return newBeach.save()
+		})
+		.then(function(err, success){
+			console.log('run');
+			cb(success, err)
+		})
+		.catch(function(err){
+			console.log(err)
+		})
+})
+	
+exports.writeBeachEntries = function(beachData){
+		(function recurse(ind){
+			console.log(ind);
+			if (ind === beachData.length){
+				console.log('All entries written');
+				return;
+			}
+			writeBeachEntry(beachData[ind])
+				.then(function(success){
+					console.log("success");
+					recurse(++ind)
+				})
+				.catch(function(err){
+					console.log(err)
+				})
+		})(0)
 };
-
-exports.writeBeachEntries = function(){
-	_.each(spotData, function(spotDatum){
-		writeBeachEntry(spotDatum)
-	})
-};
-
 
 exports.retrieveBeachData = function (cb) {
   Beach.find({})
