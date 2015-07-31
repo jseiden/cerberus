@@ -623,7 +623,7 @@ h1 .glyphicon-remove {
   width: 72%;
   word-wrap: break-word; }
   .overviewColumn1:hover {
-    font-weight: bold; }
+    text-shadow: 2px 2px #FF80AB; }
 
 .overviewColumn2 {
   background-color: #00BCD4;
@@ -643,7 +643,7 @@ h1 .glyphicon-remove {
   height: 50px;
   margin-top: 5px; }
   .overviewEntryDiv:hover {
-    box-shadow: 2px 2px black; }
+    box-shadow: 2px 2px #FF80AB; }
 
 #overviewSelect {
   margin: 5px; }

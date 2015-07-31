@@ -177,7 +177,7 @@ h1 .glyphicon-remove {
     width: 72%;
     word-wrap:break-word;
     &:hover {
-      font-weight: bold;
+      text-shadow: 2px 2px $accent-color-light
     }
   }
   &Column2 {
@@ -199,7 +199,7 @@ h1 .glyphicon-remove {
   border-radius: 5px;
   height: 50px;
   &:hover{
-    box-shadow: 2px 2px black;
+    box-shadow: 2px 2px $accent-color-light;
   }
   margin-top: 5px;
 }

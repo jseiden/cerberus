@@ -12,7 +12,7 @@ crudUtils.writeBeachEntries();
 apiUtils.tweetData();
 
 //enable the below function if you want interval surf data updates
-//apiUtils.mswData();
+apiUtils.mswData();
 
 
 
