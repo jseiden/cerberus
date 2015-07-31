@@ -8,8 +8,7 @@ angular.module('app.animationService', [])
       var currentlyHighlighted = null;
 
       function highlightMarker() {
-        var beach = MapService.getCurrentBeach();
-
+        var beach = MapService.beachInfo.name;
         if (currentlyHighlighted) {
           hideTitle(currentlyHighlighted);
           currentlyHighlighted = null;
@@ -19,7 +18,7 @@ angular.module('app.animationService', [])
           if (d === undefined) {
             return;
           }
-          if (d.value.beachname === beach.beachname) {
+          if (d.value.beachname === beach) {
             currentlyHighlighted = this;
           }
         });
@@ -32,22 +31,6 @@ angular.module('app.animationService', [])
         MapService.zoomToBeach(beachName);
         highlightMarker();
         $rootScope.$broadcast('beach clicked');
-      //   var context = this;
-      //   var modalInstance = $modal.open({
-      //     scope: $rootScope,
-      //     animation: true,
-      //     templateUrl: 'detailsModal.html',
-      //     controller: 'DetailsController',
-      //     size: 'lg',
-      //     resolve: {
-      //       forecast: function () {
-      //         return JSON.parse(angular.element(context).attr('forecast'))[0];
-      //       },
-      //       beachName: function() {
-      //         return JSON.parse(angular.element(context).attr('name'));
-      //       }
-      //     }
-      //   });
       };
 
       function getHighlightedBeach() {
@@ -160,9 +143,6 @@ angular.module('app.animationService', [])
             };
           };
           overlay.setMap(map);
-        }).then(
-        function () {
-          MapService.markersLoaded()
         });
       };
 
@@ -202,15 +182,10 @@ angular.module('app.animationService', [])
               var path = windContainer.append('svg:path')
                 .attr('class', 'wind-vector')
                 .attr('d', getD)
-                // .attr('stroke', lineColor)
-                // .attr('stroke-width', lineWidth)
-                // .attr('fill', 'none')
                 .attr('stroke-dasharray', function(d) {
                   var l = d3.select(this).node().getTotalLength() / 2;
                   return l + ' ' + l;
                 })
-                // .attr('opacity', '.50')
-                // .attr('stroke-linecap', 'round')
                 .each(animatePath);
 
               function findWindSpeedMultiplier (maxWindSpeed, maxDuration, minDuration) {
@@ -245,7 +220,6 @@ angular.module('app.animationService', [])
                 var direction = -(d.value.forecastData[timeIndex].wind.direction + 90 + 180);
                 var speed = d.value.forecastData[timeIndex].wind.speed;
                 var distance = speed * t;
-                // var distance = 50
                 return padding + distance * Math.cos( getRadians(direction) );
               };
 
@@ -254,7 +228,6 @@ angular.module('app.animationService', [])
                 var direction = -(d.value.forecastData[timeIndex].wind.direction + 90 + 180);
                 var speed = d.value.forecastData[timeIndex].wind.speed;
                 var distance = speed * t;
-                // var distance = 50
                 return padding + distance * -Math.sin( getRadians(direction) );
               };
 

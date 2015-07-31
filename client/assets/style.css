@@ -377,6 +377,12 @@ th {
 .mswPower {
   padding: 0 15px; }
 
+.navbar {
+  box-shadow: 0px 5px 2px -1px rgba(0, 0, 0, 0.64);
+  z-index: 5;
+  border: none;
+  background-color: #00838F; }
+
 .navbar-inverse .navbar-text, .navbar-inverse .navbar-brand {
   color: white !important;
   z-index: 2; }
@@ -398,9 +404,8 @@ input {
 span.glyphicon.glyphicon-search {
   color: white; }
 
-form.navbar-left {
-  margin-top: 15px;
-  margin-bottom: 15px; }
+.navbar-inverse .navbar-nav > li > a {
+  color: white; }
 
 /* Main styles */
 .mask__shape {
@@ -487,7 +492,7 @@ html, body {
   animation-timing-function: linear; }
 
 #site-wrapper {
-  background-color: teal;
+  background-color: #80DEEA;
   position: relative;
   overflow: hidden;
   width: 100%;
@@ -504,7 +509,7 @@ html, body {
   transition: .3s ease all; }
 
 #site-menu {
-  background-color: teal;
+  background-color: #80DEEA;
   width: 300px;
   height: 100%;
   position: absolute;
@@ -519,7 +524,7 @@ html, body {
     display: block; }
 
 #site-tab {
-  background-color: aqua;
+  background-color: #80DEEA;
   width: 300px;
   height: 300px;
   position: absolute;
@@ -533,7 +538,7 @@ html, body {
 
 .tab-selector {
   position: absolute;
-  background-color: aqua;
+  background-color: #80DEEA;
   bottom: 0;
   left: 200px;
   width: 90px;
@@ -541,7 +546,9 @@ html, body {
   padding: 5px;
   z-index: 5;
   transform: translateY(0);
-  transition: .3s ease all; }
+  transition: .3s ease all;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px; }
   .tab-selector:hover {
     background-color: black;
     color: white; }
@@ -549,13 +556,13 @@ html, body {
     transform: translateY(-300px); }
 
 .tab-content {
-  background-color: aqua;
+  background-color: #80DEEA;
   padding: 15px;
   position: absolute; }
 
 .side-menu-tab {
   position: absolute;
-  background-color: cyan;
+  background-color: #00BCD4;
   width: 800px;
   left: -800px;
   bottom: 35px;
@@ -569,7 +576,7 @@ html, body {
     bottom: 35px;
     left: 0;
     z-index: 4;
-    background-color: cyan;
+    background-color: #00BCD4;
     height: 30px;
     width: 50px;
     transform: translateY(0);
@@ -590,16 +597,16 @@ h1 .glyphicon-remove {
 .glyphicon.glyphicon-star, .glyphicon.glyphicon-star-empty {
   font-size: 50px; }
   .glyphicon.glyphicon-star.solid-star, .solid-star.glyphicon.glyphicon-star-empty {
-    color: dodgerblue; }
+    color: #C51162; }
   .glyphicon.glyphicon-star.faded-star, .faded-star.glyphicon.glyphicon-star-empty {
-    color: lightblue; }
+    color: #FF80AB; }
 
 .fadeOut {
   animation: fadeOut 2s 1 forwards; }
 
 .circle, .cloud-1, .cloud-2, .cloud-3 {
   opacity: 0;
-  background-color: turquoise;
+  background: linear-gradient(to bottom, #00bcd4 0%, #ff4081 100%);
   border-radius: 100px;
   height: 175px;
   width: 175px;
@@ -607,7 +614,8 @@ h1 .glyphicon-remove {
   animation-name: fadeIn;
   animation-duration: 1s;
   animation-delay: 1s;
-  animation-fill-mode: forwards; }
+  animation-fill-mode: forwards;
+  box-shadow: 8px 9px 10px -8px rgba(0, 0, 0, 0.64); }
 
 .cloud-1 {
   position: absolute;
@@ -871,3 +879,8 @@ a.mswPower {
   padding: 0 5px 10px 10px;
   right: 10px;
   bottom: 10px; }
+
+a {
+  color: #FF4081; }
+  a:hover {
+    color: #C51162; }

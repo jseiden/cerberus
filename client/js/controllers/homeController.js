@@ -14,6 +14,7 @@ home.controller('HomeController', function($rootScope, $state, $scope, $modal, $
   $rootScope.$on('$locationChangeSuccess', function () {
     if ($location.url() === "/details") {
       $scope.isOnDetails = true;
+      $scope.openSidebar();
       $timeout(function() { $scope.detailsTab = true; }, 1000)
     } else {
       $scope.isOnDetails = false;
@@ -21,23 +22,24 @@ home.controller('HomeController', function($rootScope, $state, $scope, $modal, $
     }
   });
 
-  $rootScope.$on('$locationChangeStart', function() {
-    if ($location.url() === "/") {
-      MapService.setCurrentTimeStamp(0);
-    }
-  })
-
   $scope.$on('beach clicked', function() {
       $state.go('details');
-      $scope.$apply($scope.openSidebar());
-      console.log('open sidebar');
+      if ($scope.sideMenu === true) {
+        $scope.$apply(function() {$scope.detailsTab = true;})
+      }
+      // or if not on details
+      if ($scope.sideMenu === false) {
+        $scope.$apply($scope.openSidebar());
+        $timeout(function() { $scope.detailsTab = true; }, 1000)
+      }
+      $scope.bottomTab = false;
   });
 
   $scope.toggleDetailsTab = function() {
     $scope.detailsTab = !$scope.detailsTab;
   }
   $scope.getDirections = function () {
-    BestSpotService.getBestWavesFromCurrentLoc($scope.distance, $scope.timeIndex);
+    BestSpotService.getBestWavesFromCurrentLoc($scope.distance, MapService.getCurrentTimeStamp());
   };
 
   $scope.toggleClass = function() {
@@ -56,7 +58,7 @@ home.controller('HomeController', function($rootScope, $state, $scope, $modal, $
     $scope.bottomTab = !$scope.bottomTab;
   };
 
-  $scope.$on('map loaded', function() {
+  $scope.startLoadingScreen = function() {
     var decrementCounter = $interval(function() {
       if (typeof $scope.counter === "string") {
         $scope.counter = 10;
@@ -76,7 +78,7 @@ home.controller('HomeController', function($rootScope, $state, $scope, $modal, $
       }, 2000);
       //Time to remove overlay
     }, 5000);
-  });
+  };
 
   $scope.resetMap = function () {
     var map = MapService.getMap();
@@ -86,5 +88,5 @@ home.controller('HomeController', function($rootScope, $state, $scope, $modal, $
     map.setCenter(new google.maps.LatLng(36.958, -119.2658));
     map.setZoom(6);
   }
-
+  $scope.startLoadingScreen();
 });

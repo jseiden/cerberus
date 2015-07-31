@@ -1,14 +1,10 @@
 
 <div id="site-menu-content"><span ng-click="closeSidebar()" class="glyphicon glyphicon-remove"></span>
-  <h1>{{ beachname }}</h1>
-  <h3>{{ forecastTime }}</h3>
+  <h1>{{ beachInfo.name }}</h1>
+  <h3>{{ beachInfo.time }}</h3>
   <button ng-click="getDirections()">show route</button>
   <h3>Update forecast time:  
     <rzslider rz-slider-model="timeIndex" rz-slider-ceil="7" class="time-slider"></rzslider>
   </h3>
-  <div class="center"><span ng-repeat="star in toRepeat(solidRating)" class="glyphicon glyphicon-star solid-star"></span><span ng-repeat="star in toRepeat(fadedRating)" class="glyphicon glyphicon-star faded-star"></span><span ng-repeat="star in toRepeat(remainingStars())" class="glyphicon glyphicon-star-empty"> </span></div>
-  <div class="center"><strong>Solid Rating</strong>
-    <div class="center">{{ solidRating }}</div><strong>Faded Rating</strong>
-    <div class="center">{{ fadedRating }}</div>
-  </div>
+  <div class="center"><span ng-repeat="star in toRepeat(beachInfo.forecast.solidRating)" class="glyphicon glyphicon-star solid-star"></span><span ng-repeat="star in toRepeat(beachInfo.forecast.fadedRating)" class="glyphicon glyphicon-star faded-star"></span><span ng-repeat="star in toRepeat(remainingStars())" class="glyphicon glyphicon-star-empty"></span></div>
 </div>

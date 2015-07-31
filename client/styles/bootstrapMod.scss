@@ -7,6 +7,12 @@
 .mswPower {
   padding: 0 15px;
 }
+.navbar {
+  box-shadow: 0px 5px 2px -1px rgba(0, 0, 0, 0.64);
+  z-index: 5;
+  border: none;
+  background-color: $primary-color-dark;
+}
 .navbar-inverse .navbar-text, .navbar-inverse .navbar-brand {
   color: white !important;
   z-index: 2;
@@ -45,7 +51,6 @@ span.glyphicon.glyphicon-search {
   color: white;
 }
 
-form.navbar-left {
-  margin-top: 15px;
-  margin-bottom: 15px;
+.navbar-inverse .navbar-nav > li > a {
+  color: white;
 }

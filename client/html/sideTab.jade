@@ -9,7 +9,7 @@
           strong.
             Swell Height
           .center.ng-cloak.
-            {{swellHeight}}
+            {{beachInfo.forecast.swell.components.combined.height}}
       .col-md-3    
         .circle.center
           include anim/swellPeriod.jade
@@ -17,7 +17,7 @@
           strong.
             Swell Period
           .center.ng-cloak.
-            {{swellPeriod}}
+            {{beachInfo.forecast.swell.components.combined.height}}
       .col-md-3    
         .circle.center
           include anim/windSpeed.jade
@@ -25,7 +25,7 @@
           strong.
             Wind Speed
           .center.ng-cloak.
-            {{windSpeed}}
+            {{beachInfo.forecast.wind.speed}}
       .col-md-3    
         .circle.center
           include anim/windDirection.jade
@@ -33,6 +33,6 @@
           strong.
             Wind Direction
           .center.ng-cloak.
-            {{windDirection}}
+            {{beachInfo.forecast.wind.compassDirection}}
 .side-menu-tab-selector(ng-show="sideMenu && isOnDetails" ng-click="toggleDetailsTab()" ng-class="detailsTab ? 'show-tab' : ''").
   Details
