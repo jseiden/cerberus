@@ -6,9 +6,9 @@ var beachSchema = mongoose.Schema({
   beachname: String,
   lat: Number,
   lon: Number,
-  forecastData: Array,
   description: String,
-  tweets: Array
+  tweets: Array, 
+  forecastData: Array
 });
 
 var Beach = mongoose.model('Beach', beachSchema);

@@ -9,12 +9,13 @@ var app = express();
 crudUtils.writeBeachEntries();
 
 //enable the below function if you want tweets to popualte
-apiUtils.tweetData();
+//apiUtils.tweetData();
 
 //enable the below function if you want interval surf data updates
 //apiUtils.mswData();
 
-
+//enable the below function if you to populate DB with scraped descriptions
+//apiUtils.mswDescriptions();
 
 
 //app.get('/requestBeachData', apiUtils.beachDataReq);

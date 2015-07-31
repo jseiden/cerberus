@@ -14,6 +14,8 @@ var writeBeachEntry = function(beachData){
 					beachname: beachData.beachName,
 					lat: beachData.lat,
 					lon: beachData.lon,
+					description: 'this is a beach',
+					tweets: ['test'],
 					forecastData: ['test']
 				})
 
@@ -31,6 +33,7 @@ exports.writeBeachEntries = function(){
 		writeBeachEntry(spotDatum)
 	})
 };
+
 
 exports.retrieveBeachData = function (cb) {
   Beach.find({})
