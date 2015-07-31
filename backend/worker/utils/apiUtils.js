@@ -10,29 +10,28 @@ var spotData = require('./json/beachData.json');
 var crudUtils = require('./crudUtils');
 var Beach = require('../../db/models/beach.js');
 
+var getMswAsync = Promise.promisify (function(beach, cb){
+    var endpoint = 'http://magicseaweed.com/api/436cadbb6caccea6e366ed1bf3640257/forecast/?spot_id='
+    var options = {
+      method: 'GET', 
+      uri: endpoint + (beach.mswId).toString()
+    }
 
-
-
-
-var getMswAsync = Promise.promisify(function(beach, cb){
-  var endpoint = 'http://magicseaweed.com/api/436cadbb6caccea6e366ed1bf3640257/forecast/?spot_id='
-  var options = {
-    method: 'GET', 
-    uri: endpoint + (beach.mswId).toString()
-  }
-
-  requestPromise(options)
-    .then(function(response){
-      console.log('passed', beach.mswId);
-      var timeFiltered = crudUtils.filterBeachDataTime(response);
-      Beach.findOneAndUpdate({mswId: beach.mswId, forecastData: timeFiltered})
-        .then(function(error, success){
-          cb(success, error)
-        })
-    })
+    requestPromise(options)
+      .then(function(response){
+        return crudUtils.filterBeachDataTime(response)
+      })
+      .then(function(filtered){
+        console.log(filtered);
+        return Beach.findOneAndUpdate({mswId: beach.mswId, forecastData: filtered})
+      })
+      .then(function(err, success){
+        cb(success, err)
+      })
+      .catch(function(err){
+        console.log(err)
+      })
 });
-
-
 
 var iterativeApiCall = function(func, time){
   return function(){
@@ -116,11 +115,6 @@ var getTweetsAsync = Promise.promisify (function(beach, cb){
     })
 });
 
-
-
-
-
-
 var getMswDescriptionAsync = Promise.promisify (function(beach, cb){
   var url = 'http://magicseaweed.com/Playa-Linda-Surf-Guide/' + (beach.mswId).toString();
   requestPromise(url)
@@ -141,11 +135,10 @@ var getMswDescriptionAsync = Promise.promisify (function(beach, cb){
 });
 
 
+
 exports.mswDescriptions = iterativeApiCall(getMswDescriptionAsync, 0);
 exports.mswData = iterativeApiCall(getMswAsync, 0);
 exports.tweetData = iterativeApiCall(getTweetsAsync, 60100);
-
-
 
 exports.updateBeachData = function(){
   var rule = new cron.RecurrenceRule();
