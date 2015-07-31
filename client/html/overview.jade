@@ -5,7 +5,7 @@
   label order by:
   //- select(ng-model="mySelect" ng-options="opt as opt for opt in options")
   select(id="overviewSelect" ng-model="mySelect" ng-options="obj.value for obj in options")
-  .overviewEntryDiv(ng-repeat="beach in beaches | orderBy: mySelect.option " ng-click="selectBeach(beach)"  ui-sref="details")
+  .overviewEntryDiv(ng-repeat="beach in beaches | orderBy: mySelect.option : true" ng-click="selectBeach(beach)"  ui-sref="details")
     div(class="overviewColumn1").
       {{beach.beachname}}
     div  
