@@ -13,7 +13,7 @@ var Beach = require('../../db/models/beach.js');
 var getMswAsync = Promise.promisify (function(beach, cb){
     var endpoint = 'http://magicseaweed.com/api/436cadbb6caccea6e366ed1bf3640257/forecast/?spot_id='
     var options = {
-      method: 'GET', 
+      method: 'GET',
       uri: endpoint + (beach.mswId).toString()
     }
 
@@ -41,7 +41,7 @@ var iterativeApiCall = function(func, time){
           if (ind === data.length){
             console.log('Data for all beaches finished')
             return;
-          } 
+          }
           func(data[ind])
             .then(function(success){
               console.log('util run');
@@ -62,7 +62,7 @@ var getTweetText = function(obj){
   })
 };
 
-var getTweetAsync = Promise.promisify( function(lat, lon, cb){ 
+var getTweetAsync = Promise.promisify( function(lat, lon, cb){
 
   var client = new Twitter({
    consumer_key: 'o9odfZmdeKbvrgpCVLotcPCNE',
@@ -124,8 +124,11 @@ exports.tweetData = iterativeApiCall(getTweetsAsync, 60100);
 
 exports.updateBeachData = function(){
   var rule = new cron.RecurrenceRule();
-  rule.hour = new cron.Range(0, 23, 3);
+  // rule.hour = new cron.Range(0, 23, 3);
+  rule.minute = new cron.Range(0, 59, 1);
   cron.scheduleJob(rule, function(){
-    exports.beachDataReq();
-  });                                               
+    // exports.mswData();
+    console.log("data updated!!!!?");
+  });
+
 };
