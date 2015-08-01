@@ -1,7 +1,7 @@
 //nodem modules
 var mongoose = require('mongoose');
 //mongoose config
-mongoURI = 'mongodb://45.55.14.80:27017/thesis';
+mongoURI = process.env.MONGOLAB_URI || "mongodb://localhost:/thesis";
 mongoose.connect(mongoURI);
 
 //opens initial connection
@@ -9,7 +9,7 @@ mongoose.connect(mongoURI);
 db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
- //console.log('Mongodb connection open');
+ console.log('Mongodb connection open');
 });
 
 //exports db for use in other files
